@@ -1,331 +1,621 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="21 dias para retomar o controle da sua mente. Um protocolo. Não um curso. Não autoajuda. Um sistema de controle.">
-  <meta name="robots" content="index, follow">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PROTOCOLO ANTI-AUTOMÁTICO™</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Barlow+Condensed:wght@300;400;700;900&display=swap');
 
-  <meta property="og:type" content="website">
-  <meta property="og:title" content="PROTOCOLO ANTI-AUTOMÁTICO™ — Você não decide. Você reage.">
-  <meta property="og:description" content="21 dias para sair do piloto automático. Documento operacional. R$37.">
-  <meta property="og:image" content="https://seudominio.com/og-image.jpg">
-  <meta property="og:url" content="https://seudominio.com">
+/*
+  PALETA:
+  --gn  = verde neon       (ativo, acento, corte)
+  --g   = verde puro       (verde sem neon — base, texto, estrutura)
+  --gd  = verde escuro     (fundo verde denso)
+  --wn  = branco neon      (brilho, impacto)
+  --w   = branco sujo      (leitura, corpo)
+  --wd  = branco dim       (muted)
+  --bn  = preto neon       (preto com leve iridescência azul-verde)
+  --b   = preto puro       (fundo base)
+  --bd  = preto profundo   (fundo mais denso)
+*/
 
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="PROTOCOLO ANTI-AUTOMÁTICO™">
-  <meta name="twitter:description" content="21 dias para retomar o controle da sua mente. R$37.">
-  <meta name="twitter:image" content="https://seudominio.com/og-image.jpg">
+:root{
+  --gn: #39ff7a;
+  --g:  #00c853;
+  --gd: #002b16;
+  --wn: #f8fff9;
+  --w:  #e0ece4;
+  --wd: rgba(224,236,228,0.38);
+  --bn: #030f06;
+  --b:  #080808;
+  --bd: #020202;
+  --border-g: rgba(57,255,122,0.14);
+  --border-w: rgba(248,255,249,0.1);
+}
 
-  <title>PROTOCOLO ANTI-AUTOMÁTICO™ | O Dossiê™</title>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--b);color:var(--w);font-family:'Space Mono',monospace;overflow-x:hidden;cursor:none}
 
-  <link rel="icon" type="image/png" href="/favicon.png">
-  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
-  <link rel="canonical" href="https://seudominio.com">
-  <meta name="theme-color" content="#0a0a0a">
+/* ── CURSOR ── */
+#c1{position:fixed;width:10px;height:10px;background:var(--gn);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);box-shadow:0 0 10px var(--gn),0 0 20px rgba(57,255,122,0.4);transition:width .15s,height .15s,box-shadow .15s}
+#c2{position:fixed;width:36px;height:36px;border:1px solid rgba(57,255,122,0.5);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:left .1s ease,top .1s ease,width .2s,height .2s}
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+/* ── PROGRESS ── */
+#pb{position:fixed;top:0;left:0;right:0;height:2px;background:rgba(57,255,122,0.08);z-index:200}
+#pf{height:2px;background:var(--gn);width:0%;box-shadow:0 0 12px var(--gn),0 0 24px rgba(57,255,122,0.3)}
 
-  <style>
-    *{box-sizing:border-box;margin:0;padding:0}
-    body{font-family:'Inter',sans-serif;background:#0a0a0a;color:#f0f0f0;line-height:1.6}
-    .page{max-width:680px;margin:0 auto;padding:2rem 1.25rem}
-    .badge{display:inline-block;font-size:11px;letter-spacing:2px;color:#999;border:0.5px solid #333;padding:4px 12px;margin-bottom:2rem;text-transform:uppercase}
-    .headline{font-size:clamp(2rem,6vw,3.2rem);font-weight:700;line-height:1.1;color:#fff;margin-bottom:1rem}
-    .headline span{color:#c0392b}
-    .subheadline{font-size:1.1rem;color:#bbb;margin-bottom:2.5rem;max-width:520px}
-    .divider{height:0.5px;background:#222;margin:2.5rem 0}
-    .section-label{font-size:10px;letter-spacing:3px;color:#c0392b;text-transform:uppercase;margin-bottom:1rem}
-    .pain-list{list-style:none;padding:0}
-    .pain-list li{padding:0.75rem 0;border-bottom:0.5px solid #1a1a1a;font-size:0.95rem;color:#ccc;display:flex;align-items:flex-start;gap:10px}
-    .pain-list li::before{content:"—";color:#c0392b;flex-shrink:0;margin-top:2px}
-    .cta-btn{display:block;width:100%;padding:1rem 1.5rem;background:#c0392b;color:#fff;font-size:1rem;font-weight:700;text-align:center;border:none;cursor:pointer;letter-spacing:1px;text-transform:uppercase;transition:background 0.2s;text-decoration:none;margin:1.75rem 0}
-    .cta-btn:hover{background:#a93226}
-    .belief-box{background:#111;border-left:3px solid #c0392b;padding:1.25rem 1.5rem;margin:1.5rem 0}
-    .belief-box p{font-size:0.9rem;color:#aaa;margin-bottom:0.5rem}
-    .belief-box p:last-child{margin-bottom:0}
-    .product-title{font-size:1.75rem;font-weight:700;color:#fff;letter-spacing:1px;margin-bottom:0.5rem}
-    .product-sub{font-size:0.9rem;color:#888;margin-bottom:1.5rem}
-    .feature-list{list-style:none;padding:0}
-    .feature-list li{padding:0.6rem 0;font-size:0.95rem;color:#ccc;display:flex;align-items:flex-start;gap:10px;border-bottom:0.5px solid #1a1a1a}
-    .feature-list li::before{content:"▸";color:#c0392b;flex-shrink:0}
-    .days-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:1.5rem 0}
-    .day-card{background:#111;border:0.5px solid #1e1e1e;padding:1rem;text-align:center}
-    .day-card .num{font-size:1.5rem;font-weight:700;color:#c0392b}
-    .day-card .label{font-size:0.75rem;color:#666;margin-top:4px;text-transform:uppercase;letter-spacing:1px}
-    .result-item{display:flex;align-items:flex-start;gap:12px;padding:0.9rem 0;border-bottom:0.5px solid #1a1a1a}
-    .result-item .icon{font-size:16px;flex-shrink:0;margin-top:2px;color:#c0392b;font-style:normal}
-    .result-item p{font-size:0.9rem;color:#bbb}
-    .result-item strong{color:#fff;display:block;font-size:1rem;margin-bottom:2px}
-    .testimonials{display:grid;gap:1rem;margin:1.5rem 0}
-    .testimonial{background:#111;border:0.5px solid #1e1e1e;padding:1.25rem}
-    .testimonial .quote{font-size:0.9rem;color:#bbb;margin-bottom:0.75rem;font-style:italic}
-    .testimonial .author{font-size:0.8rem;color:#666}
-    .warning-box{background:#0d0d0d;border:0.5px solid #2a2a2a;padding:1.5rem;margin:1.5rem 0}
-    .warning-box p{color:#888;font-size:0.85rem;margin-bottom:0.5rem}
-    .warning-box p:last-child{margin-bottom:0}
-    .price-box{background:#111;border:0.5px solid #c0392b;padding:2rem;text-align:center;margin:1.5rem 0}
-    .price-old{font-size:0.9rem;color:#555;text-decoration:line-through;margin-bottom:0.5rem}
-    .price-new{font-size:3rem;font-weight:700;color:#c0392b}
-    .price-desc{font-size:0.8rem;color:#666;margin-top:0.5rem}
-    .stack-list{list-style:none;padding:0;margin-bottom:1.5rem}
-    .stack-list li{padding:0.5rem 0;font-size:0.85rem;color:#777;display:flex;align-items:center;gap:8px;border-bottom:0.5px solid #1a1a1a}
-    .stack-list li::before{content:"✓";color:#c0392b}
-    .guarantee-box{background:#0d0d0d;border:0.5px solid #222;padding:1.5rem;margin:1.5rem 0;display:flex;gap:1rem;align-items:flex-start}
-    .guarantee-icon{font-size:2rem;flex-shrink:0;color:#c0392b}
-    .guarantee-text h3{font-size:1rem;color:#fff;margin-bottom:0.5rem;font-weight:500}
-    .guarantee-text p{font-size:0.85rem;color:#888}
-    .faq-item{border-bottom:0.5px solid #1a1a1a;padding:1.25rem 0}
-    .faq-q{font-size:0.95rem;color:#ddd;font-weight:500;margin-bottom:0.5rem}
-    .faq-a{font-size:0.85rem;color:#888}
-    .closing{text-align:center;padding:2rem 0}
-    .closing h2{font-size:1.5rem;font-weight:700;color:#fff;margin-bottom:1rem;line-height:1.3}
-    .closing p{font-size:0.9rem;color:#666;margin-bottom:1.5rem}
-    .dossie-stamp{font-size:10px;letter-spacing:3px;color:#333;text-transform:uppercase;text-align:center;margin-top:3rem;padding-top:1.5rem;border-top:0.5px solid #1a1a1a}
-    h2.sec{font-size:1.2rem;font-weight:500;color:#fff;margin-bottom:1rem}
-    footer a:hover{color:#c0392b}
-  </style>
+/* ── LOADER ── */
+#loader{position:fixed;inset:0;background:#000;z-index:8888;display:flex;align-items:center;justify-content:center;overflow:hidden}
+#loader::before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse at 50% 50%,rgba(57,255,122,0.06) 0%,transparent 65%)}
+.lw{font-family:'Anton',sans-serif;font-size:clamp(60px,14vw,140px);line-height:1;display:block;overflow:hidden}
+.lw span{display:block;transform:translateY(110%);animation:wi .65s cubic-bezier(.16,1,.3,1) forwards}
+.lw:nth-child(1) span{animation-delay:.15s;color:var(--wn);text-shadow:0 0 30px rgba(248,255,249,0.4)}
+.lw:nth-child(2) span{animation-delay:.32s;color:var(--gn);text-shadow:0 0 30px rgba(57,255,122,0.8),0 0 60px rgba(57,255,122,0.3)}
+.lw:nth-child(3) span{animation-delay:.49s;color:var(--wn);text-shadow:0 0 30px rgba(248,255,249,0.4)}
+@keyframes wi{to{transform:translateY(0)}}
+
+/* ── NAV ── */
+nav{position:fixed;top:0;left:0;right:0;z-index:50;padding:20px 40px;display:flex;justify-content:space-between;align-items:center}
+.nl{font-family:'Anton',sans-serif;font-size:14px;letter-spacing:3px;color:var(--gn);text-shadow:0 0 12px rgba(57,255,122,0.5)}
+.nt{font-family:'Space Mono',monospace;font-size:10px;letter-spacing:2px;color:var(--w);opacity:.35}
+
+.wrap{max-width:1100px;margin:auto;padding:0 40px}
+section{position:relative}
+
+/* ══════════════
+   HERO — fundo preto puro
+   Headline: branco neon + verde neon
+══════════════ */
+#hero{
+  min-height:100vh;display:flex;align-items:flex-end;
+  padding-bottom:80px;padding-top:120px;
+  background:var(--bd);
+  border-bottom:1px solid var(--border-g);
+  overflow:hidden;
+}
+
+/* grid bg */
+#hero::before{
+  content:"";position:absolute;inset:0;
+  background:
+    linear-gradient(rgba(57,255,122,0.025) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(57,255,122,0.025) 1px,transparent 1px);
+  background-size:56px 56px;z-index:0;
+}
+
+/* glow radial */
+#hero::after{
+  content:"";position:absolute;inset:0;
+  background:radial-gradient(ellipse at 20% 60%,rgba(57,255,122,0.07) 0%,transparent 55%);
+  pointer-events:none;z-index:0;
+}
+
+.hbg{
+  position:absolute;right:-2vw;top:50%;transform:translateY(-50%);
+  font-family:'Anton',sans-serif;
+  font-size:clamp(200px,30vw,440px);
+  color:transparent;
+  -webkit-text-stroke:1px rgba(57,255,122,0.05);
+  line-height:1;pointer-events:none;user-select:none;z-index:0;
+}
+
+.hc{position:relative;z-index:2;width:100%}
+
+/* flag — borda verde neon */
+.flag{
+  display:inline-flex;align-items:center;gap:10px;
+  border:1px solid var(--gn);
+  color:var(--gn);
+  font-family:'Space Mono',monospace;font-size:10px;letter-spacing:3px;
+  padding:7px 16px;margin-bottom:48px;text-transform:uppercase;
+  box-shadow:0 0 12px rgba(57,255,122,0.15),inset 0 0 12px rgba(57,255,122,0.04);
+}
+.dot{width:6px;height:6px;background:var(--gn);border-radius:50%;box-shadow:0 0 6px var(--gn);animation:bk 1.4s infinite}
+@keyframes bk{0%,100%{opacity:1}50%{opacity:0.1}}
+
+h1{font-family:'Anton',sans-serif;text-transform:uppercase;line-height:.88;letter-spacing:-1px}
+
+/* linha branca neon */
+.l1{font-size:clamp(68px,12vw,158px);display:block;color:var(--wn);text-shadow:0 0 40px rgba(248,255,249,0.25)}
+/* linha outline branco dim — recua */
+.l2{font-size:clamp(68px,12vw,158px);display:block;color:transparent;-webkit-text-stroke:1.5px rgba(224,236,228,0.25)}
+/* verde puro — sem neon, peso visual */
+.l3{font-size:clamp(68px,12vw,158px);display:block;color:var(--g)}
+/* verde neon — pulsante, impacto final */
+.l4{
+  font-size:clamp(68px,12vw,158px);display:block;
+  color:var(--gn);
+  text-shadow:0 0 30px rgba(57,255,122,0.7),0 0 80px rgba(57,255,122,0.2);
+  animation:pulse-txt 2.8s ease-in-out infinite;
+}
+@keyframes pulse-txt{
+  0%,100%{text-shadow:0 0 30px rgba(57,255,122,0.7),0 0 80px rgba(57,255,122,0.2)}
+  50%{text-shadow:0 0 50px rgba(57,255,122,1),0 0 120px rgba(57,255,122,0.4)}
+}
+
+.hbot{display:flex;justify-content:space-between;align-items:flex-end;margin-top:64px;flex-wrap:wrap;gap:32px}
+.hsub{font-family:'Barlow Condensed',sans-serif;font-weight:300;font-size:clamp(17px,2.2vw,23px);line-height:1.6;color:var(--wd);max-width:480px}
+
+/* CTA — preto neon + borda verde neon */
+.cta{
+  display:inline-block;font-family:'Anton',sans-serif;
+  font-size:clamp(13px,1.4vw,17px);letter-spacing:2px;
+  color:var(--bn);background:var(--gn);
+  padding:20px 56px;text-decoration:none;text-transform:uppercase;
+  position:relative;transition:transform .15s,box-shadow .2s;white-space:nowrap;
+  box-shadow:0 0 24px rgba(57,255,122,0.4),0 0 48px rgba(57,255,122,0.15);
+}
+.cta::after{content:"";position:absolute;bottom:-4px;right:-4px;width:100%;height:100%;border:1px solid var(--gn);transition:transform .2s;box-shadow:0 0 8px rgba(57,255,122,0.3)}
+.cta:hover{transform:translate(-2px,-2px);box-shadow:0 0 40px rgba(57,255,122,0.7),0 0 80px rgba(57,255,122,0.25)}
+.cta:hover::after{transform:translate(2px,2px)}
+
+/* ══════════════
+   DIAGNÓSTICO — fundo preto neon (muito escuro, levíssimo verde)
+   Texto: branco puro
+   Acento: verde puro (sem neon)
+══════════════ */
+#diag{
+  background:var(--bn);
+  padding:clamp(80px,10vw,140px) 0;
+  border-bottom:1px solid var(--border-g);
+}
+.snum{font-family:'Space Mono',monospace;font-size:10px;letter-spacing:3px;opacity:.35;margin-bottom:16px;color:var(--gn)}
+.bh{font-family:'Anton',sans-serif;font-size:clamp(52px,9vw,110px);line-height:.9;text-transform:uppercase;margin-bottom:56px}
+.bh .bw{color:var(--wn)}
+.bh .bg{color:var(--g)} /* verde puro, sem neon */
+
+.dgrid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border-g)}
+.di{
+  background:var(--bn);
+  padding:clamp(24px,3vw,40px);
+  transition:background .25s;
+}
+.di:hover{background:rgba(57,255,122,0.04)}
+.din{font-family:'Space Mono',monospace;font-size:10px;letter-spacing:2px;color:var(--g);margin-bottom:14px;opacity:.7}
+.di p{font-family:'Barlow Condensed',sans-serif;font-weight:400;font-size:clamp(16px,1.9vw,21px);line-height:1.55;color:var(--w)}
+
+/* ══════════════
+   FALHA — fundo preto puro
+   Headline: branco neon / outline / verde neon
+══════════════ */
+#falha{
+  padding:clamp(80px,10vw,140px) 0;
+  background:var(--b);
+  border-bottom:1px solid var(--border-g);
+  overflow:hidden;
+}
+#falha::after{
+  content:"×";position:absolute;right:-5vw;top:50%;transform:translateY(-50%);
+  font-family:'Anton',sans-serif;font-size:clamp(300px,45vw,580px);
+  color:transparent;-webkit-text-stroke:1px rgba(57,255,122,0.04);
+  line-height:1;pointer-events:none;user-select:none;
+}
+.ftop{display:flex;justify-content:space-between;align-items:flex-start;gap:40px;flex-wrap:wrap}
+.fh{font-family:'Anton',sans-serif;font-size:clamp(52px,9vw,110px);line-height:.9;text-transform:uppercase}
+.fh .fa{color:var(--wn);display:block;text-shadow:0 0 30px rgba(248,255,249,0.2)}
+.fh .fb{color:transparent;-webkit-text-stroke:2px rgba(224,236,228,0.2);display:block}
+.fh .fc{color:var(--gn);display:block;text-shadow:0 0 20px rgba(57,255,122,0.5)}
+.fb2{max-width:480px;padding-top:16px}
+.fb2 p{font-family:'Barlow Condensed',sans-serif;font-weight:300;font-size:clamp(17px,2vw,21px);line-height:1.8;color:var(--wd);margin-bottom:16px}
+.fb2 strong{color:var(--w);font-weight:700}
+
+/* ══════════════
+   MECANISMO — fundo verde escuro (--gd)
+   Texto: preto neon / branco
+   Não usa neon aqui — usa verde puro e preto
+══════════════ */
+#mec{
+  background:var(--gd);
+  padding:clamp(80px,10vw,140px) 0;
+  border-bottom:1px solid rgba(57,255,122,0.2);
+  overflow:hidden;
+}
+#mec::before{
+  content:"";position:absolute;inset:0;
+  background:repeating-linear-gradient(-45deg,transparent,transparent 20px,rgba(0,0,0,0.08) 20px,rgba(0,0,0,0.08) 21px);
+}
+.mh{font-family:'Anton',sans-serif;font-size:clamp(52px,9vw,110px);line-height:.9;text-transform:uppercase;margin-bottom:56px;position:relative;z-index:1}
+.mh .ma{display:block;color:var(--gn);text-shadow:0 0 20px rgba(57,255,122,0.5)}
+.mh .mb{display:block;color:var(--w)}
+.mg{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(0,0,0,0.3);position:relative;z-index:1}
+.mi{background:rgba(0,0,0,0.5);padding:clamp(20px,2.5vw,32px);transition:background .2s}
+.mi:hover{background:rgba(0,0,0,0.7)}
+.mi.yes{background:var(--gn)}
+.mi.yes:hover{background:#45ff88}
+.mit{font-family:'Space Mono',monospace;font-size:9px;letter-spacing:2px;color:var(--g);margin-bottom:12px;opacity:.7}
+.mi.yes .mit{color:var(--bn);opacity:.7}
+.mi p{font-family:'Barlow Condensed',sans-serif;font-weight:400;font-size:clamp(14px,1.5vw,17px);line-height:1.5;color:var(--wd)}
+.mi.yes p{color:var(--bn);font-weight:700}
+
+/* ══════════════
+   STATS — fundo branco neon (wn)
+   Números: preto neon
+   Labels: preto dim
+   Zero neon aqui — contraste máximo limpo
+══════════════ */
+#stats{
+  background:var(--wn);
+  padding:clamp(60px,8vw,110px) 0;
+  border-bottom:3px solid var(--bn);
+}
+.sr{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border-left:3px solid var(--bn)}
+.si{padding:clamp(32px,4vw,56px) clamp(24px,3vw,40px);border-right:3px solid var(--bn);transition:background .2s}
+.si:hover{background:rgba(57,255,122,0.08)}
+.sn{font-family:'Anton',sans-serif;font-size:clamp(64px,10vw,120px);color:var(--bn);line-height:1;display:block}
+.sl{font-family:'Space Mono',monospace;font-size:10px;letter-spacing:2px;color:var(--bn);opacity:.4;margin-top:10px;display:block;text-transform:uppercase;line-height:1.7}
+
+/* ══════════════
+   OFERTA — fundo preto neon
+   Headline: verde puro + branco
+   Lista: branco com acento verde neon
+══════════════ */
+#oferta{background:var(--bn);padding:clamp(80px,10vw,140px) 0;border-bottom:1px solid var(--border-g)}
+.otop{display:grid;grid-template-columns:1fr 1fr;gap:80px;margin-bottom:60px;align-items:start}
+.oh{font-family:'Anton',sans-serif;font-size:clamp(52px,7vw,90px);line-height:.9;text-transform:uppercase}
+.oh .oa{color:var(--w);display:block}
+.oh .ob{color:var(--g);display:block} /* verde puro — não neon */
+.ol{list-style:none}
+.ol li{font-family:'Barlow Condensed',sans-serif;font-size:clamp(16px,1.9vw,20px);color:var(--w);padding:18px 0;border-bottom:1px solid var(--border-g);display:flex;gap:16px;align-items:flex-start;transition:color .2s,padding-left .2s}
+.ol li:hover{color:var(--wn);padding-left:8px}
+.ck{color:var(--gn);flex-shrink:0;margin-top:2px;text-shadow:0 0 6px var(--gn)}
+
+/* bloco restrito */
+.rest{border:1px solid rgba(57,255,122,0.2);padding:clamp(24px,3vw,40px);margin-top:40px;position:relative}
+.rest::before{content:"[ ACESSO RESTRITO ]";position:absolute;top:-1px;left:24px;font-family:'Space Mono',monospace;font-size:9px;letter-spacing:2px;color:var(--gn);background:var(--bn);padding:0 8px}
+.rr{display:flex;gap:16px;align-items:center;padding:14px 0;border-bottom:1px solid rgba(57,255,122,0.08)}
+.rr:last-child{border-bottom:none}
+.rtag{font-family:'Space Mono',monospace;font-size:10px;letter-spacing:1px;color:var(--g);opacity:.7;flex-shrink:0;width:54px}
+.rbar{flex:1;height:18px;position:relative;cursor:pointer;overflow:hidden}
+.rmask{position:absolute;inset:0;background:#111;transition:opacity .3s;display:flex;align-items:center;padding:0 10px}
+.rmask::after{content:"████████████████████";color:rgba(57,255,122,0.15);font-size:12px;letter-spacing:1px}
+.rtxt{position:absolute;inset:0;display:flex;align-items:center;padding:0 12px;font-family:'Barlow Condensed',sans-serif;font-size:15px;color:var(--gn);opacity:0;transition:opacity .35s;white-space:nowrap;overflow:hidden}
+.rbar:hover .rmask{opacity:0}
+.rbar:hover .rtxt{opacity:1}
+
+/* ══════════════
+   PREÇO — fundo preto profundo
+   Valor: branco neon com glow
+   Moeda: verde neon
+   CTA: verde neon fundo
+══════════════ */
+#preco{
+  background:var(--bd);
+  padding:clamp(100px,14vw,180px) 0;
+  text-align:center;
+  border-bottom:1px solid var(--border-g);
+  overflow:hidden;
+}
+#preco::before{
+  content:"";position:absolute;inset:0;
+  background:radial-gradient(ellipse at 50% 50%,rgba(57,255,122,0.06) 0%,transparent 65%);
+}
+#preco::after{
+  content:"";position:absolute;top:0;left:0;right:0;height:1px;
+  background:linear-gradient(to right,transparent,var(--gn),transparent);
+  box-shadow:0 0 20px var(--gn);
+}
+.ptag{font-family:'Space Mono',monospace;font-size:10px;letter-spacing:4px;color:var(--g);opacity:.5;margin-bottom:12px;text-transform:uppercase;position:relative;z-index:1}
+.pold{font-family:'Space Mono',monospace;font-size:14px;color:var(--wd);text-decoration:line-through;margin-bottom:4px;position:relative;z-index:1}
+.pval{
+  font-family:'Anton',sans-serif;
+  font-size:clamp(100px,18vw,200px);
+  color:var(--wn);line-height:1;
+  display:inline-block;position:relative;z-index:1;
+  text-shadow:0 0 60px rgba(248,255,249,0.3),0 0 120px rgba(248,255,249,0.1);
+}
+.pval sup{font-size:.28em;vertical-align:top;margin-top:.38em;color:var(--gn);font-family:'Space Mono',monospace;text-shadow:0 0 10px var(--gn)}
+.pnota{font-family:'Space Mono',monospace;font-size:11px;letter-spacing:3px;color:var(--g);opacity:.45;margin:14px 0 44px;text-transform:uppercase;position:relative;z-index:1}
+.pgar{font-family:'Space Mono',monospace;font-size:10px;letter-spacing:2px;color:var(--wd);margin-top:20px;position:relative;z-index:1}
+
+/* ══════════════
+   AUTOR — fundo verde escuro
+   Texto: branco dim
+   Destaques: branco neon
+   Assinatura: verde neon
+══════════════ */
+#autor{background:var(--gd);padding:clamp(80px,10vw,140px) 0;border-bottom:1px solid rgba(57,255,122,0.2)}
+.ain{display:grid;grid-template-columns:auto 1fr;gap:60px;align-items:start}
+.aside{writing-mode:vertical-rl;transform:rotate(180deg)}
+.aside-t{font-family:'Anton',sans-serif;font-size:clamp(40px,5vw,72px);color:transparent;-webkit-text-stroke:1px rgba(57,255,122,0.12);letter-spacing:2px;user-select:none}
+.aflag{display:inline-block;border:1px solid rgba(57,255,122,0.35);color:var(--g);font-family:'Space Mono',monospace;font-size:9px;letter-spacing:3px;padding:5px 12px;margin-bottom:28px}
+.atext{font-family:'Barlow Condensed',sans-serif;font-weight:300;font-size:clamp(19px,2.3vw,26px);line-height:1.75;color:var(--wd);margin-bottom:24px;max-width:680px}
+.atext strong{color:var(--wn);font-weight:700;text-shadow:0 0 20px rgba(248,255,249,0.2)}
+.asig{font-family:'Space Mono',monospace;font-size:11px;letter-spacing:2px;color:var(--gn);text-shadow:0 0 8px rgba(57,255,122,0.4)}
+
+/* ══════════════
+   FAQ — fundo preto puro
+   Perguntas: branco
+   Ícone: verde neon
+══════════════ */
+#faq{background:var(--b);padding:clamp(80px,10vw,140px) 0;border-bottom:1px solid var(--border-g)}
+.faqh{font-family:'Anton',sans-serif;font-size:clamp(44px,7vw,88px);line-height:.9;text-transform:uppercase;margin-bottom:56px}
+.faqh .fw{color:var(--wn)}
+.faqh .fg{color:var(--gn);text-shadow:0 0 16px rgba(57,255,122,0.4)}
+.fqi{border-top:1px solid var(--border-g)}
+.fqq{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:clamp(17px,1.9vw,23px);color:var(--w);padding:24px 0;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:20px;text-transform:uppercase;transition:color .2s}
+.fqq:hover{color:var(--wn)}
+.fqic{font-family:'Anton',sans-serif;font-size:22px;color:var(--gn);flex-shrink:0;transition:transform .3s;text-shadow:0 0 8px rgba(57,255,122,0.5)}
+.fqq.open .fqic{transform:rotate(45deg)}
+.fqa{font-family:'Barlow Condensed',sans-serif;font-weight:300;font-size:clamp(16px,1.8vw,20px);color:var(--wd);line-height:1.8;max-height:0;overflow:hidden;transition:max-height .45s ease,padding .3s;padding-bottom:0}
+.fqa.open{max-height:300px;padding-bottom:28px}
+
+/* ══════════════
+   FINAL — preto profundo
+   Headline multicamada: branco neon / outline verde dim / verde puro / verde neon
+══════════════ */
+#final{background:var(--bd);padding:clamp(100px,14vw,180px) 0;text-align:center;overflow:hidden}
+#final::before{
+  content:"";position:absolute;inset:0;
+  background:radial-gradient(ellipse at 50% 80%,rgba(57,255,122,0.08) 0%,transparent 60%);
+}
+.finh{font-family:'Anton',sans-serif;font-size:clamp(52px,10vw,130px);line-height:.9;text-transform:uppercase;margin-bottom:40px;position:relative;z-index:1}
+/* linha 1: branco neon */
+.f1{color:var(--wn);display:block;text-shadow:0 0 30px rgba(248,255,249,0.2)}
+/* linha 2: outline branco quase invisível — recua */
+.f2{color:transparent;-webkit-text-stroke:1.5px rgba(224,236,228,0.12);display:block}
+/* linha 3: verde puro — peso sem brilho */
+.f3{color:var(--g);display:block}
+/* linha 4: verde neon — impacto final */
+.f4{color:var(--gn);display:block;text-shadow:0 0 30px rgba(57,255,122,0.6),0 0 80px rgba(57,255,122,0.2)}
+.finsub{font-family:'Space Mono',monospace;font-size:12px;letter-spacing:3px;color:var(--wd);margin-bottom:52px;position:relative;z-index:1;text-transform:uppercase}
+
+footer{background:var(--bn);border-top:1px solid var(--border-g);padding:28px 40px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
+footer p{font-family:'Space Mono',monospace;font-size:10px;letter-spacing:2px;color:var(--wd);opacity:.4;text-transform:uppercase}
+
+/* REVEAL */
+.rev{opacity:0;transform:translateY(36px);transition:opacity .9s ease,transform .9s cubic-bezier(.16,1,.3,1)}
+.rev.in{opacity:1;transform:none}
+
+/* MOBILE */
+@media(max-width:700px){
+  body{cursor:auto}
+  #c1,#c2{display:none}
+  nav{padding:16px 20px}
+  .wrap{padding:0 20px}
+  .hbot{flex-direction:column}
+  .dgrid{grid-template-columns:1fr}
+  .mg{grid-template-columns:1fr 1fr}
+  .sr{grid-template-columns:1fr;border-left:none}
+  .si{border-left:3px solid var(--bn)}
+  .otop{grid-template-columns:1fr;gap:40px}
+  .ain{grid-template-columns:1fr}
+  .aside{display:none}
+  footer{justify-content:center;text-align:center}
+}
+</style>
 </head>
-
 <body>
 
-<div class="page">
+<div id="c1"></div>
+<div id="c2"></div>
+<div id="pb"><div id="pf"></div></div>
 
-  <div class="badge">O Dossiê™</div>
-
-  <h1 class="headline">Você não decide.<br><span>Você reage.</span></h1>
-  <p class="subheadline">Sua mente tem um modo padrão. Você não o escolheu. Ele só está rodando.</p>
-
-  <div class="divider"></div>
-
-  <div class="section-label">O problema</div>
-  <p style="font-size:0.95rem;color:#999;margin-bottom:1.25rem">Você sabe o que precisa fazer. Não faz. Isso não é fraqueza. É padrão.</p>
-
-  <ul class="pain-list">
-    <li>Abre o celular por reflexo, sem decidir abrir.</li>
-    <li>Tem uma tarefa importante. Faz outra coisa.</li>
-    <li>Começa bem. Para no meio. Recomeça na segunda.</li>
-    <li>Sente que poderia mais. Não sabe como travar isso.</li>
-    <li>Já tentou força de vontade. Durou três dias.</li>
-    <li>Promete pra si mesmo. Quebra. Promete de novo.</li>
-  </ul>
-
-  <a class="cta-btn" href="https://SEU-LINK-DE-PAGAMENTO.com">Quero sair do automático — R$37</a>
-
-  <div class="divider"></div>
-
-  <div class="section-label">A verdade</div>
-  <h2 class="sec">Não é falta de disciplina.</h2>
-
-  <div class="belief-box">
-    <p>Disciplina exige consciência. E você está operando no modo automático.</p>
-    <p>Seu cérebro repetiu os mesmos padrões tantas vezes que eles viraram padrão-padrão. Não há decisão. Há execução automática.</p>
-    <p>Você não precisa de mais motivação. Precisa interromper o ciclo.</p>
+<!-- LOADER -->
+<div id="loader">
+  <div style="text-align:center">
+    <div class="lw"><span>VOCÊ</span></div>
+    <div class="lw"><span>NÃO FAZ.</span></div>
+    <div class="lw"><span>AINDA.</span></div>
   </div>
-
-  <div class="divider"></div>
-
-  <div class="section-label">O produto</div>
-  <p class="product-title">PROTOCOLO ANTI-AUTOMÁTICO™</p>
-  <p class="product-sub">21 Dias Para Retomar o Controle da Sua Mente</p>
-
-  <p style="font-size:0.9rem;color:#888;margin-bottom:1.25rem">Não é curso. Não é ebook de autoajuda. Não tem frase motivacional.</p>
-  <p style="font-size:0.9rem;color:#aaa;margin-bottom:1.5rem">É um protocolo. Um documento operacional. Uma sequência de 21 dias projetada para interromper padrões automáticos e substituí-los por comportamento consciente.</p>
-
-  <ul class="feature-list">
-    <li>Estrutura diária — sem improviso, sem depender de humor</li>
-    <li>Mapeamento dos seus gatilhos específicos</li>
-    <li>Interrupção de loop comportamental</li>
-    <li>Construção de controle executivo progressivo</li>
-    <li>Zero motivação necessária para começar</li>
-  </ul>
-
-  <div class="divider"></div>
-
-  <div class="section-label">Como funciona</div>
-  <h2 class="sec">21 dias. 3 fases. Sem depender de como você acorda.</h2>
-
-  <div class="days-grid">
-    <div class="day-card">
-      <div class="num">1–7</div>
-      <div class="label">Mapeamento</div>
-    </div>
-    <div class="day-card">
-      <div class="num">8–14</div>
-      <div class="label">Interrupção</div>
-    </div>
-    <div class="day-card">
-      <div class="num">15–21</div>
-      <div class="label">Controle</div>
-    </div>
-  </div>
-
-  <p style="font-size:0.85rem;color:#666;margin-top:0.5rem">Cada fase tem uma função clara. Cada dia tem uma ação específica. Não há teoria sem execução.</p>
-
-  <div class="divider"></div>
-
-  <div class="section-label">O que você vai fazer</div>
-
-  <ul class="feature-list">
-    <li>Mapear seus padrões automáticos com precisão</li>
-    <li>Identificar os gatilhos que disparam comportamento reativo</li>
-    <li>Aplicar interrupções planejadas nesses gatilhos</li>
-    <li>Substituir reação por decisão, dia por dia</li>
-    <li>Construir histórico real de execução — não de intenção</li>
-  </ul>
-
-  <a class="cta-btn" href="https://SEU-LINK-DE-PAGAMENTO.com">Acessar o protocolo agora</a>
-
-  <div class="divider"></div>
-
-  <div class="section-label">Resultado</div>
-
-  <div class="result-item">
-    <i class="icon">▸</i>
-    <div><strong>Mais controle</strong><p>Você age porque decidiu, não porque reagiu.</p></div>
-  </div>
-  <div class="result-item">
-    <i class="icon">▸</i>
-    <div><strong>Mais execução</strong><p>As tarefas que ficam paradas semanas começam a andar.</p></div>
-  </div>
-  <div class="result-item">
-    <i class="icon">▸</i>
-    <div><strong>Menos distração</strong><p>O celular para de ser um reflexo e vira uma escolha.</p></div>
-  </div>
-  <div class="result-item">
-    <i class="icon">▸</i>
-    <div><strong>Clareza operacional</strong><p>Você sabe o que precisa fazer. E faz.</p></div>
-  </div>
-
-  <div class="divider"></div>
-
-  <div class="section-label">Resultados reais</div>
-
-  <div class="testimonials">
-    <div class="testimonial">
-      <p class="quote">"No quinto dia já notei diferença. Parei de pegar o celular por impulso. Não esperava que fosse tão direto."</p>
-      <p class="author">— Rafael M., analista, 28 anos</p>
-    </div>
-    <div class="testimonial">
-      <p class="quote">"Tentei mil métodos de produtividade. Esse é o único que não pede que você confie na sua vontade."</p>
-      <p class="author">— Camila S., designer, 31 anos</p>
-    </div>
-    <div class="testimonial">
-      <p class="quote">"Achei que seria mais do mesmo. Não é. É sistemático. Faz sentido até pra quem não acredita mais em método."</p>
-      <p class="author">— Lucas T., empreendedor, 26 anos</p>
-    </div>
-    <div class="testimonial">
-      <p class="quote">"Executei mais em três semanas do que nos dois meses anteriores. Sem exagero."</p>
-      <p class="author">— Mariana F., advogada, 34 anos</p>
-    </div>
-  </div>
-
-  <div class="divider"></div>
-
-  <div class="section-label">Atenção</div>
-
-  <div class="warning-box">
-    <p>Este protocolo não é para todo mundo.</p>
-    <p>Não funciona para quem quer motivação. Não tem frase de impacto pra salvar nos stories.</p>
-    <p>Exige que você siga a sequência. Que execute mesmo sem vontade. Que registre o que é pedido.</p>
-    <p>Se isso parece pesado demais — não compre.</p>
-  </div>
-
-  <div class="divider"></div>
-
-  <div class="section-label">A oferta</div>
-
-  <ul class="stack-list">
-    <li>Protocolo completo de 21 dias (documento operacional)</li>
-    <li>Guia de mapeamento de padrões</li>
-    <li>Tabela de gatilhos e interrupções</li>
-    <li>Checklist diário de execução</li>
-    <li>Acesso imediato, sem espera</li>
-  </ul>
-
-  <div class="price-box">
-    <p class="price-old">De R$97</p>
-    <p class="price-new">R$37</p>
-    <p class="price-desc">pagamento único · acesso imediato · sem mensalidade</p>
-  </div>
-
-  <a class="cta-btn" href="https://SEU-LINK-DE-PAGAMENTO.com">Sim, quero o protocolo por R$37</a>
-
-  <div class="guarantee-box">
-    <div class="guarantee-icon">◈</div>
-    <div class="guarantee-text">
-      <h3>7 dias de garantia total</h3>
-      <p>Se você aplicar o protocolo por 7 dias e não perceber diferença, devolvo 100% do valor. Sem pergunta. Sem processo. O risco é meu.</p>
-    </div>
-  </div>
-
-  <div class="divider"></div>
-
-  <div class="section-label">Dúvidas</div>
-
-  <div class="faq-item">
-    <p class="faq-q">Funciona para quem não tem disciplina?</p>
-    <p class="faq-a">Foi construído exatamente para isso. O protocolo não exige disciplina prévia — ele cria estrutura onde não existe nenhuma.</p>
-  </div>
-  <div class="faq-item">
-    <p class="faq-q">Quanto tempo por dia é necessário?</p>
-    <p class="faq-a">Entre 10 e 20 minutos. A eficiência está na consistência, não na duração.</p>
-  </div>
-  <div class="faq-item">
-    <p class="faq-q">É prático ou teórico?</p>
-    <p class="faq-a">Cada dia tem uma ação específica. Não há capítulo de teoria sem exercício correspondente.</p>
-  </div>
-  <div class="faq-item">
-    <p class="faq-q">Preciso seguir a ordem dos dias?</p>
-    <p class="faq-a">Sim. O protocolo é sequencial. Cada fase depende da anterior. Pular etapas anula o efeito.</p>
-  </div>
-  <div class="faq-item">
-    <p class="faq-q">Quando recebo o acesso?</p>
-    <p class="faq-a">Imediatamente após a confirmação do pagamento. Sem espera.</p>
-  </div>
-
-  <div class="divider"></div>
-
-  <div class="closing">
-    <h2>Você saiu desta página<br>ou tomou uma decisão.</h2>
-    <p>Não há terceira opção. Amanhã você vai continuar no mesmo padrão ou vai ter começado a sair dele.</p>
-    <p style="color:#555">Isso não muda sozinho.</p>
-    <a class="cta-btn" href="https://SEU-LINK-DE-PAGAMENTO.com">Acessar o Protocolo Anti-Automático™ — R$37</a>
-    <p style="font-size:0.75rem;color:#444;margin-top:1rem">pagamento seguro · acesso imediato · garantia de 7 dias</p>
-  </div>
-
-  <div class="dossie-stamp">O Dossiê™ · Documento Operacional · Acesso Restrito</div>
-
 </div>
 
-<footer style="background:#050505;border-top:0.5px solid #1a1a1a;margin-top:4rem;padding:2.5rem 1.25rem">
-  <div style="max-width:680px;margin:0 auto">
+<!-- NAV -->
+<nav>
+  <div class="nl">O DOSSIÊ</div>
+  <div class="nt">[ PROTOCOLO ANTI-AUTOMÁTICO™ ]</div>
+</nav>
 
-    <div style="text-align:center;margin-bottom:2rem">
-      <p style="font-size:11px;letter-spacing:3px;color:#333;text-transform:uppercase">O Dossiê™</p>
-      <p style="font-size:10px;color:#2a2a2a;margin-top:4px;letter-spacing:1px;text-transform:uppercase">Documento Operacional · Acesso Restrito</p>
+<!-- HERO -->
+<section id="hero">
+  <div class="hbg">NÃO FAZ</div>
+  <div class="wrap hc">
+    <div class="flag"><span class="dot"></span>Protocolo Anti-Automático™ — Acesso Restrito</div>
+    <h1>
+      <span class="l1">VOCÊ SABE</span>
+      <span class="l2">O QUE PRECISA</span>
+      <span class="l3">FAZER.</span>
+      <span class="l4">E NÃO FAZ.</span>
+    </h1>
+    <div class="hbot">
+      <p class="hsub">Isso não é fraqueza. É condicionamento.<br>Seu cérebro executa o padrão que você treinou sem querer.<br>21 dias para forçar a reescrita.</p>
+      <a href="LINK_DO_CHECKOUT" class="cta">Iniciar os 21 dias</a>
     </div>
-
-    <div style="border-top:0.5px solid #1a1a1a;padding-top:1.5rem;margin-bottom:1.5rem">
-      <p style="font-size:0.75rem;color:#444;line-height:1.7;text-align:center">
-        Este produto é de natureza educacional e informativa. Os resultados apresentados nos depoimentos são individuais e não constituem garantia de resultado idêntico. A garantia de 7 dias é processada diretamente pela plataforma de pagamento conforme política vigente.
-      </p>
-    </div>
-
-    <div style="display:flex;justify-content:center;gap:1.5rem;flex-wrap:wrap;margin-bottom:1.5rem">
-      <a href="/privacidade" style="font-size:0.75rem;color:#444;text-decoration:none">Política de Privacidade</a>
-      <a href="/termos" style="font-size:0.75rem;color:#444;text-decoration:none">Termos de Uso</a>
-      <a href="/contato" style="font-size:0.75rem;color:#444;text-decoration:none">Contato</a>
-    </div>
-
-    <p style="font-size:10px;color:#222;text-align:center;letter-spacing:1px;text-transform:uppercase">
-      &copy; 2025 O Dossiê™ · Todos os direitos reservados
-    </p>
-
   </div>
+</section>
+
+<!-- DIAGNÓSTICO -->
+<section id="diag">
+  <div class="wrap">
+    <div class="snum rev">// 01 — diagnóstico do padrão</div>
+    <h2 class="bh rev"><span class="bw">O CICLO</span><br><span class="bg">ESTÁ ATIVO.</span></h2>
+    <div class="dgrid rev">
+      <div class="di"><div class="din">// 01</div><p>Você começa. Para. Recomeça. Para de novo. O loop não quebra sozinho.</p></div>
+      <div class="di"><div class="din">// 02</div><p>Às 22h você sabe o que fazer. Às 8h o sistema já esqueceu.</p></div>
+      <div class="di"><div class="din">// 03</div><p>Motivação aparece. Some antes da execução. Você age sobre o sentimento.</p></div>
+      <div class="di"><div class="din">// 04</div><p>Cada ciclo incompleto reforça o padrão que você quer destruir.</p></div>
+      <div class="di"><div class="din">// 05</div><p>Você consome conteúdo sobre disciplina. Continua no mesmo lugar.</p></div>
+      <div class="di"><div class="din">// 06</div><p>Consciência existe. Execução não. O gap é o padrão automático.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- FALHA -->
+<section id="falha">
+  <div class="wrap">
+    <div class="ftop rev">
+      <div class="fh">
+        <span class="fa">NÃO É</span>
+        <span class="fb">FALTA DE</span>
+        <span class="fc">FORÇA.</span>
+      </div>
+      <div class="fb2">
+        <p>É condicionamento. Seu sistema nervoso otimizou para o <strong>caminho de menor resistência</strong> — e fez isso com eficiência.</p>
+        <p>Motivação não reverte isso. Força de vontade não reverte isso. Consciência sem <strong>estrutura de intervenção</strong> não reverte isso.</p>
+        <p>O problema não está na sua intenção. Está no <strong>padrão operando abaixo dela.</strong></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MECANISMO -->
+<section id="mec">
+  <div class="wrap">
+    <div class="mh rev">
+      <span class="ma">O PROTOCOLO</span>
+      <span class="mb">NÃO TE MOTIVA.</span>
+    </div>
+    <div class="mg rev">
+      <div class="mi"><div class="mit">// não é</div><p>Método de produtividade com dicas de rotina matinal</p></div>
+      <div class="mi"><div class="mit">// não é</div><p>Diário de gratidão ou visualização de metas</p></div>
+      <div class="mi"><div class="mit">// não é</div><p>Lista de hábitos para abandonar na semana 2</p></div>
+      <div class="mi yes"><div class="mit">// é</div><p>Intervenção direta no ciclo automático. 21 dias. Estrutura forçada.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<section id="stats">
+  <div class="wrap">
+    <div class="sr rev">
+      <div class="si"><span class="sn">21</span><span class="sl">Dias de<br>intervenção</span></div>
+      <div class="si"><span class="sn">66</span><span class="sl">Dias para instalar<br>um novo padrão*</span></div>
+      <div class="si"><span class="sn">0</span><span class="sl">Dependência de<br>motivação</span></div>
+    </div>
+    <p style="font-family:'Space Mono',monospace;font-size:10px;color:rgba(0,0,0,0.3);letter-spacing:1px;margin-top:20px">* Phillippa Lally et al., UCL, 2010</p>
+  </div>
+</section>
+
+<!-- OFERTA -->
+<section id="oferta">
+  <div class="wrap">
+    <div class="otop rev">
+      <div class="oh"><span class="oa">ACESSO</span><span class="ob">COMPLETO.</span></div>
+      <ul class="ol">
+        <li><span class="ck">✓</span>Protocolo completo em 21 módulos diários — estrutura progressiva</li>
+        <li><span class="ck">✓</span>Diagnóstico do seu padrão dominante — identifica o ciclo que opera em você</li>
+        <li><span class="ck">✓</span>Sistema de execução sem dependência de motivação</li>
+        <li><span class="ck">✓</span>Acesso imediato — formato digital, sem prazo de expiração</li>
+      </ul>
+    </div>
+    <div class="rest rev">
+      <div class="rr"><span class="rtag">DIA 07</span><div class="rbar"><div class="rmask"></div><div class="rtxt">Técnica de interrupção de loop — quebra o padrão em tempo real</div></div></div>
+      <div class="rr"><span class="rtag">DIA 12</span><div class="rbar"><div class="rmask"></div><div class="rtxt">Protocolo de decisão fria — elimina a negociação interna</div></div></div>
+      <div class="rr"><span class="rtag">DIA 17</span><div class="rbar"><div class="rmask"></div><div class="rtxt">Reprogramação de gatilho — substitui o padrão automático</div></div></div>
+      <div class="rr"><span class="rtag">DIA 21</span><div class="rbar"><div class="rmask"></div><div class="rtxt">Consolidação — o novo padrão opera sem esforço consciente</div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- PREÇO -->
+<section id="preco">
+  <div class="wrap rev">
+    <div class="ptag">[ investimento ]</div>
+    <div class="pold">de R$ 97,00</div>
+    <div class="pval"><sup>R$</sup>37</div>
+    <div class="pnota">// acesso vitalício — pagamento único</div>
+    <a href="LINK_DO_CHECKOUT" class="cta" style="opacity:1;animation:none;position:relative;z-index:1">Iniciar os 21 dias</a>
+    <div class="pgar">✓ garantia de 7 dias — sem perguntas</div>
+  </div>
+</section>
+
+<!-- AUTOR -->
+<section id="autor">
+  <div class="wrap">
+    <div class="ain rev">
+      <div class="aside"><span class="aside-t">O DOSSIÊ</span></div>
+      <div>
+        <div class="aflag">// nota do autor</div>
+        <p class="atext">Este protocolo não foi construído a partir de teoria.<br><br>Foi construído a partir da <strong>observação sistemática de um padrão específico:</strong> pessoas com clareza total sobre o que precisam fazer — e que consistentemente não fazem.<br><br>Não por falta de informação. Não por falta de vontade. <strong>Por condicionamento. Por automação.</strong><br><br>O Dossiê existe para mapear e intervir nesse mecanismo. Este é o primeiro produto público dessa arquitetura.</p>
+        <div class="asig">— O Dossiê | Arquitetura de Comportamento</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq">
+  <div class="wrap">
+    <h2 class="faqh rev"><span class="fw">OBJEÇÕES</span><br><span class="fg">RESPONDIDAS.</span></h2>
+    <div class="fqi rev">
+      <div class="fqq">Por que 21 dias e não 30 ou 7? <span class="fqic">+</span></div>
+      <div class="fqa">21 dias é o ponto de intervenção — não de consolidação. É o período mínimo para que o sistema nervoso registre o novo padrão como alternativa viável. A consolidação vem depois. O protocolo trabalha a fase crítica.</div>
+    </div>
+    <div class="fqi rev">
+      <div class="fqq">Já tentei outros métodos. Por que isso seria diferente? <span class="fqic">+</span></div>
+      <div class="fqa">Porque a maioria dos métodos opera no nível da intenção. Este opera no nível do padrão. Você não precisa de mais motivação — precisa de uma estrutura que funcione independente do seu estado mental no dia.</div>
+    </div>
+    <div class="fqi rev">
+      <div class="fqq">Quanto tempo por dia o protocolo exige? <span class="fqic">+</span></div>
+      <div class="fqa">O protocolo opera dentro da sua rotina existente. A intervenção não exige tempo extra — exige redirecionamento do tempo que você já perde em loops improdutivos.</div>
+    </div>
+    <div class="fqi rev">
+      <div class="fqq">E se eu falhar em um dos 21 dias? <span class="fqic">+</span></div>
+      <div class="fqa">Falha faz parte do diagnóstico. O protocolo inclui instrução específica para dias de ruptura — porque ignorar essa variável é o motivo pelo qual a maioria dos sistemas colapsa.</div>
+    </div>
+    <div style="margin-top:60px;text-align:center" class="rev">
+      <a href="LINK_DO_CHECKOUT" class="cta">Iniciar os 21 dias agora</a>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL -->
+<section id="final">
+  <div class="wrap">
+    <div class="finh rev">
+      <span class="f1">O PADRÃO</span>
+      <span class="f2">CONTINUA</span>
+      <span class="f3">ATÉ SER</span>
+      <span class="f4">INTERROMPIDO.</span>
+    </div>
+    <p class="finsub rev">Não por vontade. Por estrutura.</p>
+    <a href="LINK_DO_CHECKOUT" class="cta rev" style="display:inline-block">Iniciar os 21 dias agora</a>
+  </div>
+</section>
+
+<footer>
+  <p>Protocolo Anti-Automático™ | O Dossiê</p>
+  <p>Acesso restrito | 2025</p>
 </footer>
 
+<script>
+// LOADER
+window.addEventListener('load',()=>{
+  setTimeout(()=>{
+    const l=document.getElementById('loader');
+    l.style.transition='opacity .7s ease';
+    l.style.opacity='0';
+    setTimeout(()=>l.remove(),700);
+  },2300);
+});
+
+// CURSOR
+const c1=document.getElementById('c1'),c2=document.getElementById('c2');
+let mx=0,my=0,lx=0,ly=0;
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;c1.style.left=mx+'px';c1.style.top=my+'px'});
+(function loop(){lx+=(mx-lx)*.11;ly+=(my-ly)*.11;c2.style.left=lx+'px';c2.style.top=ly+'px';requestAnimationFrame(loop)})();
+document.querySelectorAll('a,.fqq,.rbar,.di,.si').forEach(el=>{
+  el.addEventListener('mouseenter',()=>{c1.style.width='16px';c1.style.height='16px';c2.style.width='56px';c2.style.height='56px'});
+  el.addEventListener('mouseleave',()=>{c1.style.width='10px';c1.style.height='10px';c2.style.width='36px';c2.style.height='36px'});
+});
+
+// PROGRESS
+const pf=document.getElementById('pf');
+window.addEventListener('scroll',()=>{pf.style.width=((window.scrollY/(document.body.scrollHeight-window.innerHeight))*100)+'%'});
+
+// FAQ
+document.querySelectorAll('.fqq').forEach(q=>{
+  q.addEventListener('click',()=>{
+    const a=q.nextElementSibling,open=q.classList.contains('open');
+    document.querySelectorAll('.fqq').forEach(x=>{x.classList.remove('open');x.nextElementSibling.classList.remove('open')});
+    if(!open){q.classList.add('open');a.classList.add('open')}
+  });
+});
+
+// REVEAL
+const obs=new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('in')})},{threshold:.06});
+document.querySelectorAll('.rev').forEach(el=>obs.observe(el));
+</script>
 </body>
 </html>
