@@ -3,2466 +3,264 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="PROTOCOLO ANTI-AUTOMÁTICO™ — Documento Classificado. 21 dias de intervenção direta no ciclo automático.">
+<meta name="description" content="PROTOCOLO ANTI-AUTOMÁTICO™ — 21 dias de intervenção direta no ciclo automático.">
 <meta property="og:title" content="PROTOCOLO ANTI-AUTOMÁTICO™ — ARQUIVO CONFIDENCIAL">
 <meta property="og:description" content="Você acha que decide. Seu padrão decide antes.">
-<meta property="og:type" content="website">
-<title>PAA-001 // PROTOCOLO ANTI-AUTOMÁTICO™ — DOSSIÊ CLASSIFICADO</title>
+<title>PAA-001 // PROTOCOLO ANTI-AUTOMÁTICO™</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Special+Elite&family=Courier+Prime:ital,wght@0,400;0,700;1,400&family=IM+Fell+English:ital@0;1&family=Caveat:wght@400;600;700&family=Kalam:wght@400;700&family=Shadows+Into+Light&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Special+Elite&family=Courier+Prime:ital,wght@0,400;0,700;1,400&family=IM+Fell+English:ital@0;1&family=Caveat:wght@400;600;700&display=swap" rel="stylesheet">
 
 <style>
-/* ═══════════════════════════════════════
-   VARIÁVEIS — PALETA DE ARQUIVO CLASSIFICADO
-═══════════════════════════════════════ */
-:root {
-  --paper:    #f0ead8;
-  --paper-d:  #e4dbc4;
-  --paper-dd: #d4c9ae;
-  --ink:      #1c1710;
-  --ink-f:    #2e2a20;
-  --ink-l:    #5a5240;
-  --ink-ll:   #8a7e68;
-  --red:      #b5241c;
-  --red-d:    #8a1a14;
-  --red-l:    rgba(181,36,28,0.18);
-  --hand-red: #a02218;
-  --hand-blue: #2a3a6a;
-  --olive:    #4a5240;
-  --olive-l:  rgba(74,82,64,0.15);
-  --stamp-r:  rgba(181,36,28,0.82);
-  --stamp-o:  rgba(181,36,28,0.55);
-  --border:   rgba(28,23,16,0.18);
-  --border-h: rgba(28,23,16,0.35);
-  --redact:   #1c1710;
-  --coffee:   rgba(139,89,40,0.12);
+:root{
+  --paper:#f0ead8; --paper-d:#e4dbc4;
+  --ink:#1c1710; --ink-f:#2e2a20; --ink-l:#5a5240; --ink-ll:#8a7e68;
+  --red:#b5241c; --red-d:#8a1a14;
+  --olive:#4a5240;
+  --border:rgba(28,23,16,0.18); --border-h:rgba(28,23,16,0.35);
+  --stamp-r:rgba(181,36,28,0.82);
+  --redact:#1c1710;
 }
 
-/* ═══════════════════════════════════════
-   RESET & BASE
-═══════════════════════════════════════ */
-*, *::before, *::after { margin:0; padding:0; box-sizing:border-box }
-html { scroll-behavior:smooth }
-body {
-  background: #2a2520;
-  color: var(--ink);
-  font-family: 'Courier Prime', monospace;
-  font-size: 15px;
-  line-height: 1.7;
-  overflow-x: hidden;
-  cursor: default;
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  background:#2a2520; color:var(--ink);
+  font-family:'Courier Prime',monospace; font-size:15px; line-height:1.7;
+  overflow-x:hidden;
 }
-
-/* textura de papel via CSS noise */
-body::before {
-  content:"";
-  position:fixed; inset:0; z-index:0;
-  pointer-events:none;
-  opacity:.045;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+body::before{
+  content:""; position:fixed; inset:0; z-index:0; pointer-events:none; opacity:.045;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
   background-size:256px 256px;
 }
 
-/* ── WRAPPER PRINCIPAL — simula folha de papel ── */
-.document {
-  position: relative;
-  max-width: 860px;
-  margin: 40px auto;
-  background: var(--paper);
-  box-shadow:
-    0 0 0 1px rgba(0,0,0,0.25),
-    0 4px 6px rgba(0,0,0,0.15),
-    0 20px 60px rgba(0,0,0,0.4),
-    0 40px 100px rgba(0,0,0,0.25),
-    inset 0 0 120px rgba(0,0,0,0.04);
-  z-index:1;
-}
-
-/* borda de arquivo — linha lateral vermelha */
-.document::before {
-  content:"";
-  position:absolute;
-  top:0; bottom:0; left:68px;
-  width:1px;
-  background: rgba(181,36,28,0.35);
-  pointer-events:none; z-index:10;
-}
-/* margem numerada */
-.document::after {
-  content:"";
-  position:absolute;
-  top:0; bottom:0; left:0; width:68px;
-  background: rgba(0,0,0,0.025);
-  border-right:1px solid rgba(0,0,0,0.06);
-  pointer-events:none;
-}
-
-/* ── SCROLLBAR ── */
-::-webkit-scrollbar { width:4px }
-::-webkit-scrollbar-track { background: #2a2520 }
-::-webkit-scrollbar-thumb { background: var(--ink-ll); border-radius:0 }
-
-/* ═══════════════════════════════════════
-   CABEÇALHO DO ARQUIVO
-═══════════════════════════════════════ */
-.doc-header {
-  padding: 48px 52px 36px 96px;
-  border-bottom: 2px solid var(--border-h);
-  position: relative;
-  overflow: hidden;
-}
-
-/* classificação topo */
-.classification-bar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 32px;
-}
-.class-level {
-  font-family: 'Special Elite', cursive;
-  font-size: 11px;
-  letter-spacing: 5px;
-  color: var(--red);
-  text-transform: uppercase;
-  border: 1.5px solid var(--red);
-  padding: 4px 14px;
-  position: relative;
-}
-.class-level::before, .class-level::after {
-  content:"▪";
-  margin: 0 8px;
-  opacity:.6;
-}
-.doc-id {
-  font-size: 11px;
-  letter-spacing: 2px;
-  color: var(--ink-l);
-}
-
-/* carimbo diagonal CONFIDENCIAL */
-.stamp-confidential {
-  position: absolute;
-  top: 50%;
-  right: 40px;
-  transform: translateY(-50%) rotate(-12deg);
-  font-family: 'Special Elite', cursive;
-  font-size: clamp(28px, 4vw, 42px);
-  letter-spacing: 4px;
-  color: var(--stamp-r);
-  border: 3px solid var(--stamp-r);
-  padding: 6px 18px;
-  text-transform: uppercase;
-  pointer-events: none;
-  white-space: nowrap;
-  opacity: 0;
-  animation: stamp-appear 0.15s ease 0.8s forwards;
-  filter: url(#roughen);
-}
-@keyframes stamp-appear {
-  0%  { opacity:0; transform:translateY(-50%) rotate(-12deg) scale(1.4) }
-  60% { opacity:0.9 }
-  100%{ opacity:1; transform:translateY(-50%) rotate(-12deg) scale(1) }
-}
-
-/* linha de assunto */
-.doc-subject-line {
-  display: grid;
-  grid-template-columns: 140px 1fr;
-  gap: 0;
-  margin-bottom: 10px;
-  border-bottom: 1px solid var(--border);
-  padding-bottom: 10px;
-}
-.doc-subject-line:last-child { border-bottom: none; margin-bottom:0 }
-.subject-key {
-  font-size: 11px;
-  letter-spacing: 2px;
-  color: var(--ink-l);
-  text-transform: uppercase;
-  padding-top: 2px;
-}
-.subject-val {
-  font-family: 'Special Elite', cursive;
-  font-size: 14px;
-  color: var(--ink);
-  line-height: 1.4;
-}
-.subject-val.highlight {
-  color: var(--red-d);
-  font-family: 'Courier Prime', monospace;
-  font-weight: 700;
-  letter-spacing: 1px;
-}
-
-/* ── TIMER DE JANELA ── */
-.access-window {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  margin-top: 20px;
-  padding: 8px 16px;
-  border: 1px solid rgba(181,36,28,0.3);
-  background: rgba(181,36,28,0.04);
-}
-.aw-label {
-  font-size: 10px;
-  letter-spacing: 3px;
-  color: var(--red);
-  text-transform: uppercase;
-}
-.aw-dot {
-  width:6px; height:6px; border-radius:50%;
-  background: var(--red);
-  animation: pulse-dot 1.2s ease-in-out infinite;
-  flex-shrink:0;
-}
-@keyframes pulse-dot {
-  0%,100%{ opacity:1; transform:scale(1) }
-  50%{ opacity:.4; transform:scale(0.7) }
-}
-.aw-timer {
-  font-family: 'Courier Prime', monospace;
-  font-size: 13px;
-  font-weight: 700;
-  letter-spacing: 2px;
-  color: var(--red);
-}
-
-/* linha de número de página no margin */
-.margin-num {
-  position: absolute;
-  left: 0; width: 68px;
-  text-align: center;
-  font-size: 10px;
-  color: var(--ink-ll);
-  letter-spacing: 1px;
-  pointer-events: none;
-  user-select: none;
-}
-
-/* ═══════════════════════════════════════
-   SEÇÃO GENÉRICA
-═══════════════════════════════════════ */
-.doc-section {
-  padding: 40px 52px 40px 96px;
-  border-bottom: 1px solid var(--border);
-  position: relative;
-  opacity: 0;
-  transform: translateY(20px);
-  transition: opacity 0.7s ease, transform 0.7s cubic-bezier(.16,1,.3,1);
-}
-.doc-section.visible { opacity:1; transform:none }
-.doc-section:last-child { border-bottom: none }
-
-.section-label {
-  font-size: 10px;
-  letter-spacing: 4px;
-  color: var(--ink-ll);
-  text-transform: uppercase;
-  margin-bottom: 24px;
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-.section-label::after {
-  content:"";
-  flex:1;
-  height:1px;
-  background: var(--border);
-}
-.section-num {
-  display: inline-block;
-  width: 22px; height: 22px;
-  border: 1px solid var(--border-h);
-  text-align: center;
-  line-height: 20px;
-  font-size: 10px;
-  color: var(--ink-l);
-  flex-shrink:0;
-}
-
-/* ═══════════════════════════════════════
-   HEADLINE PRINCIPAL — DIAGNÓSTICO
-═══════════════════════════════════════ */
-.headline-block {
-  margin-bottom: 32px;
-}
-.hl-pre {
-  font-size: 11px;
-  letter-spacing: 4px;
-  color: var(--ink-l);
-  text-transform: uppercase;
-  margin-bottom: 16px;
-}
-.hl-main {
-  font-family: 'Special Elite', cursive;
-  font-size: clamp(34px, 5.5vw, 62px);
-  line-height: 1.05;
-  color: var(--ink);
-  margin-bottom: 10px;
-}
-.hl-main .hl-you {
-  position: relative;
-  display: inline-block;
-}
-/* sublinhado datilografado */
-.hl-main .hl-you::after {
-  content:"";
-  position: absolute;
-  bottom: -3px; left:0; right:0;
-  height: 2px;
-  background: var(--ink);
-}
-.hl-main .hl-red { color: var(--red-d) }
-.hl-sub {
-  font-size: clamp(15px,2vw,18px);
-  color: var(--ink-l);
-  line-height: 1.75;
-  max-width: 560px;
-  font-style: italic;
-  font-family: 'IM Fell English', serif;
-}
-
-/* campo de diagnóstico — ficha técnica */
-.diagnosis-fields {
-  margin-top: 32px;
-  border: 1px solid var(--border-h);
-  position: relative;
-}
-.diagnosis-fields::before {
-  content:"DIAGNÓSTICO";
-  position:absolute;
-  top:-1px; left:16px;
-  background:var(--paper);
-  padding:0 8px;
-  font-size:9px;
-  letter-spacing:4px;
-  color:var(--ink-l);
-  text-transform:uppercase;
-}
-.diag-field {
-  display: grid;
-  grid-template-columns: 160px 1fr;
-  border-bottom: 1px solid var(--border);
-  min-height: 44px;
-}
-.diag-field:last-child { border-bottom:none }
-.diag-key {
-  padding: 12px 16px;
-  font-size: 10px;
-  letter-spacing: 2px;
-  color: var(--ink-l);
-  text-transform: uppercase;
-  border-right: 1px solid var(--border);
-  background: rgba(0,0,0,0.02);
-  display: flex;
-  align-items: center;
-}
-.diag-val {
-  padding: 12px 16px;
-  font-size: 13px;
-  color: var(--ink);
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-.diag-val strong { color: var(--ink); font-weight:700 }
-.diag-val.critical { color: var(--red-d); font-weight:700; letter-spacing:.5px }
-.status-dot {
-  width:7px; height:7px; border-radius:50%;
-  flex-shrink:0;
-}
-.status-dot.active { background:var(--red); box-shadow:0 0 6px rgba(181,36,28,0.5); animation: pulse-dot 1.4s infinite }
-.status-dot.ok { background:var(--olive) }
-
-/* ═══════════════════════════════════════
-   SEÇÃO DE EVIDÊNCIAS — registros observados
-═══════════════════════════════════════ */
-.evidence-list {
-  display: flex;
-  flex-direction: column;
-  gap: 0;
-  border: 1px solid var(--border);
-}
-.evidence-item {
-  display: grid;
-  grid-template-columns: 44px 1fr;
-  border-bottom: 1px solid var(--border);
-  position: relative;
-  transition: background .2s;
-}
-.evidence-item:last-child { border-bottom:none }
-.evidence-item:hover { background: rgba(0,0,0,0.02) }
-.ev-num {
-  padding: 18px 0;
-  text-align: center;
-  font-size: 10px;
-  color: var(--ink-ll);
-  letter-spacing:1px;
-  border-right: 1px solid var(--border);
-  background: rgba(0,0,0,0.02);
-}
-.ev-text {
-  padding: 16px 20px;
-  font-size: clamp(13px,1.6vw,15px);
-  line-height: 1.6;
-  color: var(--ink-f);
-}
-.ev-text .underline {
-  text-decoration: underline;
-  text-decoration-style: wavy;
-  text-decoration-color: rgba(181,36,28,0.4);
-  text-underline-offset: 3px;
-}
-.ev-text .marked {
-  background: rgba(181,36,28,0.12);
-  padding: 1px 3px;
-}
-/* anotação marginal */
-.ev-note {
-  position: absolute;
-  right: -100px;
-  top: 50%;
-  transform: translateY(-50%) rotate(2deg);
-  font-family: 'IM Fell English', serif;
-  font-style: italic;
-  font-size: 11px;
-  color: rgba(181,36,28,0.6);
-  white-space: nowrap;
-  pointer-events: none;
-}
-
-/* ═══════════════════════════════════════
-   LAUDO TÉCNICO — o mecanismo
-═══════════════════════════════════════ */
-.laudo-body {
-  font-family: 'IM Fell English', serif;
-  font-size: clamp(16px, 2vw, 20px);
-  line-height: 1.85;
-  color: var(--ink-f);
-  max-width: 620px;
-}
-.laudo-body p { margin-bottom: 20px }
-.laudo-body p:last-child { margin-bottom:0 }
-.laudo-body strong {
-  font-family: 'Courier Prime', monospace;
-  font-weight:700;
-  color: var(--ink);
-  font-size:.9em;
-}
-.laudo-body em { color: var(--ink-l) }
-
-.laudo-conclusion {
-  margin-top: 28px;
-  padding: 20px 24px;
-  border-left: 3px solid var(--red);
-  background: rgba(181,36,28,0.04);
-  font-family: 'Courier Prime', monospace;
-  font-size: clamp(14px,1.7vw,17px);
-  line-height: 1.6;
-  color: var(--ink);
-}
-
-/* ═══════════════════════════════════════
-   ÍNDICE DO PROTOCOLO — conteúdo classificado
-═══════════════════════════════════════ */
-.protocol-index {
-  border: 1px solid var(--border-h);
-  position: relative;
-}
-.protocol-index::before {
-  content:"ÍNDICE DO PROTOCOLO — USO RESTRITO";
-  position:absolute;
-  top:-1px; left:16px;
-  background:var(--paper);
-  padding:0 8px;
-  font-size:9px;
-  letter-spacing:3px;
-  color:var(--ink-l);
-  text-transform:uppercase;
-}
-
-.pi-item {
-  display: grid;
-  grid-template-columns: 80px 1fr 120px;
-  border-bottom: 1px solid var(--border);
-  align-items: stretch;
-  position: relative;
-}
-.pi-item:last-child { border-bottom:none }
-.pi-day {
-  padding: 16px;
-  font-size: 11px;
-  letter-spacing:2px;
-  color: var(--ink-l);
-  border-right: 1px solid var(--border);
-  background: rgba(0,0,0,0.02);
-  display: flex;
-  align-items: center;
-  font-family: 'Courier Prime', monospace;
-}
-.pi-content {
-  padding: 14px 20px;
-  display: flex;
-  flex-direction:column;
-  justify-content:center;
-  gap:3px;
-}
-.pi-title {
-  font-size: 13px;
-  color: var(--ink);
-  font-family: 'Courier Prime', monospace;
-  font-weight:700;
-  letter-spacing:.3px;
-}
-.pi-desc {
-  font-size: 11px;
-  color: var(--ink-ll);
-  font-style:italic;
-  font-family:'IM Fell English',serif;
-}
-/* estado: ACESSO RESTRITO — redação removível no hover */
-.pi-status {
-  padding: 16px;
-  border-left: 1px solid var(--border);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: default;
-  position:relative;
-  overflow:hidden;
-}
-.pi-status.restricted {
-  background: var(--redact);
-  color: var(--redact);
-  font-size: 9px;
-  letter-spacing:1px;
-  transition: background .35s ease, color .35s ease;
-}
-.pi-status.restricted::after {
-  content:"ACESSO\ARESERVADO";
-  white-space:pre;
-  position:absolute;
-  font-size:8px;
-  letter-spacing:2px;
-  color:rgba(240,234,216,0.3);
-  text-align:center;
-  line-height:1.6;
-  text-transform:uppercase;
-}
-.pi-item:hover .pi-status.restricted {
-  background: transparent;
-  color: var(--olive);
-}
-.pi-item:hover .pi-status.restricted::after {
-  display:none;
-}
-.pi-status-text {
-  font-size: 10px;
-  letter-spacing:1px;
-  color: inherit;
-  text-transform:uppercase;
-  text-align:center;
-  line-height:1.5;
-}
-.pi-status.open {
-  background: rgba(74,82,64,0.08);
-}
-.pi-status.open .pi-status-text { color: var(--olive) }
-
-/* ═══════════════════════════════════════
-   COMPARAÇÃO DE VALOR — tabela de arquivo
-═══════════════════════════════════════ */
-.comparison-table {
-  width: 100%;
-  border-collapse: collapse;
-  border: 1px solid var(--border-h);
-  font-size: 13px;
-}
-.comparison-table th {
-  padding: 12px 16px;
-  text-align: left;
-  font-size: 10px;
-  letter-spacing: 3px;
-  text-transform: uppercase;
-  border-bottom: 2px solid var(--border-h);
-  font-family: 'Courier Prime', monospace;
-  font-weight:700;
-}
-.comparison-table th.th-bad {
-  color: var(--red-d);
-  background: rgba(181,36,28,0.04);
-  border-right: 1px solid var(--border);
-}
-.comparison-table th.th-good {
-  color: var(--olive);
-  background: rgba(74,82,64,0.04);
-}
-.comparison-table td {
-  padding: 12px 16px;
-  border-bottom: 1px solid var(--border);
-  color: var(--ink-f);
-  vertical-align:top;
-  line-height:1.5;
-}
-.comparison-table td.td-bad {
-  border-right: 1px solid var(--border);
-  background: rgba(181,36,28,0.02);
-  color: var(--ink-l);
-}
-.comparison-table td.td-bad::before {
-  content: "✕ ";
-  color: rgba(181,36,28,0.5);
-  font-weight:700;
-}
-.comparison-table td.td-good::before {
-  content: "✓ ";
-  color: var(--olive);
-  font-weight:700;
-}
-.comparison-table tr:last-child td { border-bottom:none }
-.comparison-table .cost-row td {
-  font-weight:700;
-  font-family:'Courier Prime',monospace;
-  font-size:14px;
-}
-.cost-row td.td-bad { color:rgba(181,36,28,0.7) }
-.cost-row td.td-good { color:var(--olive) }
-
-/* ═══════════════════════════════════════
-   SEQUÊNCIA DE EXECUÇÃO
-═══════════════════════════════════════ */
-.execution-log {
-  border: 1px solid var(--border);
-  font-family: 'Courier Prime', monospace;
-}
-.el-item {
-  display: grid;
-  grid-template-columns: 90px 1fr;
-  border-bottom: 1px solid var(--border);
-  position:relative;
-}
-.el-item:last-child { border-bottom:none }
-.el-day {
-  padding: 16px;
-  font-size: 11px;
-  letter-spacing:2px;
-  color: var(--ink-l);
-  border-right: 1px solid var(--border);
-  background: rgba(0,0,0,0.025);
-  display:flex; align-items:center;
-}
-.el-entry {
-  padding: 14px 20px;
-  font-size: 13px;
-  line-height:1.6;
-  color: var(--ink-f);
-}
-.el-entry strong { color:var(--ink); font-weight:700 }
-.el-cursor {
-  display:inline-block;
-  width:7px; height:13px;
-  background:var(--ink);
-  vertical-align:middle;
-  margin-left:3px;
-  opacity:0;
-  animation: blink-c 0.9s step-end infinite;
-}
-.el-item.typed .el-cursor { opacity:1 }
-@keyframes blink-c { 0%,100%{opacity:1} 50%{opacity:0} }
-
-/* ═══════════════════════════════════════
-   SEÇÃO DE PREÇO — ordem de pagamento
-═══════════════════════════════════════ */
-.payment-order {
-  border: 2px solid var(--border-h);
-  position:relative;
-  background: rgba(0,0,0,0.01);
-}
-.payment-order::before {
-  content:"ORDEM DE ACESSO";
-  position:absolute;
-  top:-1px; left:16px;
-  background:var(--paper);
-  padding:0 8px;
-  font-size:9px;
-  letter-spacing:4px;
-  color:var(--ink-l);
-  text-transform:uppercase;
-}
-
-.po-row {
-  display: grid;
-  grid-template-columns: 180px 1fr;
-  border-bottom: 1px solid var(--border);
-}
-.po-row:last-child { border-bottom:none }
-.po-key {
-  padding: 14px 16px;
-  font-size: 10px;
-  letter-spacing:2px;
-  color: var(--ink-l);
-  text-transform:uppercase;
-  border-right: 1px solid var(--border);
-  background: rgba(0,0,0,0.025);
-  display:flex; align-items:center;
-}
-.po-val {
-  padding: 14px 20px;
-  font-size: 14px;
-  color: var(--ink);
-  display:flex; align-items:center;
-}
-.po-val.price-main {
-  font-family: 'Special Elite', cursive;
-  font-size: clamp(28px,4.5vw,48px);
-  color: var(--ink);
-  letter-spacing:2px;
-}
-.po-val .strikethrough {
-  font-size:.55em;
-  color: var(--ink-ll);
-  text-decoration: line-through;
-  margin-right: 14px;
-  letter-spacing:1px;
-}
-.po-val .discount-tag {
-  font-size: 10px;
-  letter-spacing:2px;
-  color: var(--red);
-  border: 1px solid rgba(181,36,28,0.3);
-  padding: 2px 8px;
-  margin-left: 12px;
-  vertical-align:middle;
-  font-family:'Courier Prime',monospace;
-}
-.po-val.guarantee {
-  font-size:12px;
-  color:var(--ink-l);
-  font-style:italic;
-  font-family:'IM Fell English',serif;
-}
-
-/* ═══════════════════════════════════════
-   CTA — BOTÃO PRINCIPAL
-═══════════════════════════════════════ */
-.cta-block {
-  text-align: center;
-  padding: 36px 0 28px;
-}
-.cta-pre {
-  font-size: 10px;
-  letter-spacing: 4px;
-  color: var(--ink-l);
-  text-transform: uppercase;
-  margin-bottom: 20px;
-}
-.cta-btn {
-  display: inline-block;
-  font-family: 'Special Elite', cursive;
-  font-size: clamp(14px,1.8vw,18px);
-  letter-spacing: 3px;
-  color: var(--paper);
-  background: var(--ink);
-  padding: 18px 56px;
-  text-decoration: none;
-  text-transform: uppercase;
-  position:relative;
-  overflow:hidden;
-  transition: background .2s, box-shadow .2s, transform .15s;
-  box-shadow: 4px 4px 0 var(--ink-l), 0 8px 30px rgba(0,0,0,0.2);
-}
-.cta-btn::before {
-  content:"";
-  position:absolute; inset:0;
-  background: linear-gradient(135deg, rgba(255,255,255,0.08) 0%, transparent 60%);
-  pointer-events:none;
-}
-/* sweep de máquina de escrever */
-.cta-btn .cta-sweep {
-  position:absolute;
-  top:0; left:-100%; width:50%; height:100%;
-  background:linear-gradient(90deg,transparent,rgba(255,255,255,0.12),transparent);
-  animation: cta-s 3.5s ease-in-out infinite;
-  pointer-events:none;
-}
-@keyframes cta-s { 0%,55%{left:-100%} 100%{left:150%} }
-.cta-btn:hover {
-  background: var(--ink-f);
-  box-shadow: 2px 2px 0 var(--ink-l), 0 4px 20px rgba(0,0,0,0.3);
-  transform: translate(1px,1px);
-}
-.cta-sub {
-  margin-top: 12px;
-  font-size: 11px;
-  letter-spacing: 2px;
-  color: var(--ink-ll);
-  font-family: 'IM Fell English', serif;
-  font-style:italic;
-}
-
-/* ═══════════════════════════════════════
-   DECISÃO BINÁRIA — campos de seleção
-═══════════════════════════════════════ */
-.decision-form {
-  border: 1px solid var(--border-h);
-  position:relative;
-}
-.decision-form::before {
-  content:"SELEÇÃO OBRIGATÓRIA — ESCOLHA UMA OPÇÃO";
-  position:absolute;
-  top:-1px; left:16px;
-  background:var(--paper);
-  padding:0 8px;
-  font-size:9px;
-  letter-spacing:3px;
-  color:var(--ink-l);
-  text-transform:uppercase;
-}
-.dec-option {
-  display: grid;
-  grid-template-columns: 56px 1fr;
-  border-bottom: 1px solid var(--border);
-  cursor: pointer;
-  transition: background .2s;
-  position:relative;
-  overflow:hidden;
-}
-.dec-option:last-child { border-bottom:none }
-.dec-option:hover { background: rgba(0,0,0,0.025) }
-.dec-option.dec-active {
-  background: rgba(74,82,64,0.06);
-}
-.dec-checkbox-col {
-  padding: 24px 0;
-  display:flex; align-items:center; justify-content:center;
-  border-right: 1px solid var(--border);
-  background: rgba(0,0,0,0.02);
-}
-.dec-checkbox {
-  width: 18px; height: 18px;
-  border: 1.5px solid var(--border-h);
-  display:flex; align-items:center; justify-content:center;
-  font-size: 12px;
-  color: transparent;
-  transition: all .2s;
-  flex-shrink:0;
-  font-family:'Courier Prime',monospace;
-}
-.dec-option.dec-active .dec-checkbox {
-  border-color: var(--olive);
-  color: var(--olive);
-}
-.dec-option.dec-danger:hover .dec-checkbox {
-  border-color: rgba(181,36,28,0.5);
-  color: rgba(181,36,28,0.5);
-}
-.dec-label-col {
-  padding: 22px 24px;
-}
-.dec-label-title {
-  font-family: 'Courier Prime', monospace;
-  font-size: clamp(14px,1.8vw,17px);
-  font-weight:700;
-  color: var(--ink);
-  margin-bottom: 4px;
-}
-.dec-label-sub {
-  font-size: 12px;
-  color: var(--ink-l);
-  font-style:italic;
-  font-family:'IM Fell English',serif;
-}
-.dec-option.dec-active .dec-label-title { color: var(--olive) }
-.dec-warning {
-  margin-top: 16px;
-  padding: 12px 16px;
-  border: 1px solid rgba(181,36,28,0.2);
-  background: rgba(181,36,28,0.03);
-  font-size: 11px;
-  letter-spacing:1px;
-  color: var(--red-d);
-  font-family:'Courier Prime',monospace;
-  line-height:1.5;
-}
-
-/* ═══════════════════════════════════════
-   FAQ — anotações marginais
-═══════════════════════════════════════ */
-.faq-list {
-  display: flex;
-  flex-direction: column;
-  gap: 0;
-}
-.faq-item {
-  border-bottom: 1px solid var(--border);
-  position:relative;
-}
-.faq-item:last-child { border-bottom:none }
-.faq-q {
-  padding: 18px 56px 18px 0;
-  font-family: 'Courier Prime', monospace;
-  font-size: clamp(13px,1.6vw,15px);
-  font-weight:700;
-  color: var(--ink);
-  cursor: pointer;
-  display:flex; justify-content:space-between; align-items:center;
-  gap:16px;
-  transition: color .2s;
-  user-select:none;
-}
-.faq-q:hover { color: var(--red-d) }
-.faq-toggle {
-  font-size: 18px;
-  color: var(--ink-l);
-  flex-shrink:0;
-  transition: transform .3s;
-  font-style:normal;
-  font-family:'Courier Prime',monospace;
-}
-.faq-item.open .faq-toggle { transform:rotate(45deg); color:var(--red-d) }
-.faq-a {
-  font-family: 'IM Fell English', serif;
-  font-size: clamp(13px,1.5vw,15px);
-  line-height: 1.85;
-  color: var(--ink-l);
-  max-height:0; overflow:hidden;
-  transition: max-height .4s ease, padding .3s;
-  padding-bottom:0;
-}
-.faq-item.open .faq-a {
-  max-height: 200px;
-  padding-bottom: 20px;
-}
-/* número lateral da pergunta */
-.faq-n {
-  position:absolute;
-  left:-40px; top:18px;
-  font-size:10px;
-  color:var(--ink-ll);
-  letter-spacing:1px;
-  pointer-events:none;
-  user-select:none;
-}
-
-/* ═══════════════════════════════════════
-   RODAPÉ DO ARQUIVO
-═══════════════════════════════════════ */
-.doc-footer {
-  padding: 28px 52px 28px 96px;
-  border-top: 2px solid var(--border-h);
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
-  gap: 20px;
-  flex-wrap: wrap;
-  background: rgba(0,0,0,0.025);
-}
-.footer-meta {
-  display:flex; flex-direction:column; gap:4px;
-}
-.footer-line {
-  font-size: 9px;
-  letter-spacing: 3px;
-  color: var(--ink-ll);
-  text-transform:uppercase;
-}
-.footer-line span { color: var(--ink-l) }
-.footer-sig {
-  font-family:'IM Fell English',serif;
-  font-style:italic;
-  font-size:14px;
-  color:var(--ink-l);
-  text-align:right;
-}
-.footer-sig-line {
-  font-size:10px;
-  letter-spacing:2px;
-  color:var(--ink-ll);
-  text-transform:uppercase;
-  text-align:right;
-  margin-top:3px;
-}
-
-/* ═══════════════════════════════════════
-   STICKY BAR — minimalista
-═══════════════════════════════════════ */
-#sticky {
-  position:fixed;
-  bottom:0; left:0; right:0;
-  z-index:500;
-  background: var(--ink);
-  color: var(--paper);
-  padding: 12px 28px;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  gap:16px;
-  transform:translateY(100%);
-  transition:transform .4s cubic-bezier(.16,1,.3,1);
-  border-top:2px solid var(--ink-l);
-}
-#sticky.visible { transform:translateY(0) }
-.sticky-text {
-  font-family:'Courier Prime',monospace;
-  font-size:12px;
-  letter-spacing:2px;
-  color:rgba(240,234,216,0.6);
-  text-transform:uppercase;
-}
-.sticky-text strong {
-  color:var(--paper);
-}
-.sticky-btn {
-  font-family:'Special Elite',cursive;
-  font-size:12px;
-  letter-spacing:3px;
-  color:var(--ink);
-  background:var(--paper-d);
-  padding:10px 28px;
-  text-decoration:none;
-  text-transform:uppercase;
-  white-space:nowrap;
-  transition:background .2s;
-  flex-shrink:0;
-}
-.sticky-btn:hover { background:var(--paper) }
-.sticky-timer {
-  font-family:'Courier Prime',monospace;
-  font-size:11px;
-  letter-spacing:2px;
-  color:rgba(181,36,28,0.85);
-  white-space:nowrap;
-  flex-shrink:0;
-}
-
-/* ═══════════════════════════════════════
-   ELEMENTOS DE AUTENTICIDADE DO DOCUMENTO
-═══════════════════════════════════════ */
-/* marcas d'água muito sutis */
-.watermark {
-  position:absolute;
-  pointer-events:none;
-  user-select:none;
-  font-family:'Special Elite',cursive;
-  text-transform:uppercase;
-  letter-spacing:8px;
-  opacity:.028;
-  color:var(--ink);
-  white-space:nowrap;
-}
-
-/* carimbo de data */
-.date-stamp {
-  font-family:'Courier Prime',monospace;
-  font-size:11px;
-  letter-spacing:2px;
-  color:var(--ink-l);
-  border:1px solid var(--border);
-  padding:4px 10px;
-  display:inline-block;
-}
-
-/* linha de destaque tipo marcador amarelo */
-.highlight-line {
-  background: rgba(220,180,40,0.18);
-  padding:1px 2px;
-}
-
-/* ═══════════════════════════════════════
-   v3 — ANOTAÇÕES MANUSCRITAS
-═══════════════════════════════════════ */
-
-/* anotação manuscrita marginal — caneta vermelha */
-.handnote {
-  position: absolute;
-  font-family: 'Caveat', cursive;
-  font-size: clamp(14px, 1.6vw, 17px);
-  line-height: 1.25;
-  color: var(--hand-red);
-  pointer-events: none;
-  user-select: none;
-  z-index: 6;
-  max-width: 180px;
-  letter-spacing: 0.3px;
-}
-.handnote.blue { color: var(--hand-blue) }
-.handnote.large { font-size: clamp(16px,1.9vw,20px) }
-.handnote.scribble {
-  font-family: 'Kalam', cursive;
-  font-weight: 700;
-  transform: rotate(-3deg);
-}
-
-/* seta apontando para um trecho */
-.hand-arrow {
-  position: absolute;
-  width: 60px;
-  height: 30px;
-  pointer-events: none;
-  user-select: none;
-  z-index: 6;
-}
-
-/* trecho riscado e reescrito a mão */
-.struck {
-  position: relative;
-  text-decoration: line-through;
-  text-decoration-color: var(--hand-red);
-  text-decoration-thickness: 1.5px;
-  color: var(--ink-ll);
-}
-.rewritten {
-  font-family: 'Caveat', cursive;
-  font-size: 1.15em;
-  color: var(--hand-red);
-  font-weight: 600;
-  margin-left: 6px;
-  letter-spacing: 0.5px;
-}
-
-/* circulação manuscrita de termo importante */
-.hand-circle {
-  position: relative;
-  display: inline-block;
-  padding: 2px 6px;
-}
-.hand-circle::before {
-  content:"";
-  position:absolute;
-  inset:-4px -8px;
-  border: 2px solid var(--hand-red);
-  border-radius: 60% 40% 50% 50% / 50% 50% 40% 60%;
-  opacity: 0.7;
-  transform: rotate(-2deg);
-  pointer-events: none;
-}
-
-/* sublinhado a mão */
-.hand-underline {
-  position: relative;
-  display: inline-block;
-}
-.hand-underline::after {
-  content:"";
-  position:absolute;
-  left: -2px; right: -2px;
-  bottom: -4px;
-  height: 2px;
-  background: var(--hand-red);
-  opacity: 0.75;
-  transform: skewY(-1.5deg);
-}
-
-/* ═══════════════════════════════════════
-   v3 — VOZES ALTERNADAS
-═══════════════════════════════════════ */
-
-/* bloco de transcrição de áudio */
-.transcript {
-  margin: 24px 0;
-  padding: 18px 20px;
-  background: rgba(28,23,16,0.04);
-  border-left: 3px solid var(--ink-l);
-  font-family: 'Courier Prime', monospace;
-  font-size: 13px;
-  line-height: 1.7;
-  color: var(--ink-f);
-  position: relative;
-}
-.transcript-header {
-  font-size: 9px;
-  letter-spacing: 3px;
-  color: var(--ink-ll);
-  text-transform: uppercase;
-  margin-bottom: 10px;
-  display: flex;
-  justify-content: space-between;
-  border-bottom: 1px dashed var(--border);
-  padding-bottom: 8px;
-}
-.transcript-line {
-  display: grid;
-  grid-template-columns: 78px 1fr;
-  gap: 12px;
-  margin-bottom: 6px;
-}
-.transcript-time {
-  color: var(--ink-ll);
-  font-size: 11px;
-  font-weight: 700;
-}
-.transcript-text {
-  color: var(--ink);
-  font-style: italic;
-}
-.transcript-text::before { content: '"' }
-.transcript-text::after { content: '"' }
-.transcript-meta {
-  margin-top: 10px;
-  font-size: 10px;
-  letter-spacing: 1.5px;
-  color: var(--ink-ll);
-  text-transform: uppercase;
-  border-top: 1px dashed var(--border);
-  padding-top: 8px;
-}
-
-/* adendo do supervisor — papel diferente colado */
-.supervisor-note {
-  margin: 24px 0;
-  padding: 16px 20px 16px 22px;
-  background: #e8dfc4;
-  border: 1px solid rgba(28,23,16,0.12);
-  font-family: 'Kalam', cursive;
-  font-size: 15px;
-  line-height: 1.6;
-  color: var(--ink-f);
-  position: relative;
-  transform: rotate(-0.4deg);
-  box-shadow: 2px 3px 8px rgba(0,0,0,0.08);
-}
-.supervisor-note::before {
-  content:"ADENDO DO SUPERVISOR";
-  position: absolute;
-  top: -1px; left: 16px;
-  background: #e8dfc4;
-  padding: 0 8px;
-  font-family: 'Courier Prime', monospace;
-  font-size: 9px;
-  letter-spacing: 3px;
-  color: var(--ink-l);
-  text-transform: uppercase;
-  font-weight: 700;
-  font-style: normal;
-}
-.supervisor-note::after {
-  content:"— J.A.";
-  display: block;
-  text-align: right;
-  margin-top: 8px;
-  font-size: 14px;
-  color: var(--hand-red);
-  font-weight: 700;
-}
-
-/* ═══════════════════════════════════════
-   v3 — ELEMENTOS FÍSICOS
-═══════════════════════════════════════ */
-
-/* dobras horizontais sutis */
-.paper-fold {
-  position: absolute;
-  left: 0; right: 0;
-  height: 12px;
-  pointer-events: none;
-  z-index: 8;
-  background: linear-gradient(
-    to bottom,
-    rgba(0,0,0,0) 0%,
-    rgba(0,0,0,0.06) 50%,
-    rgba(255,255,255,0.15) 50.5%,
-    rgba(0,0,0,0) 100%
-  );
-}
-
-/* mancha de café */
-.coffee-stain {
-  position: absolute;
-  width: clamp(60px, 10vw, 110px);
-  height: clamp(60px, 10vw, 110px);
-  border-radius: 50%;
-  pointer-events: none;
-  z-index: 7;
-  background: radial-gradient(
-    ellipse at 30% 40%,
-    rgba(139,89,40,0) 25%,
-    rgba(139,89,40,0.18) 50%,
-    rgba(139,89,40,0.28) 75%,
-    rgba(139,89,40,0.12) 95%,
-    rgba(139,89,40,0) 100%
-  );
-  filter: blur(1px);
-  opacity: 0.55;
-  mix-blend-mode: multiply;
-}
-
-/* clip de papel SVG */
-.paper-clip {
-  position: absolute;
-  width: 50px;
-  height: 90px;
-  z-index: 12;
-  pointer-events: none;
-  filter: drop-shadow(2px 3px 4px rgba(0,0,0,0.25));
-}
-
-/* carimbo secundário pequeno */
-.stamp-small {
-  position: absolute;
-  font-family: 'Special Elite', cursive;
-  font-size: 11px;
-  letter-spacing: 3px;
-  color: var(--stamp-r);
-  border: 2px solid var(--stamp-r);
-  padding: 4px 10px;
-  text-transform: uppercase;
-  pointer-events: none;
-  white-space: nowrap;
-  filter: url(#roughen);
-  z-index: 9;
-  opacity: 0.78;
-}
-.stamp-small.olive {
-  color: rgba(74,82,64,0.7);
-  border-color: rgba(74,82,64,0.7);
-}
-.stamp-small.received {
-  font-family: 'Courier Prime', monospace;
-  font-weight: 700;
-}
-
-/* redação parcialmente vazada — letras visíveis aleatoriamente */
-.partial-redact {
-  display: inline-block;
-  font-family: 'Courier Prime', monospace;
-  color: var(--ink);
-  background: var(--ink);
-  letter-spacing: 1px;
-  padding: 0 2px;
-  position: relative;
-}
-.partial-redact .leak {
-  background: var(--paper);
-  color: var(--ink);
-  padding: 0 1px;
-}
-
-/* página levemente rotacionada */
-.tilted-section {
-  transform: rotate(-0.25deg);
-}
-.tilted-section-2 {
-  transform: rotate(0.15deg);
-}
-
-/* canto rasgado/dobrado */
-.dog-ear {
-  position: absolute;
-  bottom: 0; right: 0;
-  width: 28px; height: 28px;
-  background: linear-gradient(
-    135deg,
-    transparent 50%,
-    rgba(0,0,0,0.06) 50%,
-    rgba(0,0,0,0.12) 100%
-  );
-  pointer-events: none;
-  z-index: 8;
-}
-
-/* ═══════════════════════════════════════
-   v3 — CASOS DOCUMENTADOS
-═══════════════════════════════════════ */
-.cases-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  gap: 1px;
-  background: var(--border);
-  border: 1px solid var(--border-h);
-}
-.case-card {
-  background: var(--paper);
-  padding: 18px 18px 20px;
-  position: relative;
-  transition: background .2s;
-}
-.case-card:hover { background: rgba(0,0,0,0.02) }
-.case-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 12px;
-  padding-bottom: 8px;
-  border-bottom: 1px solid var(--border);
-}
-.case-id {
-  font-family: 'Courier Prime', monospace;
-  font-size: 10px;
-  letter-spacing: 2px;
-  color: var(--ink-l);
-  text-transform: uppercase;
-  font-weight: 700;
-}
-.case-status {
-  font-family: 'Courier Prime', monospace;
-  font-size: 9px;
-  letter-spacing: 1px;
-  color: var(--olive);
-  border: 1px solid rgba(74,82,64,0.4);
-  padding: 1px 6px;
-  text-transform: uppercase;
-}
-.case-status.critical {
-  color: var(--red);
-  border-color: rgba(181,36,28,0.4);
-}
-.case-field {
-  display: grid;
-  grid-template-columns: 65px 1fr;
-  gap: 8px;
-  margin-bottom: 6px;
-  font-size: 11px;
-  line-height: 1.5;
-}
-.case-key {
-  font-family: 'Courier Prime', monospace;
-  font-size: 9px;
-  letter-spacing: 1.5px;
-  color: var(--ink-ll);
-  text-transform: uppercase;
-  padding-top: 1px;
-}
-.case-val {
-  color: var(--ink-f);
-  font-size: 12px;
-}
-.case-val strong { color: var(--ink); font-weight: 700 }
-.case-conclusion {
-  margin-top: 10px;
-  padding-top: 8px;
-  border-top: 1px dashed var(--border);
-  font-family: 'IM Fell English', serif;
-  font-style: italic;
-  font-size: 11px;
-  color: var(--ink-l);
-  line-height: 1.5;
-}
-
-/* ═══════════════════════════════════════
-   v6 — MOBILE: BLOCO INICIAL (decorativos)
-═══════════════════════════════════════ */
-@media (max-width: 768px) {
-  .handnote { display: none }
-  .hand-arrow { display: none }
-  .coffee-stain { display: none }
-  .paper-clip { display: none }
-  .tilted-section, .tilted-section-2 { transform: none }
-}
-
-/* manchas de café re-ancoradas */
-.coffee-stain.coffee-laudo {
-  position: absolute;
-  top: 2200px;
-  right: 8%;
-  transform: rotate(15deg);
-  width: 100px;
-  height: 100px;
-}
-.coffee-stain.coffee-cases {
-  position: absolute;
-  top: 4200px;
-  left: 10%;
-  transform: rotate(-22deg);
-  width: 80px;
-  height: 80px;
-  opacity: 0.4;
-}
-/* ═══════════════════════════════════════
-   v4 — NUMERAÇÃO COM FALHA DE TINTA
-═══════════════════════════════════════ */
-.margin-num {
-  font-family: 'Special Elite', cursive;
-  text-shadow:
-    0.4px 0 0 rgba(28,23,16,0.4),
-    -0.3px 0 0 rgba(28,23,16,0.3),
-    0 0.4px 0 rgba(28,23,16,0.25);
-  letter-spacing: 0;
-}
-
-/* ═══════════════════════════════════════
-   v4 — CABEÇALHO DE PÁGINA POR SEÇÃO
-═══════════════════════════════════════ */
-.page-header {
-  position: absolute;
-  top: 12px;
-  right: 16px;
-  display: flex;
-  gap: 14px;
-  align-items: center;
-  font-family: 'Courier Prime', monospace;
-  font-size: 9px;
-  letter-spacing: 2px;
-  color: var(--ink-ll);
-  text-transform: uppercase;
-  pointer-events: none;
-  z-index: 5;
-}
-.page-header::before {
-  content: "";
-  width: 18px;
-  height: 1px;
-  background: var(--border-h);
-}
-
-/* ═══════════════════════════════════════
-   v4 — LOGOTIPO S/AC
-═══════════════════════════════════════ */
-.sac-mark {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  font-family: 'Courier Prime', monospace;
-  font-size: 9px;
-  letter-spacing: 2px;
-  color: var(--ink-l);
-  text-transform: uppercase;
-}
-.sac-glyph {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 28px;
-  height: 28px;
-  border: 1.5px solid var(--ink);
-  font-family: 'Special Elite', cursive;
-  font-size: 9px;
-  letter-spacing: 0.5px;
-  color: var(--ink);
-  position: relative;
-}
-.sac-glyph::before {
-  content: "";
-  position: absolute;
-  inset: -3px;
-  border: 0.5px solid var(--ink-l);
-  pointer-events: none;
-}
-
-/* ═══════════════════════════════════════
-   v4 — ÍNDICE / SUMÁRIO INICIAL
-═══════════════════════════════════════ */
-.toc-section {
-  padding: 40px 52px 48px 96px;
-  border-bottom: 2px solid var(--border-h);
-  position: relative;
-  background: rgba(0,0,0,0.012);
-}
-.toc-title {
-  font-family: 'Special Elite', cursive;
-  font-size: clamp(22px, 3vw, 32px);
-  letter-spacing: 4px;
-  text-transform: uppercase;
-  color: var(--ink);
-  margin-bottom: 6px;
-}
-.toc-sub {
-  font-family: 'IM Fell English', serif;
-  font-style: italic;
-  font-size: 14px;
-  color: var(--ink-l);
-  margin-bottom: 28px;
-  padding-bottom: 16px;
-  border-bottom: 1px dashed var(--border);
-}
-.toc-list {
-  list-style: none;
-}
-.toc-item {
-  display: grid;
-  grid-template-columns: 36px 1fr auto 50px;
-  align-items: baseline;
-  gap: 12px;
-  padding: 9px 0;
-  font-family: 'Courier Prime', monospace;
-  font-size: 13px;
-  color: var(--ink-f);
-  border-bottom: 1px dotted rgba(28,23,16,0.12);
-}
-.toc-item:last-child { border-bottom: none }
-.toc-item-num {
-  color: var(--ink-ll);
-  font-size: 11px;
-  letter-spacing: 2px;
-}
-.toc-item-title {
-  color: var(--ink);
-  text-transform: uppercase;
-  letter-spacing: 1.5px;
-  font-size: 12px;
-  font-weight: 700;
-}
-.toc-item-status {
-  font-size: 10px;
-  letter-spacing: 1.5px;
-  color: var(--ink-l);
-  text-transform: uppercase;
-  font-style: italic;
-  font-family: 'IM Fell English', serif;
-}
-.toc-item-status.critical { color: var(--red); font-style: normal }
-.toc-item-page {
-  text-align: right;
-  color: var(--ink-ll);
-  font-size: 11px;
-  letter-spacing: 1px;
-  border-bottom: 1px dotted var(--ink-ll);
-  padding-bottom: 1px;
-}
-
-/* ═══════════════════════════════════════
-   v4 — WAVEFORM NA TRANSCRIÇÃO
-═══════════════════════════════════════ */
-.waveform {
-  display: flex;
-  align-items: flex-end;
-  gap: 1.5px;
-  height: 24px;
-  margin-bottom: 12px;
-  padding: 4px 0;
-  border-bottom: 1px dashed var(--border);
-}
-.waveform-bar {
-  width: 2px;
-  background: var(--ink-l);
-  flex-shrink: 0;
-  opacity: 0.5;
-}
-.waveform-bar.active { opacity: 0.85; background: var(--ink) }
-
-/* ═══════════════════════════════════════
-   v4 — CAPITULAR DATILOGRAFADA
-═══════════════════════════════════════ */
-.dropcap {
-  float: left;
-  font-family: 'Special Elite', cursive;
-  font-size: clamp(48px, 6vw, 68px);
-  line-height: 0.85;
-  color: var(--ink);
-  padding: 6px 18px 0 0;
-  margin-top: 4px;
-  text-shadow:
-    1px 0 0 rgba(28,23,16,0.3),
-    -0.5px 0 0 rgba(28,23,16,0.2);
-  shape-outside: margin-box;
-}
-
-/* ═══════════════════════════════════════
-   v4 — CARD DE TENSÃO EM TEMPO REAL
-═══════════════════════════════════════ */
-.realtime-card {
-  margin: 24px 0;
-  padding: 18px 22px;
-  background: rgba(181,36,28,0.05);
-  border: 1px solid rgba(181,36,28,0.25);
-  border-left: 4px solid var(--red);
-  font-family: 'Courier Prime', monospace;
-  font-size: clamp(14px,1.7vw,16px);
-  line-height: 1.65;
-  color: var(--ink);
-  position: relative;
-}
-.realtime-card::before {
-  content: "● EM TEMPO REAL";
-  position: absolute;
-  top: -1px;
-  right: 16px;
-  background: var(--paper);
-  padding: 0 8px;
-  font-size: 9px;
-  letter-spacing: 3px;
-  color: var(--red);
-  text-transform: uppercase;
-  font-weight: 700;
-}
-.realtime-card .rt-dot {
-  display: inline-block;
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: var(--red);
-  margin-right: 8px;
-  animation: pulse-dot 1.2s infinite;
-  vertical-align: middle;
-}
-
-/* ═══════════════════════════════════════
-   v4 — PÁGINA RASGADA
-═══════════════════════════════════════ */
-.torn-section {
-  padding-bottom: 72px !important;
-}
-.torn-edge {
-  position: absolute;
-  bottom: -1px;
-  left: 0;
-  right: 0;
-  height: 28px;
-  background: var(--paper);
-  z-index: 8;
-  pointer-events: none;
-  clip-path: polygon(
-    0 0,
-    3% 65%, 6% 30%, 9% 75%, 13% 45%, 17% 80%, 21% 35%, 25% 70%,
-    29% 50%, 33% 85%, 37% 40%, 41% 75%, 45% 30%, 49% 65%, 53% 45%,
-    57% 80%, 61% 35%, 65% 70%, 69% 50%, 73% 85%, 77% 40%, 81% 75%,
-    85% 30%, 89% 65%, 93% 45%, 97% 80%, 100% 35%,
-    100% 100%, 0 100%
-  );
-  filter: drop-shadow(0 -2px 4px rgba(0,0,0,0.12));
-}
-
-/* ═══════════════════════════════════════
-   v4 — CTA ISOLADO PÓS-CASOS
-═══════════════════════════════════════ */
-.isolated-cta {
-  padding: 48px 52px 48px 96px;
-  border-bottom: 2px solid var(--border-h);
-  text-align: center;
-  background: rgba(28,23,16,0.03);
-  position: relative;
-}
-.isolated-cta::before, .isolated-cta::after {
-  content: "";
-  position: absolute;
-  left: 50%;
-  width: 60px;
-  height: 1px;
-  background: var(--ink-l);
-  transform: translateX(-50%);
-}
-.isolated-cta::before { top: 0 }
-.isolated-cta::after { bottom: 0 }
-.isolated-cta-text {
-  font-family: 'IM Fell English', serif;
-  font-style: italic;
-  font-size: clamp(15px, 2vw, 19px);
-  line-height: 1.55;
-  color: var(--ink);
-  margin-bottom: 24px;
-  max-width: 520px;
-  margin-left: auto;
-  margin-right: auto;
-}
-.isolated-cta-text strong {
-  font-family: 'Courier Prime', monospace;
-  font-weight: 700;
-  color: var(--ink);
-  font-style: normal;
-  font-size: 0.92em;
-}
-
-/* ═══════════════════════════════════════
-   v4 — MANIFESTO DE ENTREGA
-═══════════════════════════════════════ */
-.delivery-manifest {
-  border: 2px solid var(--ink-l);
-  margin-bottom: 28px;
-  position: relative;
-  background: rgba(0,0,0,0.012);
-}
-.delivery-manifest::before {
-  content: "ORDEM DE ENTREGA — EMISSÃO IMEDIATA";
-  position: absolute;
-  top: -1px;
-  left: 16px;
-  background: var(--paper);
-  padding: 0 8px;
-  font-size: 9px;
-  letter-spacing: 3px;
-  color: var(--ink);
-  text-transform: uppercase;
-  font-weight: 700;
-}
-.delivery-manifest::after {
-  content: "AUTORIZADO";
-  position: absolute;
-  bottom: -1px;
-  right: 16px;
-  background: var(--paper);
-  padding: 0 8px;
-  font-size: 9px;
-  letter-spacing: 3px;
-  color: var(--olive);
-  text-transform: uppercase;
-  font-weight: 700;
-}
-.dm-list {
-  list-style: none;
-  padding: 20px 24px;
-}
-.dm-item {
-  display: grid;
-  grid-template-columns: 36px 1fr 90px;
-  align-items: center;
-  gap: 14px;
-  padding: 9px 0;
-  border-bottom: 1px dotted rgba(28,23,16,0.12);
-  font-family: 'Courier Prime', monospace;
-  font-size: 13px;
-}
-.dm-item:last-child { border-bottom: none }
-.dm-num {
-  font-size: 10px;
-  letter-spacing: 1.5px;
-  color: var(--ink-ll);
-}
-.dm-desc {
-  color: var(--ink-f);
-  line-height: 1.5;
-}
-.dm-desc strong { color: var(--ink); font-weight: 700 }
-.dm-status {
-  font-size: 9px;
-  letter-spacing: 1.5px;
-  color: var(--olive);
-  text-transform: uppercase;
-  text-align: right;
-  font-weight: 700;
-}
-
-/* ═══════════════════════════════════════
-   v4 — TIMER PISCANTE
-═══════════════════════════════════════ */
-.aw-timer .timer-sep {
-  animation: timer-blink 1s infinite;
-}
-@keyframes timer-blink {
-  0%, 60% { opacity: 1 }
-  61%, 100% { opacity: 0.25 }
-}
-
-/* ═══════════════════════════════════════
-   v4 — STICKY BAR DE PAPEL
-═══════════════════════════════════════ */
-#sticky {
-  background: var(--paper-d);
-  color: var(--ink);
-  border-top: 1px solid rgba(28,23,16,0.2);
-  border-bottom: none;
-  box-shadow: 0 -8px 24px rgba(0,0,0,0.15);
-}
-#sticky::before {
-  content: "";
-  position: absolute;
-  top: 0; left: 0; right: 0;
-  height: 1px;
-  background: rgba(181,36,28,0.4);
-}
-#sticky::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  opacity: 0.06;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-}
-.sticky-text { color: var(--ink-l) }
-.sticky-text strong { color: var(--ink) }
-.sticky-btn {
-  background: var(--ink);
-  color: var(--paper);
-}
-.sticky-btn:hover { background: var(--ink-f) }
-.sticky-timer { color: var(--red-d) }
-
-/* ═══════════════════════════════════════
-   v4 — CARIMBO BLEND MULTIPLY
-═══════════════════════════════════════ */
-.stamp-small, .stamp-confidential {
-  mix-blend-mode: multiply;
-}
-
-/* ═══════════════════════════════════════
-   v4 — MANCHA SOBRE PALAVRA
-═══════════════════════════════════════ */
-.coffee-on-word {
-  position: relative;
-  display: inline-block;
-}
-.coffee-on-word::before {
-  content: "";
-  position: absolute;
-  inset: -10px -8px;
-  border-radius: 50%;
-  background: radial-gradient(
-    ellipse at 40% 50%,
-    rgba(139,89,40,0.0) 30%,
-    rgba(139,89,40,0.25) 55%,
-    rgba(139,89,40,0.35) 80%,
-    rgba(139,89,40,0.1) 95%,
-    rgba(139,89,40,0) 100%
-  );
-  filter: blur(1px);
-  mix-blend-mode: multiply;
-  pointer-events: none;
-  z-index: 1;
-}
-
-/* ═══════════════════════════════════════
-   v5 — CARIMBO IRREGULAR
-═══════════════════════════════════════ */
-.stamp-confidential {
-  letter-spacing: 4px;
-}
-.stamp-confidential .stamp-letter {
-  display: inline-block;
-}
-.stamp-confidential .stamp-letter:nth-child(2) { opacity: 0.72; transform: translateY(-1px) rotate(1.5deg) }
-.stamp-confidential .stamp-letter:nth-child(5) { opacity: 0.55; transform: translateY(1px) }
-.stamp-confidential .stamp-letter:nth-child(8) { opacity: 0.78; transform: rotate(-2deg) }
-.stamp-confidential .stamp-letter:nth-child(11) { opacity: 0.6; transform: translateY(-0.5px) }
-
-/* ═══════════════════════════════════════
-   v5 — TOC COM MARCAÇÃO MANUSCRITA
-═══════════════════════════════════════ */
-.toc-mark {
-  font-family: 'Caveat', cursive;
-  color: var(--hand-red);
-  font-size: 18px;
-  font-weight: 700;
-  margin-left: 4px;
-  display: inline-block;
-  transform: rotate(-8deg);
-}
-
-/* ═══════════════════════════════════════
-   v6 — TOGGLE DE ÁUDIO
-═══════════════════════════════════════ */
-#audio-toggle {
-  position: fixed;
-  top: 18px;
-  right: 18px;
-  z-index: 600;
-  background: var(--paper);
-  border: 1px solid var(--ink);
-  padding: 7px 14px 7px 12px;
-  font-family: 'Courier Prime', monospace;
-  font-size: 10px;
-  letter-spacing: 2px;
-  color: var(--ink);
-  text-transform: uppercase;
-  cursor: pointer;
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  user-select: none;
-  transition: background 0.2s, color 0.2s;
-  box-shadow: 2px 2px 0 rgba(0,0,0,0.15);
-}
-#audio-toggle:hover {
-  background: var(--ink);
-  color: var(--paper);
-}
-#audio-toggle .at-dot {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: var(--ink-ll);
-  flex-shrink: 0;
-  transition: background 0.2s, box-shadow 0.2s;
-}
-#audio-toggle.audio-on .at-dot {
-  background: var(--red);
-  box-shadow: 0 0 6px rgba(181,36,28,0.5);
-  animation: pulse-dot 1.2s infinite;
-}
-#audio-toggle.audio-on:hover .at-dot { background: var(--paper) }
-#audio-toggle .at-label-off { display: inline }
-#audio-toggle .at-label-on { display: none }
-#audio-toggle.audio-on .at-label-off { display: none }
-#audio-toggle.audio-on .at-label-on { display: inline }
-
-/* ═══════════════════════════════════════
-   v6 — MOBILE: ESTRUTURA RESPONSIVA UNIFICADA
-═══════════════════════════════════════ */
-
-/* ─── BREAKPOINT 768px — TABLET / MOBILE GRANDE ─── */
-@media (max-width: 768px) {
-  /* documento ocupa tela inteira */
-  .document {
-    margin: 0;
-    box-shadow: none;
+.document{
+  position:relative; max-width:820px; margin:40px auto; background:var(--paper); z-index:1;
+  box-shadow:0 0 0 1px rgba(0,0,0,.25),0 4px 6px rgba(0,0,0,.15),0 20px 60px rgba(0,0,0,.4),0 40px 100px rgba(0,0,0,.25),inset 0 0 120px rgba(0,0,0,.04);
+}
+.document::before{content:""; position:absolute; top:0; bottom:0; left:64px; width:1px; background:rgba(181,36,28,.35); pointer-events:none; z-index:10}
+.document::after{content:""; position:absolute; top:0; bottom:0; left:0; width:64px; background:rgba(0,0,0,.025); border-right:1px solid rgba(0,0,0,.06); pointer-events:none}
+
+::-webkit-scrollbar{width:4px}
+::-webkit-scrollbar-track{background:#2a2520}
+::-webkit-scrollbar-thumb{background:var(--ink-ll)}
+
+/* ── seções ── */
+.doc-section{
+  padding:44px 52px 44px 92px; border-bottom:1px solid var(--border); position:relative;
+  opacity:0; transform:translateY(20px);
+  transition:opacity .7s ease, transform .7s cubic-bezier(.16,1,.3,1);
+}
+.doc-section.visible{opacity:1; transform:none}
+.doc-section:last-child{border-bottom:none}
+.section-label{
+  font-size:10px; letter-spacing:4px; color:var(--ink-ll); text-transform:uppercase;
+  margin-bottom:24px; display:flex; align-items:center; gap:12px;
+}
+.section-label::after{content:""; flex:1; height:1px; background:var(--border)}
+.section-num{
+  display:inline-block; width:22px; height:22px; border:1px solid var(--border-h);
+  text-align:center; line-height:20px; font-size:10px; color:var(--ink-l); flex-shrink:0;
+}
+
+/* ═══ 1 — HEADER / HEADLINE ═══ */
+.doc-header{padding:48px 52px 40px 92px; border-bottom:2px solid var(--border-h); position:relative; overflow:hidden}
+.class-bar{display:flex; justify-content:space-between; align-items:center; margin-bottom:34px; gap:12px; flex-wrap:wrap}
+.class-level{
+  font-family:'Special Elite',cursive; font-size:11px; letter-spacing:5px; color:var(--red);
+  text-transform:uppercase; border:1.5px solid var(--red); padding:4px 14px;
+}
+.doc-id{font-size:11px; letter-spacing:2px; color:var(--ink-l)}
+.hl-pre{font-size:11px; letter-spacing:4px; color:var(--ink-l); text-transform:uppercase; margin-bottom:16px}
+.hl-main{font-family:'Special Elite',cursive; font-size:clamp(32px,5.4vw,58px); line-height:1.06; color:var(--ink); margin-bottom:14px}
+.hl-you{position:relative; display:inline-block}
+.hl-you::after{content:""; position:absolute; bottom:-3px; left:0; right:0; height:2px; background:var(--ink)}
+.hl-red{color:var(--red-d)}
+.hl-sub{
+  font-family:'IM Fell English',serif; font-size:clamp(15px,2vw,18px); font-style:italic;
+  color:var(--ink-l); line-height:1.75; max-width:560px;
+}
+.hand-underline{position:relative; display:inline-block}
+.hand-underline::after{content:""; position:absolute; left:-2px; right:-2px; bottom:-4px; height:2px; background:var(--red); opacity:.75; transform:skewY(-1.5deg)}
+.stamp-confidential{
+  position:absolute; top:52%; right:38px; transform:translateY(-50%) rotate(-12deg);
+  font-family:'Special Elite',cursive; font-size:clamp(22px,3.4vw,34px); letter-spacing:4px;
+  color:var(--stamp-r); border:3px solid var(--stamp-r); padding:6px 18px; text-transform:uppercase;
+  pointer-events:none; white-space:nowrap; mix-blend-mode:multiply; filter:url(#roughen);
+}
+
+/* ═══ 2 — DIAGNÓSTICO ═══ */
+.diagnosis-fields{margin-top:6px; border:1px solid var(--border-h); position:relative}
+.diagnosis-fields::before{content:"DIAGNÓSTICO"; position:absolute; top:-1px; left:16px; background:var(--paper); padding:0 8px; font-size:9px; letter-spacing:4px; color:var(--ink-l); text-transform:uppercase}
+.diag-field{display:grid; grid-template-columns:150px 1fr; border-bottom:1px solid var(--border)}
+.diag-field:last-child{border-bottom:none}
+.diag-key{padding:12px 16px; font-size:10px; letter-spacing:2px; color:var(--ink-l); text-transform:uppercase; border-right:1px solid var(--border); background:rgba(0,0,0,.02); display:flex; align-items:center}
+.diag-val{padding:12px 16px; font-size:13px; color:var(--ink); display:flex; align-items:center; gap:10px; line-height:1.5}
+.diag-val strong{font-weight:700}
+.diag-val.critical{color:var(--red-d); font-weight:700}
+.status-dot{width:7px; height:7px; border-radius:50%; flex-shrink:0}
+.status-dot.active{background:var(--red); box-shadow:0 0 6px rgba(181,36,28,.5); animation:pulse 1.4s infinite}
+@keyframes pulse{0%,100%{opacity:1; transform:scale(1)}50%{opacity:.4; transform:scale(.7)}}
+
+.evidence-list{margin-top:28px; border:1px solid var(--border)}
+.evidence-item{display:grid; grid-template-columns:44px 1fr; border-bottom:1px solid var(--border)}
+.evidence-item:last-child{border-bottom:none}
+.ev-num{padding:16px 0; text-align:center; font-size:10px; color:var(--ink-ll); border-right:1px solid var(--border); background:rgba(0,0,0,.02)}
+.ev-text{padding:14px 20px; font-size:clamp(13px,1.6vw,15px); line-height:1.6; color:var(--ink-f)}
+.ev-text .marked{background:rgba(181,36,28,.12); padding:1px 3px}
+.ev-text strong{color:var(--ink); font-weight:700}
+
+/* ═══ 3 — MECANISMO ═══ */
+.laudo-body{font-family:'IM Fell English',serif; font-size:clamp(16px,2vw,19px); line-height:1.85; color:var(--ink-f); max-width:620px}
+.laudo-body p{margin-bottom:20px}
+.laudo-body p:last-child{margin-bottom:0}
+.laudo-body strong{font-family:'Courier Prime',monospace; font-weight:700; color:var(--ink); font-size:.9em}
+.laudo-body em{color:var(--ink-l)}
+.dropcap{float:left; font-family:'Special Elite',cursive; font-size:clamp(46px,6vw,64px); line-height:.85; color:var(--ink); padding:6px 16px 0 0; margin-top:4px}
+.realtime-card{
+  margin:26px 0; padding:18px 22px; background:rgba(181,36,28,.05);
+  border:1px solid rgba(181,36,28,.25); border-left:4px solid var(--red);
+  font-family:'Courier Prime',monospace; font-size:clamp(14px,1.7vw,16px); line-height:1.65; color:var(--ink); position:relative;
+}
+.realtime-card::before{content:"● EM TEMPO REAL"; position:absolute; top:-1px; right:16px; background:var(--paper); padding:0 8px; font-size:9px; letter-spacing:3px; color:var(--red); text-transform:uppercase; font-weight:700}
+.realtime-card .rt-dot{display:inline-block; width:6px; height:6px; border-radius:50%; background:var(--red); margin-right:8px; animation:pulse 1.2s infinite; vertical-align:middle}
+.laudo-conclusion{
+  margin-top:26px; padding:20px 24px; border-left:3px solid var(--red); background:rgba(181,36,28,.04);
+  font-family:'Courier Prime',monospace; font-size:clamp(14px,1.7vw,17px); line-height:1.6; color:var(--ink);
+}
+.laudo-conclusion strong{font-weight:700}
+
+/* ═══ 4 — O QUE VOCÊ RECEBE ═══ */
+.delivery-manifest{border:2px solid var(--ink-l); position:relative; background:rgba(0,0,0,.012)}
+.delivery-manifest::before{content:"ORDEM DE ENTREGA — EMISSÃO IMEDIATA"; position:absolute; top:-1px; left:16px; background:var(--paper); padding:0 8px; font-size:9px; letter-spacing:3px; color:var(--ink); text-transform:uppercase; font-weight:700}
+.delivery-manifest::after{content:"AUTORIZADO"; position:absolute; bottom:-1px; right:16px; background:var(--paper); padding:0 8px; font-size:9px; letter-spacing:3px; color:var(--olive); text-transform:uppercase; font-weight:700}
+.dm-list{list-style:none; padding:22px 24px}
+.dm-item{display:grid; grid-template-columns:36px 1fr 90px; align-items:center; gap:14px; padding:10px 0; border-bottom:1px dotted rgba(28,23,16,.12); font-family:'Courier Prime',monospace; font-size:13px}
+.dm-item:last-child{border-bottom:none}
+.dm-num{font-size:10px; letter-spacing:1.5px; color:var(--ink-ll)}
+.dm-desc{color:var(--ink-f); line-height:1.5}
+.dm-desc strong{color:var(--ink); font-weight:700}
+.dm-status{font-size:9px; letter-spacing:1.5px; color:var(--olive); text-transform:uppercase; text-align:right; font-weight:700}
+
+/* ═══ 5 — CASOS ═══ */
+.cases-grid{display:grid; grid-template-columns:1fr 1fr 1fr; gap:1px; background:var(--border); border:1px solid var(--border-h)}
+.case-card{background:var(--paper); padding:18px 18px 20px; position:relative}
+.case-header{display:flex; justify-content:space-between; align-items:center; margin-bottom:12px; padding-bottom:8px; border-bottom:1px solid var(--border)}
+.case-id{font-family:'Courier Prime',monospace; font-size:10px; letter-spacing:2px; color:var(--ink-l); text-transform:uppercase; font-weight:700}
+.case-status{font-family:'Courier Prime',monospace; font-size:9px; letter-spacing:1px; color:var(--red); border:1px solid rgba(181,36,28,.4); padding:1px 6px; text-transform:uppercase}
+.case-field{display:grid; grid-template-columns:62px 1fr; gap:8px; margin-bottom:6px; font-size:11px; line-height:1.5}
+.case-key{font-family:'Courier Prime',monospace; font-size:9px; letter-spacing:1.5px; color:var(--ink-ll); text-transform:uppercase; padding-top:1px}
+.case-val{color:var(--ink-f); font-size:12px}
+.case-val strong{color:var(--ink); font-weight:700}
+.case-conclusion{margin-top:10px; padding-top:8px; border-top:1px dashed var(--border); font-family:'IM Fell English',serif; font-style:italic; font-size:11px; color:var(--ink-l); line-height:1.5}
+.cases-note{
+  margin-top:24px; padding:14px 18px; background:#e8dfc4; border:1px solid rgba(28,23,16,.12);
+  font-family:'Caveat',cursive; font-size:16px; line-height:1.5; color:var(--ink-f); transform:rotate(-.3deg);
+  box-shadow:2px 3px 8px rgba(0,0,0,.08); position:relative;
+}
+.cases-note::before{content:"ADENDO DO SUPERVISOR"; position:absolute; top:-1px; left:16px; background:#e8dfc4; padding:0 8px; font-family:'Courier Prime',monospace; font-size:9px; letter-spacing:3px; color:var(--ink-l); text-transform:uppercase; font-weight:700}
+.cases-note strong{font-weight:700}
+
+/* ═══ 6 — OFERTA ═══ */
+.access-window{display:inline-flex; align-items:center; gap:10px; margin-bottom:26px; padding:8px 16px; border:1px solid rgba(181,36,28,.3); background:rgba(181,36,28,.04)}
+.aw-label{font-size:10px; letter-spacing:3px; color:var(--red); text-transform:uppercase}
+.aw-dot{width:6px; height:6px; border-radius:50%; background:var(--red); animation:pulse 1.2s infinite; flex-shrink:0}
+.aw-timer{font-size:13px; font-weight:700; letter-spacing:2px; color:var(--red)}
+.aw-timer .sep{animation:blink 1s infinite}
+@keyframes blink{0%,60%{opacity:1}61%,100%{opacity:.25}}
+
+.payment-order{border:2px solid var(--border-h); position:relative; background:rgba(0,0,0,.01)}
+.payment-order::before{content:"ORDEM DE ACESSO"; position:absolute; top:-1px; left:16px; background:var(--paper); padding:0 8px; font-size:9px; letter-spacing:4px; color:var(--ink-l); text-transform:uppercase}
+.po-row{display:grid; grid-template-columns:170px 1fr; border-bottom:1px solid var(--border)}
+.po-row:last-child{border-bottom:none}
+.po-key{padding:14px 16px; font-size:10px; letter-spacing:2px; color:var(--ink-l); text-transform:uppercase; border-right:1px solid var(--border); background:rgba(0,0,0,.025); display:flex; align-items:center}
+.po-val{padding:14px 20px; font-size:14px; color:var(--ink); display:flex; align-items:center}
+.po-val.price-main{font-family:'Special Elite',cursive; font-size:clamp(28px,4.5vw,46px); letter-spacing:2px}
+.po-val .strikethrough{font-size:.5em; color:var(--ink-ll); text-decoration:line-through; margin-right:14px; letter-spacing:1px}
+
+/* ═══ 7 — GARANTIA ═══ */
+.guarantee-block{
+  border:1px solid var(--olive); border-left:4px solid var(--olive); padding:22px 24px;
+  background:rgba(74,82,64,.05); position:relative; display:flex; gap:18px; align-items:flex-start;
+}
+.guarantee-block::before{content:"GARANTIA"; position:absolute; top:-1px; left:16px; background:var(--paper); padding:0 8px; font-size:9px; letter-spacing:4px; color:var(--olive); text-transform:uppercase; font-weight:700}
+.guarantee-seal{
+  flex-shrink:0; width:64px; height:64px; border:2px solid var(--olive); border-radius:50%;
+  display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center;
+  font-family:'Special Elite',cursive; color:var(--olive); transform:rotate(-6deg);
+}
+.guarantee-seal .gs-num{font-size:22px; line-height:1}
+.guarantee-seal .gs-unit{font-size:8px; letter-spacing:2px; text-transform:uppercase; margin-top:2px}
+.guarantee-text{font-family:'IM Fell English',serif; font-size:clamp(14px,1.8vw,16px); line-height:1.65; color:var(--ink-f)}
+.guarantee-text strong{font-family:'Courier Prime',monospace; font-size:.85em; color:var(--ink); font-weight:700}
+
+/* ═══ 8 — CTA ═══ */
+.cta-block{text-align:center; padding:8px 0 4px}
+.cta-pre{font-size:10px; letter-spacing:4px; color:var(--ink-l); text-transform:uppercase; margin-bottom:20px}
+.cta-btn{
+  display:inline-block; font-family:'Special Elite',cursive; font-size:clamp(14px,1.8vw,18px); letter-spacing:3px;
+  color:var(--paper); background:var(--ink); padding:18px 52px; text-decoration:none; text-transform:uppercase;
+  position:relative; overflow:hidden; max-width:100%;
+  box-shadow:4px 4px 0 var(--ink-l),0 8px 30px rgba(0,0,0,.2);
+  transition:background .2s, box-shadow .2s, transform .15s;
+}
+.cta-btn .cta-sweep{position:absolute; top:0; left:-100%; width:50%; height:100%; background:linear-gradient(90deg,transparent,rgba(255,255,255,.12),transparent); animation:sweep 3.5s ease-in-out infinite; pointer-events:none}
+@keyframes sweep{0%,55%{left:-100%}100%{left:150%}}
+.cta-btn:hover{background:var(--ink-f); box-shadow:2px 2px 0 var(--ink-l),0 4px 20px rgba(0,0,0,.3); transform:translate(1px,1px)}
+.cta-btn:focus-visible{outline:3px solid var(--red); outline-offset:3px}
+.cta-sub{margin-top:12px; font-family:'IM Fell English',serif; font-style:italic; font-size:11px; letter-spacing:2px; color:var(--ink-ll)}
+
+/* rodapé */
+.doc-footer{padding:26px 52px 26px 92px; border-top:2px solid var(--border-h); display:flex; justify-content:space-between; align-items:flex-end; gap:20px; flex-wrap:wrap; background:rgba(0,0,0,.025)}
+.footer-line{font-size:9px; letter-spacing:3px; color:var(--ink-ll); text-transform:uppercase}
+.footer-line span{color:var(--ink-l)}
+.footer-sig{font-family:'IM Fell English',serif; font-style:italic; font-size:14px; color:var(--ink-l); text-align:right}
+
+/* ── MOBILE ── */
+@media (max-width:768px){
+  .document{margin:0; box-shadow:none}
+  .document::before,.document::after{display:none}
+  .doc-header,.doc-section,.doc-footer{padding-left:22px; padding-right:22px}
+  .doc-header{padding-top:46px}
+  .stamp-confidential{
+    font-size:15px; letter-spacing:2px; padding:3px 10px; border-width:2px;
+    top:auto; bottom:20px; right:18px; transform:rotate(-8deg); opacity:.82;
   }
-  .document::before { display: none }
-  .document::after { display: none }
-
-  /* padding lateral reduzido — margem direita esquerda igual */
-  .doc-header,
-  .doc-section,
-  .doc-footer,
-  .toc-section,
-  .isolated-cta {
-    padding-left: 22px;
-    padding-right: 22px;
-  }
-
-  /* numeração de margem — desativada já que a margem visual sumiu */
-  .margin-num { display: none }
-
-  /* cabeçalho de página por seção — ocultado em mobile, é estorvo */
-  .page-header { display: none }
-
-  /* TOC */
-  .toc-section { padding-top: 32px; padding-bottom: 36px }
-  .toc-title { font-size: 22px; letter-spacing: 2px }
-  .toc-sub { font-size: 12px; margin-bottom: 20px }
-  .toc-item {
-    grid-template-columns: 26px 1fr 42px;
-    font-size: 11px;
-    gap: 10px;
-  }
-  .toc-item-status { display: none }
-  .toc-item-title { font-size: 11px; letter-spacing: 1px }
-  .toc-item-num { font-size: 10px }
-  .toc-mark { font-size: 14px }
-
-  /* cabeçalho principal */
-  .doc-header { padding-top: 56px; padding-bottom: 28px }
-  .classification-bar {
-    flex-wrap: wrap;
-    gap: 8px;
-    margin-bottom: 22px;
-    padding-top: 8px;
-  }
-  .class-level { font-size: 10px; padding: 3px 10px; letter-spacing: 3px }
-  .doc-id { font-size: 10px; letter-spacing: 1.5px }
-  .doc-subject-line {
-    grid-template-columns: 78px 1fr;
-    gap: 10px;
-    padding-bottom: 8px;
-    margin-bottom: 8px;
-  }
-  .subject-key { font-size: 10px; letter-spacing: 1.5px }
-  .subject-val { font-size: 12px }
-  .subject-val.highlight { font-size: 13px }
-  .access-window {
-    width: 100%;
-    margin-top: 16px;
-    padding: 8px 12px;
-    flex-wrap: wrap;
-    gap: 6px 10px;
-  }
-  .aw-label { font-size: 9px; letter-spacing: 2px }
-  .aw-timer { font-size: 12px }
-
-  /* carimbo Confidencial — menor e reposicionado */
-  .stamp-confidential {
-    font-size: 16px !important;
-    letter-spacing: 2px;
-    padding: 3px 10px;
-    border-width: 2px;
-    top: auto !important;
-    bottom: 22px;
-    right: 18px;
-    transform: rotate(-8deg) !important;
-    animation: none !important;
-    opacity: 0.82 !important;
-  }
-  /* carimbos pequenos no header — reposicionados pra não sobrepor texto */
-  .stamp-small {
-    font-size: 8px !important;
-    padding: 2px 6px;
-    letter-spacing: 1.5px;
-  }
-  .doc-header .stamp-small.received {
-    top: 14px !important;
-    right: 14px !important;
-  }
-  .doc-header .stamp-small.olive {
-    bottom: 14px !important;
-    right: 14px !important;
-  }
-
-  /* HEADLINE diagnóstico — espaçamento ajustado */
-  .hl-pre { font-size: 10px; margin-bottom: 12px }
-  .hl-main { font-size: 30px; line-height: 1.08 }
-  .hl-sub { font-size: 14px; line-height: 1.6 }
-
-  /* CAMPOS DE DIAGNÓSTICO */
-  .diag-field { grid-template-columns: 100px 1fr; min-height: 0 }
-  .diag-key {
-    padding: 10px 12px;
-    font-size: 9px;
-    letter-spacing: 1.5px;
-  }
-  .diag-val { padding: 10px 12px; font-size: 12px }
-
-  /* TRANSCRIÇÃO */
-  .transcript { padding: 14px 14px; font-size: 12px }
-  .transcript-header { font-size: 8px; letter-spacing: 2px; gap: 8px; flex-wrap: wrap }
-  .transcript-line { grid-template-columns: 62px 1fr; gap: 8px }
-  .transcript-time { font-size: 10px }
-  .transcript-meta { font-size: 9px }
-  .waveform {
-    height: 18px;
-    overflow: hidden;
-    gap: 1px;
-  }
-  .waveform-bar { width: 1.5px }
-
-  /* EVIDÊNCIAS */
-  .ev-note { display: none }
-  .ev-num { padding: 14px 0; font-size: 9px }
-  .ev-text {
-    padding: 12px 14px;
-    font-size: 12px;
-    line-height: 1.55;
-  }
-  .evidence-item { grid-template-columns: 36px 1fr }
-
-  /* SUPERVISOR NOTE */
-  .supervisor-note {
-    padding: 14px 16px;
-    font-size: 13px;
-    transform: rotate(-0.2deg);
-  }
-  .supervisor-note::before { font-size: 8px; letter-spacing: 2px }
-
-  /* LAUDO */
-  .laudo-body { font-size: 15px; line-height: 1.7 }
-  .laudo-conclusion { padding: 14px 16px; font-size: 14px }
-  .dropcap {
-    font-size: 40px;
-    padding: 4px 10px 0 0;
-  }
-
-  /* CARD EM TEMPO REAL */
-  .realtime-card {
-    padding: 14px 16px;
-    font-size: 13px;
-    line-height: 1.55;
-  }
-  .realtime-card::before { font-size: 8px; letter-spacing: 2px }
-
-  /* PROTOCOLO ÍNDICE — 2 colunas (sem coluna de status) */
-  .pi-item { grid-template-columns: 56px 1fr 70px }
-  .pi-day { padding: 12px 10px; font-size: 9px; letter-spacing: 1.5px }
-  .pi-content { padding: 10px 14px }
-  .pi-title { font-size: 12px }
-  .pi-desc { font-size: 10px }
-  .pi-status { padding: 12px 8px }
-  .pi-status-text { font-size: 8px; letter-spacing: 0.5px }
-
-  /* SEQUÊNCIA DE EXECUÇÃO */
-  .el-item { grid-template-columns: 70px 1fr }
-  .el-day { padding: 12px 10px; font-size: 9px; letter-spacing: 1.5px }
-  .el-entry { padding: 12px 14px; font-size: 12px }
-
-  /* CASOS — 1 coluna em mobile, com separador visual */
-  .cases-grid {
-    grid-template-columns: 1fr;
-    gap: 12px;
-    background: transparent;
-    border: none;
-  }
-  .case-card {
-    border: 1px solid var(--border);
-    padding: 14px 14px;
-  }
-  .case-header { margin-bottom: 10px }
-  .case-id { font-size: 9px }
-  .case-status { font-size: 8px; padding: 1px 5px }
-  .case-field {
-    grid-template-columns: 56px 1fr;
-    gap: 6px;
-    font-size: 11px;
-  }
-  .case-key { font-size: 8px; letter-spacing: 1px }
-  .case-val { font-size: 11px }
-  .case-conclusion { font-size: 10px; line-height: 1.45 }
-
-  /* CTA ISOLADO */
-  .isolated-cta { padding-top: 36px; padding-bottom: 36px }
-  .isolated-cta-text { font-size: 14px; line-height: 1.5 }
-  .cta-btn {
-    font-size: 12px;
-    letter-spacing: 2px;
-    padding: 14px 24px;
-    display: inline-block;
-    max-width: 100%;
-    text-align: center;
-  }
-
-  /* TABELA DE COMPARAÇÃO — vira lista empilhada */
-  .comparison-table thead { display: none }
-  .comparison-table tbody { display: block }
-  .comparison-table tr {
-    display: block;
-    border-bottom: 2px solid var(--border-h);
-    margin-bottom: 10px;
-    padding-bottom: 6px;
-  }
-  .comparison-table tr:last-child { margin-bottom: 0 }
-  .comparison-table td {
-    display: block;
-    padding: 8px 12px;
-    border-bottom: none;
-    font-size: 12px;
-    line-height: 1.5;
-  }
-  .comparison-table td.td-bad {
-    border-right: none;
-    border-left: 3px solid rgba(181,36,28,0.4);
-    background: rgba(181,36,28,0.03);
-    margin-bottom: 4px;
-  }
-  .comparison-table td.td-good {
-    border-left: 3px solid var(--olive);
-    background: rgba(74,82,64,0.04);
-  }
-  .comparison-table .cost-row td { font-size: 13px }
-
-  /* MANIFESTO DE ENTREGA */
-  .dm-list { padding: 16px 14px }
-  .dm-item {
-    grid-template-columns: 28px 1fr 64px;
-    gap: 8px;
-    font-size: 11px;
-    padding: 8px 0;
-  }
-  .dm-num { font-size: 9px }
-  .dm-desc { font-size: 11px; line-height: 1.45 }
-  .dm-status { font-size: 8px; letter-spacing: 1px }
-  .delivery-manifest::before,
-  .delivery-manifest::after {
-    font-size: 8px;
-    letter-spacing: 2px;
-    padding: 0 6px;
-  }
-
-  /* ORDEM DE ACESSO / PREÇO */
-  .po-row { grid-template-columns: 110px 1fr }
-  .po-key { padding: 10px 12px; font-size: 9px; letter-spacing: 1.5px }
-  .po-val { padding: 10px 12px; font-size: 12px }
-  .po-val.price-main { font-size: 24px; flex-wrap: wrap; gap: 6px }
-  .po-val.price-main .strikethrough { font-size: 0.55em; margin-right: 0 }
-  .po-val.guarantee { font-size: 11px }
-  .payment-order::before,
-  .delivery-manifest::before {
-    font-size: 8px;
-    letter-spacing: 2px;
-  }
-
-  /* CTA BLOCK principal */
-  .cta-block { padding: 28px 0 20px }
-  .cta-pre { font-size: 9px; letter-spacing: 2px; margin-bottom: 16px }
-  .cta-sub { font-size: 10px; line-height: 1.5 }
-
-  /* DECISÃO BINÁRIA */
-  .dec-option { grid-template-columns: 44px 1fr }
-  .dec-checkbox-col { padding: 18px 0 }
-  .dec-checkbox { width: 16px; height: 16px; font-size: 11px }
-  .dec-label-col { padding: 16px 14px }
-  .dec-label-title { font-size: 13px }
-  .dec-label-sub { font-size: 11px }
-  .dec-warning { padding: 10px 12px; font-size: 10px }
-  .decision-form::before { font-size: 8px; letter-spacing: 2px }
-
-  /* FAQ */
-  .faq-n { display: none }
-  .faq-q { padding: 14px 40px 14px 0; font-size: 12px }
-  .faq-toggle { font-size: 16px }
-  .faq-a { font-size: 12px; line-height: 1.7 }
-  .faq-item.open .faq-a { padding-bottom: 16px }
-
-  /* AUTOR */
-  .autor-grid {
-    grid-template-columns: 1fr !important;
-    gap: 24px !important;
-  }
-
-  /* RODAPÉ */
-  .doc-footer {
-    padding-top: 22px;
-    padding-bottom: 22px;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 16px;
-  }
-  .footer-line { font-size: 8px; letter-spacing: 2px }
-  .footer-sig { font-size: 13px; text-align: left }
-  .footer-sig-line { font-size: 9px; text-align: left }
-  .doc-footer > div:nth-child(2) {
-    text-align: left;
-    width: 100%;
-  }
-
-  /* STICKY BAR — empilha em mobile */
-  #sticky {
-    padding: 8px 14px;
-    flex-wrap: wrap;
-    gap: 8px;
-    justify-content: space-between;
-  }
-  .sticky-text {
-    font-size: 10px;
-    letter-spacing: 1px;
-    width: 100%;
-    order: 1;
-    line-height: 1.4;
-  }
-  .sticky-timer {
-    font-size: 10px;
-    letter-spacing: 1px;
-    order: 2;
-  }
-  .sticky-btn {
-    font-size: 10px;
-    letter-spacing: 1.5px;
-    padding: 8px 16px;
-    order: 3;
-  }
-
-  /* AUDIO TOGGLE — não sobrepor o classification-bar */
-  #audio-toggle {
-    top: 10px;
-    right: 10px;
-    padding: 5px 10px 5px 8px;
-    font-size: 9px;
-    letter-spacing: 1.5px;
-    gap: 6px;
-  }
-  #audio-toggle .at-dot { width: 5px; height: 5px }
-
-  /* WATERMARKS — ocultar */
-  .watermark { display: none }
-
-  /* DOG-EAR menor */
-  .dog-ear { width: 20px; height: 20px }
-
-  /* margem aumentada inferior na sticky para não cobrir conteúdo */
-  body { padding-bottom: 100px }
+  .hl-main{font-size:30px}
+  .diag-field{grid-template-columns:96px 1fr}
+  .diag-key{padding:10px 12px; font-size:9px}
+  .diag-val{padding:10px 12px; font-size:12px}
+  .evidence-item{grid-template-columns:36px 1fr}
+  .ev-text{padding:12px 14px; font-size:12px}
+  .laudo-body{font-size:15px}
+  .dropcap{font-size:40px}
+  .cases-grid{grid-template-columns:1fr; gap:12px; background:transparent; border:none}
+  .case-card{border:1px solid var(--border)}
+  .dm-item{grid-template-columns:28px 1fr 64px; gap:8px; font-size:11px}
+  .dm-desc{font-size:11px}
+  .po-row{grid-template-columns:110px 1fr}
+  .po-key{padding:10px 12px; font-size:9px}
+  .po-val{padding:10px 12px; font-size:12px}
+  .po-val.price-main{font-size:26px; flex-wrap:wrap; gap:6px}
+  .guarantee-block{flex-direction:column; gap:14px}
+  .cta-btn{font-size:13px; letter-spacing:2px; padding:15px 28px}
+  .doc-footer{flex-direction:column; align-items:flex-start; gap:14px}
+  .footer-sig{text-align:left}
 }
-
-/* ─── BREAKPOINT 480px — MOBILE COMUM ─── */
-@media (max-width: 480px) {
-  .doc-header,
-  .doc-section,
-  .doc-footer,
-  .toc-section,
-  .isolated-cta {
-    padding-left: 16px;
-    padding-right: 16px;
-  }
-  .toc-item {
-    grid-template-columns: 22px 1fr 38px;
-    font-size: 10px;
-    gap: 8px;
-  }
-  .doc-subject-line { grid-template-columns: 66px 1fr; gap: 8px }
-  .subject-val { font-size: 11.5px }
-  .hl-main { font-size: 26px }
-  .hl-sub { font-size: 13px }
-
-  /* protocolo index — 1 coluna empilhada */
-  .pi-item { grid-template-columns: 1fr }
-  .pi-day {
-    border-right: none;
-    border-bottom: 1px solid var(--border);
-    padding: 8px 14px;
-  }
-  .pi-content { padding: 10px 14px }
-  .pi-status {
-    border-left: none;
-    border-top: 1px solid var(--border);
-    padding: 8px 14px;
-  }
-
-  /* diagnóstico — empilhado */
-  .diag-field { grid-template-columns: 1fr }
-  .diag-key {
-    border-right: none;
-    border-bottom: 1px solid var(--border);
-    padding: 8px 12px 4px;
-  }
-  .diag-val { padding: 6px 12px 10px }
-
-  /* sequência execução — empilhada */
-  .el-item { grid-template-columns: 1fr }
-  .el-day {
-    border-right: none;
-    border-bottom: 1px solid var(--border);
-    padding: 6px 14px;
-  }
-  .el-entry { padding: 10px 14px }
-
-  /* ordem de acesso — empilhada */
-  .po-row { grid-template-columns: 1fr }
-  .po-key {
-    border-right: none;
-    border-bottom: 1px solid var(--border);
-    padding: 6px 12px;
-  }
-  .po-val { padding: 8px 12px }
-
-  /* manifesto */
-  .dm-item { grid-template-columns: 22px 1fr 54px; font-size: 10.5px }
-  .dm-desc { font-size: 10.5px }
-
-  /* decisão */
-  .dec-option { grid-template-columns: 38px 1fr }
-  .dec-checkbox-col { padding: 14px 0 }
-  .dec-label-col { padding: 14px 12px }
-  .dec-label-title { font-size: 12px }
-  .dec-label-sub { font-size: 10.5px }
-
-  /* casos */
-  .case-field { grid-template-columns: 50px 1fr }
-
-  /* preço empilhado verticalmente */
-  .po-val.price-main {
-    flex-direction: column;
-    align-items: flex-start;
-    font-size: 22px;
-  }
-  .po-val.price-main .strikethrough { margin-bottom: 2px }
-
-  /* sticky text esconde tudo exceto preço e cta */
-  .sticky-text { font-size: 9px }
+@media (max-width:480px){
+  .diag-field,.po-row{grid-template-columns:1fr}
+  .diag-key,.po-key{border-right:none; border-bottom:1px solid var(--border)}
+  .case-field{grid-template-columns:54px 1fr}
 }
-
-/* ─── BREAKPOINT 360px — MOBILE PEQUENO ─── */
-@media (max-width: 360px) {
-  .doc-header,
-  .doc-section,
-  .doc-footer,
-  .toc-section,
-  .isolated-cta {
-    padding-left: 12px;
-    padding-right: 12px;
-  }
-  .hl-main { font-size: 22px }
-  .toc-title { font-size: 18px }
-  .stamp-confidential { font-size: 14px !important; padding: 2px 8px }
-  .doc-subject-line {
-    grid-template-columns: 1fr;
-    gap: 2px;
-  }
-  .subject-key { font-size: 9px }
-  .subject-val { font-size: 11px }
-  .cta-btn { font-size: 11px; letter-spacing: 1.5px; padding: 12px 18px }
-  #sticky { padding: 6px 10px }
-  .sticky-btn { font-size: 9px; padding: 7px 12px }
-}
-
-/* ═══════════════════════════════════════
-   ANIMAÇÕES DE ENTRADA
-═══════════════════════════════════════ */
-@media (prefers-reduced-motion:reduce) {
-  *, *::before, *::after {
-    animation-duration:.001ms !important;
-    transition-duration:.001ms !important;
-  }
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.001ms !important; transition-duration:.001ms !important}
 }
 </style>
 </head>
 <body>
 
-<!-- SVG filter para efeito rugoso nos carimbos -->
 <svg style="position:absolute;width:0;height:0" xmlns="http://www.w3.org/2000/svg">
   <defs>
     <filter id="roughen">
@@ -2472,696 +270,131 @@ body::before {
   </defs>
 </svg>
 
-<!-- AUDIO TOGGLE -->
-<button id="audio-toggle" type="button" aria-label="Ativar/desativar áudio ambiente">
-  <span class="at-dot"></span>
-  <span class="at-label-off">Áudio: off</span>
-  <span class="at-label-on">Áudio: on</span>
-</button>
-
-<!-- STICKY BAR -->
-<div id="sticky">
-  <div class="sticky-text">Protocolo Anti-Automático™ &nbsp;·&nbsp; <strong>R$17,00</strong> &nbsp;·&nbsp; pagamento único</div>
-  <div class="sticky-timer" id="sticky-timer">--:--:--</div>
-  <a href="https://pay.cakto.com.br/7u4fyv6_851435" class="sticky-btn">Iniciar protocolo</a>
-</div>
-
-<!-- DOCUMENTO PRINCIPAL -->
 <main class="document" role="main">
 
-  <!-- elementos físicos: clip, café, dobras -->
-  <svg class="paper-clip" style="top:-22px;left:120px" viewBox="0 0 50 90" xmlns="http://www.w3.org/2000/svg">
-    <path d="M 14 8 Q 14 4 18 4 L 32 4 Q 36 4 36 8 L 36 70 Q 36 80 25 80 Q 14 80 14 70 L 14 18 Q 14 14 18 14 L 28 14 Q 32 14 32 18 L 32 60 Q 32 66 25 66 Q 18 66 18 60 L 18 22"
-          stroke="#666" stroke-width="2.2" fill="none" stroke-linecap="round"/>
-  </svg>
-
-  <div class="coffee-stain coffee-laudo"></div>
-  <div class="coffee-stain coffee-cases"></div>
-
-  <div class="paper-fold" style="top:33%"></div>
-  <div class="paper-fold" style="top:67%"></div>
-
-  <!-- marca d'água diagonal -->
-  <div class="watermark" style="top:12%;left:-5%;transform:rotate(-35deg);font-size:clamp(28px,5vw,52px)">confidencial</div>
-  <div class="watermark" style="top:55%;right:-8%;transform:rotate(-35deg);font-size:clamp(28px,5vw,52px)">não distribuir</div>
-
-  <!-- ═══ CABEÇALHO ═══ -->
+  <!-- ═══ 1 — HEADLINE ═══ -->
   <header class="doc-header">
-    <span class="margin-num" style="top:52px">001</span>
-
-    <div class="classification-bar">
+    <div class="class-bar">
       <div class="class-level">Confidencial</div>
-      <div class="doc-id">PAA-001 &nbsp;/&nbsp; <span id="header-date"></span></div>
+      <div class="doc-id">PAA-001 &nbsp;/&nbsp; <span id="doc-date"></span></div>
     </div>
 
-    <div class="doc-subject-line">
-      <span class="subject-key">Sujeito:</span>
-      <span class="subject-val">Você. <span style="color:var(--ink-ll);font-size:12px">— identificação registrada no acesso a este documento</span></span>
-    </div>
-    <div class="doc-subject-line">
-      <span class="subject-key">Assunto:</span>
-      <span class="subject-val highlight">PROTOCOLO ANTI-AUTOMÁTICO™ — INTERVENÇÃO DE 21 DIAS</span>
-    </div>
-    <div class="doc-subject-line">
-      <span class="subject-key">Origem:</span>
-      <span class="subject-val">Observação documental contínua — sob acompanhamento desde o primeiro acesso</span>
-    </div>
-    <div class="doc-subject-line">
-      <span class="subject-key">Status:</span>
-      <span class="subject-val" style="display:flex;align-items:center;gap:10px">
-        <span class="status-dot active"></span>
-        Ciclo automático em execução — intervenção indicada, janela 21 dias
-      </span>
-    </div>
+    <div class="hl-pre">// abertura do dossiê</div>
+    <h1 class="hl-main">
+      Você sabe o que fazer.<br>
+      <span class="hl-red">E continua não fazendo.</span>
+    </h1>
+    <p class="hl-sub">
+      Não é preguiça. Não é falta de informação. É um padrão que decide por você
+      antes de você perceber — há anos, todo santo dia. E <span class="hand-underline">ele
+      está te observando agora</span>, esperando você fechar esta aba pra provar, mais uma vez, que manda em você.
+    </p>
 
-    <div class="access-window">
-      <span class="aw-dot"></span>
-      <span class="aw-label">Preço promocional expira em:</span>
-      <span class="aw-timer" id="header-timer">--<span class="timer-sep">:</span>--<span class="timer-sep">:</span>--</span>
-    </div>
-
-    <div class="stamp-confidential"><span class="stamp-letter">C</span><span class="stamp-letter">o</span><span class="stamp-letter">n</span><span class="stamp-letter">f</span><span class="stamp-letter">i</span><span class="stamp-letter">d</span><span class="stamp-letter">e</span><span class="stamp-letter">n</span><span class="stamp-letter">c</span><span class="stamp-letter">i</span><span class="stamp-letter">a</span><span class="stamp-letter">l</span></div>
-    <div class="stamp-small received" style="top:18px;right:200px;transform:rotate(-4deg)">Recebido</div>
-    <div class="stamp-small olive" style="bottom:24px;right:60px;transform:rotate(3deg)">Arquivar 005</div>
-
-    <!-- anotação manuscrita marginal -->
-    <div class="handnote" style="bottom:80px;right:24px;transform:rotate(-2deg);max-width:200px">
-      caso recorrente —<br>
-      arquivo &nbsp;repete&nbsp; o<br>
-      mesmo &nbsp;padrão
-    </div>
+    <div class="stamp-confidential">Confidencial</div>
   </header>
 
-  <!-- ═══ SUMÁRIO / ÍNDICE ═══ -->
-  <section class="toc-section">
-    <span class="margin-num" style="top:44px">002</span>
-    <div class="page-header">
-      <span>PAA-001</span>
-      <span>página 002 / 013</span>
-    </div>
-
-    <div class="toc-title">Índice do documento</div>
-    <div class="toc-sub">Onze seções. Tempo médio de leitura completa: 14 minutos. Recomendado em sequência.</div>
-
-    <ol class="toc-list">
-      <li class="toc-item">
-        <span class="toc-item-num">01</span>
-        <span class="toc-item-title">Diagnóstico inicial <span class="toc-mark">✓</span></span>
-        <span class="toc-item-status critical">crítico</span>
-        <span class="toc-item-page">p. 003</span>
-      </li>
-      <li class="toc-item">
-        <span class="toc-item-num">02</span>
-        <span class="toc-item-title">Registros observados</span>
-        <span class="toc-item-status">evidências</span>
-        <span class="toc-item-page">p. 004</span>
-      </li>
-      <li class="toc-item">
-        <span class="toc-item-num">03</span>
-        <span class="toc-item-title">Laudo técnico — o mecanismo</span>
-        <span class="toc-item-status">análise</span>
-        <span class="toc-item-page">p. 005</span>
-      </li>
-      <li class="toc-item">
-        <span class="toc-item-num">04</span>
-        <span class="toc-item-title">Conteúdo do protocolo</span>
-        <span class="toc-item-status">restrito</span>
-        <span class="toc-item-page">p. 006</span>
-      </li>
-      <li class="toc-item">
-        <span class="toc-item-num">05</span>
-        <span class="toc-item-title">Sequência de execução</span>
-        <span class="toc-item-status">cronologia</span>
-        <span class="toc-item-page">p. 007</span>
-      </li>
-      <li class="toc-item">
-        <span class="toc-item-num">06</span>
-        <span class="toc-item-title">Casos documentados — amostra <span class="toc-mark">✓</span></span>
-        <span class="toc-item-status">três fichas</span>
-        <span class="toc-item-page">p. 008</span>
-      </li>
-      <li class="toc-item">
-        <span class="toc-item-num">07</span>
-        <span class="toc-item-title">Análise de custo</span>
-        <span class="toc-item-status">comparativo</span>
-        <span class="toc-item-page">p. 009</span>
-      </li>
-      <li class="toc-item">
-        <span class="toc-item-num">08</span>
-        <span class="toc-item-title">Ordem de acesso</span>
-        <span class="toc-item-status">autorização</span>
-        <span class="toc-item-page">p. 010</span>
-      </li>
-      <li class="toc-item">
-        <span class="toc-item-num">09</span>
-        <span class="toc-item-title">Seleção de resposta <span class="toc-mark">✓</span></span>
-        <span class="toc-item-status critical">decisão</span>
-        <span class="toc-item-page">p. 011</span>
-      </li>
-      <li class="toc-item">
-        <span class="toc-item-num">10</span>
-        <span class="toc-item-title">Objeções respondidas</span>
-        <span class="toc-item-status">apêndice</span>
-        <span class="toc-item-page">p. 012</span>
-      </li>
-      <li class="toc-item">
-        <span class="toc-item-num">11</span>
-        <span class="toc-item-title">Sobre o dossiê</span>
-        <span class="toc-item-status">setor</span>
-        <span class="toc-item-page">p. 013</span>
-      </li>
-    </ol>
-
-    <div style="margin-top:24px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px">
-      <div class="sac-mark">
-        <span class="sac-glyph">S/AC</span>
-        <span>Setor de Arquitetura de Comportamento &nbsp;·&nbsp; matrícula compilador: 0471</span>
-      </div>
-      <span style="font-family:'IM Fell English',serif;font-style:italic;font-size:12px;color:var(--ink-ll)">
-        Documento compilado a partir de 832 fichas técnicas
-      </span>
-    </div>
-  </section>
-
-  <!-- ═══ 01 — DIAGNÓSTICO INICIAL ═══ -->
-  <section class="doc-section tilted-section" data-section="01">
-    <span class="margin-num" style="top:44px">003</span>
-    <div class="page-header">
-      <span>PAA-001</span>
-      <span>página 003 / 013</span>
-    </div>
-    <div class="section-label"><span class="section-num">01</span>Diagnóstico inicial</div>
-
-    <div class="headline-block">
-      <div class="hl-pre">// abertura do dossiê</div>
-      <h1 class="hl-main">
-        Este documento foi<br>
-        compilado <span class="hl-you">sobre você</span>.<br>
-        <span class="hl-red">Você é o sujeito 832.</span>
-      </h1>
-      <p class="hl-sub">
-        Os padrões abaixo foram observados, mapeados e classificados. Você não sabe quando começou — mas <span class="hand-underline">o arquivo sabe</span>. E sabe que o ciclo está ativo agora, enquanto você lê isto.
-      </p>
-    </div>
-
-    <!-- anotação manuscrita marginal -->
-    <div class="handnote" style="top:130px;right:-160px;transform:rotate(3deg)">
-      sujeito típico —<br>
-      sabe &nbsp;tudo,<br>
-      <span style="text-decoration:underline">executa pouco</span>
-    </div>
+  <!-- ═══ 2 — DIAGNÓSTICO ═══ -->
+  <section class="doc-section" data-section="01">
+    <div class="section-label"><span class="section-num">01</span>Diagnóstico do problema</div>
 
     <div class="diagnosis-fields">
       <div class="diag-field">
         <span class="diag-key">Sujeito</span>
-        <span class="diag-val">Indivíduo com clareza sobre objetivos e <strong>execução sistematicamente abaixo do que sabe</strong></span>
+        <span class="diag-val">Você. Inteligente o bastante pra enxergar o caminho. <strong>Travado o bastante pra nunca andar nele.</strong></span>
       </div>
       <div class="diag-field">
         <span class="diag-key">Padrão</span>
-        <span class="diag-val critical"><span class="status-dot active"></span>Ciclo automático — ativo e em reforço contínuo</span>
+        <span class="diag-val critical"><span class="status-dot active"></span>Ciclo automático — ativo, se reforçando, ganhando de você todo dia</span>
       </div>
       <div class="diag-field">
         <span class="diag-key">Causa raiz</span>
-        <span class="diag-val">Não é informação. Não é intenção. <strong>É a ausência de estrutura de intervenção</strong> abaixo do nível consciente.</span>
+        <span class="diag-val">Pare de procurar desculpa. Não é informação, não é vontade. <strong>É a ausência de uma estrutura que opere quando a sua vontade falha</strong> — e ela falha sempre.</span>
       </div>
       <div class="diag-field">
         <span class="diag-key">Prognóstico</span>
-        <span class="diag-val">Sem intervenção estruturada: o padrão se consolida. <strong>Cada ciclo não interrompido adiciona uma camada ao condicionamento.</strong></span>
+        <span class="diag-val">Sem intervenção: daqui a um ano você lê o mesmo tipo de página. <strong>Mais velho — e com mais provas de que o padrão venceu.</strong></span>
       </div>
     </div>
 
-    <div class="supervisor-note" style="margin-top:32px">
-      Caso clássico. Sujeito reconhece o padrão na leitura — depois fecha o documento e o padrão continua exatamente como antes. <strong>Isso também é o padrão.</strong> Recomendo intervenção imediata antes que a janela se feche.
-    </div>
-  </section>
-
-  <!-- ═══ 02 — EVIDÊNCIAS REGISTRADAS ═══ -->
-  <section class="doc-section" data-section="02">
-    <span class="margin-num" style="top:44px">004</span>
-    <div class="page-header">
-      <span>PAA-001</span>
-      <span>página 004 / 013</span>
-    </div>
-    <div class="section-label"><span class="section-num">02</span>Registros observados</div>
-    <p style="font-family:'IM Fell English',serif;font-style:italic;color:var(--ink-l);margin-bottom:24px;font-size:14px">
-      Os padrões abaixo foram documentados. Marque mentalmente quantos se aplicam.
-    </p>
-
-    <div class="transcript">
-      <div class="transcript-header">
-        <span>Transcrição parcial — entrevista de mapeamento</span>
-        <span>03:41:07</span>
-      </div>
-      <div class="waveform">
-        <!-- silêncio -->
-        <div class="waveform-bar" style="height:8%"></div>
-        <div class="waveform-bar" style="height:12%"></div>
-        <div class="waveform-bar" style="height:6%"></div>
-        <!-- fala 1 -->
-        <div class="waveform-bar active" style="height:65%"></div>
-        <div class="waveform-bar active" style="height:85%"></div>
-        <div class="waveform-bar active" style="height:72%"></div>
-        <div class="waveform-bar active" style="height:90%"></div>
-        <div class="waveform-bar active" style="height:78%"></div>
-        <div class="waveform-bar active" style="height:55%"></div>
-        <div class="waveform-bar active" style="height:88%"></div>
-        <div class="waveform-bar" style="height:42%"></div>
-        <!-- pausa curta -->
-        <div class="waveform-bar" style="height:10%"></div>
-        <div class="waveform-bar" style="height:14%"></div>
-        <div class="waveform-bar" style="height:8%"></div>
-        <div class="waveform-bar" style="height:18%"></div>
-        <!-- fala 2 -->
-        <div class="waveform-bar active" style="height:60%"></div>
-        <div class="waveform-bar active" style="height:80%"></div>
-        <div class="waveform-bar active" style="height:95%"></div>
-        <div class="waveform-bar active" style="height:70%"></div>
-        <div class="waveform-bar active" style="height:85%"></div>
-        <div class="waveform-bar active" style="height:62%"></div>
-        <!-- silêncio longo -->
-        <div class="waveform-bar" style="height:6%"></div>
-        <div class="waveform-bar" style="height:12%"></div>
-        <div class="waveform-bar" style="height:8%"></div>
-        <div class="waveform-bar" style="height:10%"></div>
-        <div class="waveform-bar" style="height:6%"></div>
-        <div class="waveform-bar" style="height:14%"></div>
-        <!-- fala 3 -->
-        <div class="waveform-bar active" style="height:72%"></div>
-        <div class="waveform-bar active" style="height:88%"></div>
-        <div class="waveform-bar active" style="height:65%"></div>
-        <div class="waveform-bar active" style="height:80%"></div>
-        <div class="waveform-bar active" style="height:58%"></div>
-        <div class="waveform-bar active" style="height:75%"></div>
-        <!-- silêncio final -->
-        <div class="waveform-bar" style="height:8%"></div>
-        <div class="waveform-bar" style="height:12%"></div>
-        <div class="waveform-bar" style="height:6%"></div>
-        <div class="waveform-bar" style="height:10%"></div>
-        <div class="waveform-bar" style="height:8%"></div>
-        <div class="waveform-bar" style="height:14%"></div>
-      </div>
-      <div class="transcript-line">
-        <span class="transcript-time">03:41:12</span>
-        <span class="transcript-text">eu sei exatamente o que tenho que fazer. eu sei. eu não faço.</span>
-      </div>
-      <div class="transcript-line">
-        <span class="transcript-time">03:41:38</span>
-        <span class="transcript-text">à noite eu juro que amanhã vai ser diferente. amanhã é sempre igual.</span>
-      </div>
-      <div class="transcript-line">
-        <span class="transcript-time">03:42:04</span>
-        <span class="transcript-text">eu já li tudo. já assisti tudo. continuo no mesmo lugar.</span>
-      </div>
-      <div class="transcript-meta">Sujeito 047 — interrompida aos 14m. Padrão dominante: <strong style="color:var(--ink-f)">execução abaixo da consciência</strong>.</div>
-    </div>
-
-    <div class="evidence-list" style="position:relative">
+    <div class="evidence-list">
       <div class="evidence-item">
         <span class="ev-num">01</span>
-        <span class="ev-text">Você começa. Para. Recomeça. Para de novo. O loop <span class="underline">não quebra sozinho</span> — cada ciclo incompleto reforça o padrão que você quer destruir.</span>
-        <span class="ev-note">recorrente</span>
+        <span class="ev-text">Você começa, para, recomeça, para de novo — e se convence de que "dessa vez é diferente". <strong>Não é.</strong> Cada ciclo incompleto treina o seu cérebro a desistir mais rápido na próxima.</span>
       </div>
       <div class="evidence-item">
         <span class="ev-num">02</span>
-        <span class="ev-text">Às 22h você tem clareza total sobre o que fazer. Às 8h <span class="marked">o sistema esqueceu</span>. A motivação não migrou para o momento de execução.</span>
+        <span class="ev-text">Às 22h você jura que amanhã muda. Às 8h <span class="marked">você já traiu quem prometeu</span>. Toda noite a mesma promessa, todo dia a mesma desistência.</span>
       </div>
       <div class="evidence-item">
         <span class="ev-num">03</span>
-        <span class="ev-text">Você consome conteúdo sobre disciplina, produtividade, mentalidade. <span class="marked">Continua no mesmo lugar.</span> Informação não é intervenção.</span>
-        <span class="ev-note">padrão dominante</span>
+        <span class="ev-text">Você assiste, lê, salva, anota — e <span class="marked">não sai do lugar</span>. Consumir conteúdo sobre disciplina virou a sua forma mais sofisticada de fugir dela.</span>
       </div>
       <div class="evidence-item">
         <span class="ev-num">04</span>
-        <span class="ev-text">A consciência do problema existe. A execução, não. O gap entre saber e fazer <span class="underline">é o padrão automático</span> operando abaixo da sua intenção.</span>
+        <span class="ev-text"><strong>Não existe ficar parado. Cada dia que você não age, o padrão errado fica mais forte. Você não está em pausa — está perdendo, devagar, sem nem perceber.</strong></span>
       </div>
-      <div class="evidence-item" style="margin-top:14px;border-top:1px solid var(--border-h)">
-        <span class="ev-num">05</span>
-        <span class="ev-text"><strong>Cada vez que você não age conforme o planejado, o padrão alternativo se fortalece. Inação não é neutralidade. É consolidação do ciclo.</strong></span>
-      </div>
-    </div>
-
-    <div class="handnote blue scribble" style="top:60px;right:-30px">
-      ⤴ ver caso 047
     </div>
   </section>
 
-  <!-- ═══ 03 — LAUDO TÉCNICO ═══ -->
-  <section class="doc-section" data-section="03">
-    <span class="margin-num" style="top:44px">005</span>
-    <div class="page-header">
-      <span>PAA-001</span>
-      <span>página 005 / 013</span>
-    </div>
-    <div class="section-label"><span class="section-num">03</span>Laudo técnico — o mecanismo</div>
+  <!-- ═══ 3 — MECANISMO ═══ -->
+  <section class="doc-section" data-section="02">
+    <div class="section-label"><span class="section-num">02</span>Como o mecanismo funciona</div>
 
     <div class="laudo-body">
       <p>
-        <span class="dropcap">S</span>eu padrão não está quebrado. Está cumprindo o que foi treinado a cumprir. Seu sistema nervoso passou anos otimizando para o caminho de menor resistência — e fez isso com eficiência técnica impecável. <strong>O problema não está na sua intenção. Está no padrão operando abaixo dela.</strong>
+        <span class="dropcap">S</span>eu padrão não está quebrado. Está funcionando perfeitamente — só não a seu favor. Seu cérebro passou anos te treinando pro caminho mais fácil, e aprendeu bem demais. <strong>O problema nunca foi você não saber. É o padrão decidindo antes de você ter chance de escolher.</strong>
       </p>
       <p>
-        Motivação não reverte condicionamento. Força de vontade não reverte condicionamento.
-        Consciência sem <strong>estrutura de intervenção direta</strong> não reverte condicionamento.
-        Esses três elementos atacam a <em>intenção</em>. O padrão vive abaixo dela.
+        Motivação não muda isso. Força de vontade não muda isso. "Querer muito" não muda isso. Os três brigam com a sua <em>intenção</em> — e o padrão nem mora lá. Ele opera num nível mais fundo, onde nada disso alcança. É por isso que você tenta há anos e nada gruda.
       </p>
     </div>
 
     <div class="realtime-card">
       <span class="rt-dot"></span>
-      Enquanto você lê este parágrafo, o ciclo continua se reforçando. Não há pausa. Não há momento neutro. <strong>Cada hora sem intervenção é uma hora de <span class="coffee-on-word">consolidação</span> do padrão atual</strong> — operando exatamente como foi treinado a operar.
+      Agora mesmo, lendo isto, o ciclo está se reforçando. Não tem pausa. Não tem botão de neutro. <strong>Cada hora sem intervenção é uma hora cavando mais fundo o mesmo buraco</strong> — e daqui a pouco você vai fechar a aba e provar de novo que ele decide por você.
     </div>
 
     <div class="laudo-body">
       <p>
-        O que funciona: <em>intervenção estruturada no nível do gatilho</em>.
-        Um protocolo que opera independente do seu estado mental no dia —
-        porque o padrão opera independente do seu estado mental no dia.
+        O que funciona é <em>intervenção estruturada no nível do gatilho</em>: um protocolo que opera independente do seu estado mental no dia — porque o padrão também opera independente do seu estado mental no dia.
       </p>
     </div>
 
     <div class="laudo-conclusion">
-      O Protocolo Anti-Automático™ não te motiva. Não te inspira. Não te encoraja.<br>
-      <strong>Intervém diretamente no ciclo. 21 dias. Estrutura forçada.</strong>
-    </div>
-
-    <div class="handnote blue" style="bottom:90px;right:-30px;transform:rotate(-4deg);max-width:170px">
-      &nbsp;&nbsp;&nbsp;&nbsp;chave do <span style="text-decoration:underline">caso</span><br>
-      —<br>
-      atacar o gatilho,<br>
-      não a intenção
+      O Protocolo Anti-Automático™ não te motiva, não te inspira, não te dá tapinha nas costas.<br>
+      <strong>Ele entra no ciclo e força a quebra. 21 dias. Sem depender da sua vontade — porque a sua vontade já provou que não dá conta sozinha.</strong>
     </div>
   </section>
 
-  <!-- ═══ 04 — PROTOCOLO — ÍNDICE ═══ -->
-  <section class="doc-section" data-section="04">
-    <span class="margin-num" style="top:44px">006</span>
-    <div class="page-header">
-      <span>PAA-001</span>
-      <span>página 006 / 013</span>
-    </div>
-    <div class="section-label"><span class="section-num">04</span>Conteúdo do protocolo</div>
-    <p style="font-family:'IM Fell English',serif;font-style:italic;color:var(--ink-l);margin-bottom:24px;font-size:14px">
-      Acesso completo mediante aquisição. Itens marcados como restritos revelam descrição ao passar o cursor.
-    </p>
+  <!-- ═══ 4 — O QUE VOCÊ RECEBE ═══ -->
+  <section class="doc-section" data-section="03">
+    <div class="section-label"><span class="section-num">03</span>O que você recebe</div>
 
-    <div class="protocol-index">
-      <div class="pi-item">
-        <span class="pi-day">DIA 01</span>
-        <div class="pi-content">
-          <span class="pi-title">Diagnóstico do Padrão Dominante</span>
-          <span class="pi-desc">Mapeamento preciso do ciclo que opera em você</span>
-        </div>
-        <div class="pi-status open"><span class="pi-status-text">Liberado<br>na compra</span></div>
-      </div>
-      <div class="pi-item">
-        <span class="pi-day">DIA 03</span>
-        <div class="pi-content">
-          <span class="pi-title">Técnica de Interrupção de Loop</span>
-          <span class="pi-desc">Primeira intervenção ativa no ciclo automático</span>
-        </div>
-        <div class="pi-status open"><span class="pi-status-text">Liberado<br>na compra</span></div>
-      </div>
-      <div class="pi-item">
-        <span class="pi-day">DIA 07</span>
-        <div class="pi-content">
-          <span class="pi-title">Protocolo de <span class="partial-redact">█████████<span class="leak">fria</span>█████</span></span>
-          <span class="pi-desc" style="color:var(--ink-ll)">Passe o cursor para revelar</span>
-        </div>
-        <div class="pi-status restricted" title="Protocolo de decisão fria — elimina a negociação interna antes da execução"><span class="pi-status-text">Acesso<br>Restrito</span></div>
-      </div>
-      <div class="pi-item">
-        <span class="pi-day">DIA 12</span>
-        <div class="pi-content">
-          <span class="pi-title"><span class="partial-redact">██████<span class="leak">gatilho</span>██████████</span></span>
-          <span class="pi-desc" style="color:var(--ink-ll)">Passe o cursor para revelar</span>
-        </div>
-        <div class="pi-status restricted" title="Substituição de gatilho — reprograma a resposta automática na origem"><span class="pi-status-text">Acesso<br>Restrito</span></div>
-      </div>
-      <div class="pi-item">
-        <span class="pi-day">DIA 17</span>
-        <div class="pi-content">
-          <span class="pi-title"><span class="partial-redact">█████<span class="leak">novo padrão</span>██████</span></span>
-          <span class="pi-desc" style="color:var(--ink-ll)">Passe o cursor para revelar</span>
-        </div>
-        <div class="pi-status restricted" title="Consolidação do novo padrão — instala o comportamento substituto como resposta padrão"><span class="pi-status-text">Acesso<br>Restrito</span></div>
-      </div>
-      <div class="pi-item">
-        <span class="pi-day">DIA 21</span>
-        <div class="pi-content">
-          <span class="pi-title">Consolidação Final</span>
-          <span class="pi-desc">O novo padrão opera sem intervenção ativa consciente</span>
-        </div>
-        <div class="pi-status open"><span class="pi-status-text">Liberado<br>na compra</span></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ═══ 05 — SEQUÊNCIA DE EXECUÇÃO ═══ -->
-  <section class="doc-section" data-section="05">
-    <span class="margin-num" style="top:44px">007</span>
-    <div class="page-header">
-      <span>PAA-001</span>
-      <span>página 007 / 013</span>
-    </div>
-    <div class="section-label"><span class="section-num">05</span>Sequência de execução</div>
-
-    <div class="execution-log">
-      <div class="el-item">
-        <span class="el-day">DIA 01</span>
-        <span class="el-entry">Diagnóstico completo. <strong>Padrão dominante identificado pelo nome</strong> — pela primeira vez com precisão clínica.<span class="el-cursor"></span></span>
-      </div>
-      <div class="el-item">
-        <span class="el-day">DIA 03</span>
-        <span class="el-entry"><strong>Primeira interrupção consciente do loop.</strong> O protocolo entra antes do padrão — não depois.<span class="el-cursor"></span></span>
-      </div>
-      <div class="el-item">
-        <span class="el-day">DIA 07</span>
-        <span class="el-entry">Técnica de decisão fria instalada. <strong>A negociação interna começa a perder espaço.</strong><span class="el-cursor"></span></span>
-      </div>
-      <div class="el-item">
-        <span class="el-day">DIA 12</span>
-        <span class="el-entry">Gatilho automático substituído por resposta estruturada. <strong>O padrão não some — ele cede.</strong><span class="el-cursor"></span></span>
-      </div>
-      <div class="el-item">
-        <span class="el-day">DIA 21</span>
-        <span class="el-entry"><strong>Protocolo concluído.</strong> O novo padrão está registrado como alternativa viável. A consolidação continua sem intervenção ativa.<span class="el-cursor"></span></span>
-      </div>
-    </div>
-  </section>
-
-  <!-- ═══ 06 — CASOS DOCUMENTADOS ═══ -->
-  <section class="doc-section tilted-section-2 torn-section" data-section="06">
-    <span class="margin-num" style="top:44px">008</span>
-    <div class="page-header">
-      <span>PAA-001</span>
-      <span>página 008 / 013</span>
-    </div>
-    <div class="section-label"><span class="section-num">06</span>Casos documentados — amostra</div>
-    <p style="font-family:'IM Fell English',serif;font-style:italic;color:var(--ink-l);margin-bottom:24px;font-size:14px">
-      Extrato de três fichas técnicas. Perfis genéricos preservados para fins de privacidade. Reconheça o padrão.
-    </p>
-
-    <div class="cases-grid">
-      <div class="case-card">
-        <div class="case-header">
-          <span class="case-id">Sujeito 047</span>
-          <span class="case-status critical">Crítico</span>
-        </div>
-        <div class="case-field">
-          <span class="case-key">Idade</span>
-          <span class="case-val">28 anos</span>
-        </div>
-        <div class="case-field">
-          <span class="case-key">Função</span>
-          <span class="case-val">Analista financeiro</span>
-        </div>
-        <div class="case-field">
-          <span class="case-key">Padrão</span>
-          <span class="case-val"><strong>Procrastinação noturna</strong> — adia tarefas para "começar amanhã"</span>
-        </div>
-        <div class="case-field">
-          <span class="case-key">Gatilho</span>
-          <span class="case-val">Ansiedade pré-execução, 21h–23h</span>
-        </div>
-        <div class="case-field">
-          <span class="case-key">Duração</span>
-          <span class="case-val">~6 anos do ciclo ativo</span>
-        </div>
-        <div class="case-conclusion">
-          Sabe o problema com precisão. Descreve o ciclo melhor do que o analista. Continua executando o ciclo.
-        </div>
-      </div>
-
-      <div class="case-card">
-        <div class="case-header">
-          <span class="case-id">Sujeito 112</span>
-          <span class="case-status critical">Crítico</span>
-        </div>
-        <div class="case-field">
-          <span class="case-key">Idade</span>
-          <span class="case-val">34 anos</span>
-        </div>
-        <div class="case-field">
-          <span class="case-key">Função</span>
-          <span class="case-val">Empreendedor — solo</span>
-        </div>
-        <div class="case-field">
-          <span class="case-key">Padrão</span>
-          <span class="case-val"><strong>Consumo de conteúdo</strong> como substituto da execução</span>
-        </div>
-        <div class="case-field">
-          <span class="case-key">Gatilho</span>
-          <span class="case-val">Sensação de "não estar pronto"</span>
-        </div>
-        <div class="case-field">
-          <span class="case-key">Duração</span>
-          <span class="case-val">~4 anos do ciclo ativo</span>
-        </div>
-        <div class="case-conclusion">
-          Consumiu mais de 200 horas de material sobre disciplina. Não implementou nenhum sistema. O consumo virou o sistema.
-        </div>
-      </div>
-
-      <div class="case-card">
-        <div class="case-header">
-          <span class="case-id">Sujeito 198</span>
-          <span class="case-status critical">Crítico</span>
-        </div>
-        <div class="case-field">
-          <span class="case-key">Idade</span>
-          <span class="case-val">22 anos</span>
-        </div>
-        <div class="case-field">
-          <span class="case-key">Função</span>
-          <span class="case-val">Estudante — duplo turno</span>
-        </div>
-        <div class="case-field">
-          <span class="case-key">Padrão</span>
-          <span class="case-val"><strong>Ciclo motivação-colapso</strong> — começa intenso, abandona em 4 dias</span>
-        </div>
-        <div class="case-field">
-          <span class="case-key">Gatilho</span>
-          <span class="case-val">Primeira falha — colapsa o sistema todo</span>
-        </div>
-        <div class="case-field">
-          <span class="case-key">Duração</span>
-          <span class="case-val">Repete ciclo a cada 3–4 semanas</span>
-        </div>
-        <div class="case-conclusion">
-          Toda vez começa "de verdade". Toda vez o sistema é o mesmo. Toda vez colapsa no mesmo ponto.
-        </div>
-      </div>
-    </div>
-
-    <div class="supervisor-note" style="margin-top:28px">
-      Repare: os três sujeitos têm idades, funções e contextos completamente diferentes. <strong>O padrão é o mesmo.</strong> Isso não é coincidência — é o que mapeamos em mais de 800 fichas. O ciclo automático não distingue perfil. Distingue se há ou não estrutura de intervenção. Continua na próxima pági—
-    </div>
-
-    <div class="handnote" style="bottom:88px;left:-150px;transform:rotate(-4deg);max-width:130px">
-      ver também <br>
-      <span style="text-decoration:underline">casos 271, 304,</span><br>
-      <span style="text-decoration:underline">412</span> — mesmo<br>
-      padrão
-    </div>
-
-    <div class="torn-edge"></div>
-  </section>
-
-  <!-- ═══ CTA ISOLADO PÓS-CASOS ═══ -->
-  <section class="isolated-cta">
-    <div style="position:absolute;top:14px;left:50%;transform:translateX(-50%);font-family:'Courier Prime',monospace;font-size:9px;letter-spacing:3px;color:var(--ink-ll);text-transform:uppercase">
-      // inserto entre páginas 008 e 009 //
-    </div>
-    <div class="isolated-cta-text">
-      Você reconheceu o padrão em pelo menos um dos casos.<br>
-      <strong>O reconhecimento sem intervenção é apenas mais uma camada do ciclo.</strong>
-    </div>
-    <a href="https://pay.cakto.com.br/7u4fyv6_851435" class="cta-btn">
-      <span class="cta-sweep"></span>
-      Quebrar o padrão agora — R$17
-    </a>
-    <div style="margin-top:14px;font-family:'Courier Prime',monospace;font-size:10px;letter-spacing:2px;color:var(--ink-ll);text-transform:uppercase">
-      liberação imediata após confirmação
-    </div>
-  </section>
-
-  <!-- ═══ 07 — COMPARAÇÃO DE CUSTO ═══ -->
-  <section class="doc-section" data-section="07">
-    <span class="margin-num" style="top:44px">009</span>
-    <div class="page-header">
-      <span>PAA-001</span>
-      <span>página 009 / 013</span>
-    </div>
-    <div class="section-label"><span class="section-num">07</span>Análise de custo — continuar igual vs. intervenção</div>
-
-    <table class="comparison-table">
-      <thead>
-        <tr>
-          <th class="th-bad">Continuar no automático</th>
-          <th class="th-good">Protocolo Anti-Automático™</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td class="td-bad">≈ 4 a 6 anos em loop ativo — média documentada nas fichas analisadas</td>
-          <td class="td-good">21 dias de intervenção estruturada no padrão</td>
-        </tr>
-        <tr>
-          <td class="td-bad">Energia drenada em loops que não fecham</td>
-          <td class="td-good">Sistema que opera independente do seu estado mental</td>
-        </tr>
-        <tr>
-          <td class="td-bad">Oportunidades que passam enquanto o padrão decide</td>
-          <td class="td-good">Novo padrão instalado e operando</td>
-        </tr>
-        <tr>
-          <td class="td-bad">Consciência do problema sem nenhuma mudança real</td>
-          <td class="td-good">Acesso imediato — formato digital, sem mensalidade</td>
-        </tr>
-        <tr class="cost-row">
-          <td class="td-bad">Custo: ilimitado</td>
-          <td class="td-good">Investimento: R$17,00 — único</td>
-        </tr>
-      </tbody>
-    </table>
-  </section>
-
-  <!-- ═══ 08 — ORDEM DE ACESSO / PREÇO ═══ -->
-  <section class="doc-section" data-section="08">
-    <span class="margin-num" style="top:44px">010</span>
-    <div class="page-header">
-      <span>PAA-001</span>
-      <span>página 010 / 013</span>
-    </div>
-    <div class="section-label"><span class="section-num">08</span>Ordem de acesso</div>
-
-    <div class="stamp-small" style="top:60px;right:40px;transform:rotate(-8deg)">Liberado</div>
-
-    <!-- MANIFESTO DE ENTREGA -->
     <div class="delivery-manifest">
       <ul class="dm-list">
         <li class="dm-item">
           <span class="dm-num">01</span>
-          <span class="dm-desc"><strong>Diagnóstico do padrão dominante</strong> — identifica o ciclo que opera em você</span>
+          <span class="dm-desc"><strong>Diagnóstico do padrão dominante</strong> — identifica, com precisão, o ciclo que opera em você</span>
           <span class="dm-status">dia 01</span>
         </li>
         <li class="dm-item">
           <span class="dm-num">02</span>
-          <span class="dm-desc"><strong>Técnica de interrupção de loop</strong> — primeira intervenção ativa no ciclo</span>
+          <span class="dm-desc"><strong>Técnica de interrupção de loop</strong> — a primeira intervenção ativa no ciclo automático</span>
           <span class="dm-status">dia 03</span>
         </li>
         <li class="dm-item">
           <span class="dm-num">03</span>
-          <span class="dm-desc"><strong>Protocolo de decisão fria</strong> — eliminação da negociação interna</span>
+          <span class="dm-desc"><strong>Protocolo de decisão fria</strong> — elimina a negociação interna antes da execução</span>
           <span class="dm-status">dia 07</span>
         </li>
         <li class="dm-item">
           <span class="dm-num">04</span>
-          <span class="dm-desc"><strong>Sistema de gatilho substituto</strong> — reprogramação no nível da resposta automática</span>
+          <span class="dm-desc"><strong>Sistema de gatilho substituto</strong> — reprograma a resposta automática na origem</span>
           <span class="dm-status">dia 12</span>
         </li>
         <li class="dm-item">
           <span class="dm-num">05</span>
-          <span class="dm-desc"><strong>Protocolo de exceção</strong> — instrução técnica para dias de ruptura</span>
+          <span class="dm-desc"><strong>Protocolo de exceção</strong> — instrução técnica para os dias de ruptura, quando você falha</span>
           <span class="dm-status">incluído</span>
         </li>
         <li class="dm-item">
@@ -3171,6 +404,53 @@ body::before {
         </li>
       </ul>
     </div>
+  </section>
+
+  <!-- ═══ 5 — CASOS / PROVAS ═══ -->
+  <section class="doc-section" data-section="04">
+    <div class="section-label"><span class="section-num">04</span>Casos documentados</div>
+    <p style="font-family:'IM Fell English',serif; font-style:italic; color:var(--ink-l); margin-bottom:24px; font-size:14px">
+      Extrato de três fichas. Perfis genéricos preservados por privacidade. Reconheça o padrão.
+    </p>
+
+    <div class="cases-grid">
+      <div class="case-card">
+        <div class="case-header"><span class="case-id">Sujeito 047</span><span class="case-status">Crítico</span></div>
+        <div class="case-field"><span class="case-key">Função</span><span class="case-val">Analista financeiro</span></div>
+        <div class="case-field"><span class="case-key">Padrão</span><span class="case-val"><strong>Procrastinação noturna</strong> — adia para "começar amanhã"</span></div>
+        <div class="case-field"><span class="case-key">Duração</span><span class="case-val">~6 anos em ciclo ativo</span></div>
+        <div class="case-conclusion">Explica o ciclo melhor que qualquer especialista. E segue preso nele há 6 anos. Entender nunca foi o problema.</div>
+      </div>
+      <div class="case-card">
+        <div class="case-header"><span class="case-id">Sujeito 112</span><span class="case-status">Crítico</span></div>
+        <div class="case-field"><span class="case-key">Função</span><span class="case-val">Empreendedor solo</span></div>
+        <div class="case-field"><span class="case-key">Padrão</span><span class="case-val"><strong>Consumo de conteúdo</strong> como substituto da execução</span></div>
+        <div class="case-field"><span class="case-key">Duração</span><span class="case-val">~4 anos em ciclo ativo</span></div>
+        <div class="case-conclusion">+200 horas estudando disciplina. Zero implementado. O estudo virou a desculpa perfeita pra nunca começar.</div>
+      </div>
+      <div class="case-card">
+        <div class="case-header"><span class="case-id">Sujeito 198</span><span class="case-status">Crítico</span></div>
+        <div class="case-field"><span class="case-key">Função</span><span class="case-val">Estudante — duplo turno</span></div>
+        <div class="case-field"><span class="case-key">Padrão</span><span class="case-val"><strong>Motivação-colapso</strong> — começa intenso, abandona em 4 dias</span></div>
+        <div class="case-field"><span class="case-key">Duração</span><span class="case-val">Repete a cada 3–4 semanas</span></div>
+        <div class="case-conclusion">Toda vez começa "pra valer". Toda vez quebra no mesmo ponto. Só muda a data do recomeço.</div>
+      </div>
+    </div>
+
+    <div class="cases-note">
+      Três pessoas, três vidas, três contextos sem nada em comum. <strong>O padrão é idêntico.</strong> Isso se repete em mais de 800 fichas. O ciclo não liga pra sua idade, sua história ou sua justificativa — ele só pergunta uma coisa: existe estrutura pra te parar? Se não existe, você é o próximo da lista.
+    </div>
+  </section>
+
+  <!-- ═══ 6 — OFERTA ═══ -->
+  <section class="doc-section" data-section="05">
+    <div class="section-label"><span class="section-num">05</span>Ordem de acesso</div>
+
+    <div class="access-window">
+      <span class="aw-dot"></span>
+      <span class="aw-label">Preço promocional expira em:</span>
+      <span class="aw-timer" id="timer">--<span class="sep">:</span>--<span class="sep">:</span>--</span>
+    </div>
 
     <div class="payment-order">
       <div class="po-row">
@@ -3179,7 +459,7 @@ body::before {
       </div>
       <div class="po-row">
         <span class="po-key">Formato</span>
-        <span class="po-val">Digital — acesso imediato após confirmação</span>
+        <span class="po-val">Digital — acesso imediato após a confirmação</span>
       </div>
       <div class="po-row">
         <span class="po-key">Validade</span>
@@ -3187,540 +467,82 @@ body::before {
       </div>
       <div class="po-row">
         <span class="po-key">Investimento</span>
-        <span class="po-val price-main">
-          <span class="strikethrough">R$97,00 <span style="font-size:0.55em;letter-spacing:1px;color:var(--ink-ll);text-decoration:none">anterior</span></span>
-          R$17,00
-        </span>
-      </div>
-      <div class="po-row">
-        <span class="po-key">Garantia</span>
-        <span class="po-val guarantee">7 dias — reembolso integral sem justificativa</span>
+        <span class="po-val price-main"><span class="strikethrough">R$97</span>R$17,00</span>
       </div>
     </div>
+  </section>
 
-    <div class="handnote" style="bottom:140px;right:-130px;transform:rotate(5deg);max-width:140px">
-      <span style="text-decoration:underline">custo de uma</span><br>
-      sessão isolada<br>
-      —<br>
-      entrega 21
+  <!-- ═══ 7 — GARANTIA ═══ -->
+  <section class="doc-section" data-section="06">
+    <div class="section-label"><span class="section-num">06</span>Garantia</div>
+
+    <div class="guarantee-block">
+      <div class="guarantee-seal">
+        <span class="gs-num">7</span>
+        <span class="gs-unit">dias</span>
+      </div>
+      <div class="guarantee-text">
+        Sete dias. Testa o protocolo inteiro. Se achar que não vale, pede o dinheiro de volta — <strong>integral, sem justificativa, sem pergunta.</strong> Eu assumo o risco dos sete dias. O risco que ninguém te devolve é o de mais um ano idêntico aos últimos.
+      </div>
     </div>
+  </section>
 
+  <!-- ═══ 8 — CTA ═══ -->
+  <section class="doc-section" data-section="07">
     <div class="cta-block">
-      <div class="cta-pre">// autorizar acesso ao protocolo</div>
+      <div class="cta-pre">// chega de saber e não fazer</div>
       <a href="https://pay.cakto.com.br/7u4fyv6_851435" class="cta-btn">
         <span class="cta-sweep"></span>
-        Autorizar acesso — R$17
+        Quebrar o padrão agora — R$17
       </a>
-      <div class="cta-sub">Liberação imediata · Cláusula de reembolso 7 dias · Forma única</div>
+      <div class="cta-sub">Acesso na hora · 7 dias de garantia · ou fecha a aba e continua exatamente onde está</div>
     </div>
   </section>
 
-  <!-- ═══ 09 — DECISÃO BINÁRIA ═══ -->
-  <section class="doc-section" data-section="09">
-    <span class="margin-num" style="top:44px">011</span>
-    <div class="page-header">
-      <span>PAA-001</span>
-      <span>página 011 / 013</span>
-    </div>
-    <div class="section-label"><span class="section-num">09</span>Seleção de resposta</div>
-
-    <div class="decision-form">
-      <div class="dec-option dec-danger" id="dec-no">
-        <div class="dec-checkbox-col">
-          <div class="dec-checkbox" id="check-no">✕</div>
-        </div>
-        <div class="dec-label-col">
-          <div class="dec-label-title">Continuar no automático</div>
-          <div class="dec-label-sub">mesmo padrão, mesmo resultado — o ciclo continua se consolidando</div>
-        </div>
-      </div>
-      <a href="https://pay.cakto.com.br/7u4fyv6_851435" class="dec-option dec-active" id="dec-yes" style="text-decoration:none;color:inherit">
-        <div class="dec-checkbox-col">
-          <div class="dec-checkbox" id="check-yes">✓</div>
-        </div>
-        <div class="dec-label-col">
-          <div class="dec-label-title">Quebrar o padrão agora</div>
-          <div class="dec-label-sub">R$17,00 — acesso imediato ao Protocolo Anti-Automático™</div>
-        </div>
-      </a>
-    </div>
-
-    <div class="dec-warning">
-      Ignorar esta escolha é escolher continuar igual. Não existe neutralidade — cada dia sem intervenção é o padrão se consolidando.
-    </div>
-
-    <div class="handnote" style="bottom:80px;right:-30px;transform:rotate(-3deg);max-width:160px">
-      <span style="text-decoration:underline">não existe</span><br>
-      ponto neutro<br>
-      —<br>
-      fechar a aba<br>
-      é uma escolha
-    </div>
-  </section>
-
-  <!-- ═══ 10 — OBJEÇÕES ═══ -->
-  <section class="doc-section" data-section="10">
-    <span class="margin-num" style="top:44px">012</span>
-    <div class="page-header">
-      <span>PAA-001</span>
-      <span>página 012 / 013</span>
-    </div>
-    <div class="section-label"><span class="section-num">10</span>Objeções respondidas</div>
-
-    <div class="faq-list">
-      <div class="faq-item">
-        <span class="faq-n">01</span>
-        <div class="faq-q">E se não funcionar para mim? <span class="faq-toggle">+</span></div>
-        <div class="faq-a">7 dias de garantia. Reembolso integral, sem justificativa. Você não arrisca nada exceto 21 dias de execução. O risco real é continuar onde está — esse não tem garantia, nem reembolso.</div>
-      </div>
-      <div class="faq-item">
-        <span class="faq-n">02</span>
-        <div class="faq-q">Já tentei outros métodos. Por que isso seria diferente? <span class="faq-toggle">+</span></div>
-        <div class="faq-a">Porque a maioria dos métodos opera no nível da intenção — te dão mais motivação, mais clareza, mais visualização. Este opera no nível do padrão. Você não precisa de mais motivação. Precisa de uma estrutura que funcione independente do seu estado mental no dia. São problemas diferentes. Exigem soluções diferentes.</div>
-      </div>
-      <div class="faq-item">
-        <span class="faq-n">03</span>
-        <div class="faq-q">E se eu falhar em um dos 21 dias? <span class="faq-toggle">+</span></div>
-        <div class="faq-a">Falha faz parte do diagnóstico. O protocolo inclui instrução específica para dias de ruptura — porque ignorar essa variável é o motivo pelo qual a maioria dos sistemas colapsa. Falhar dentro de uma estrutura é diferente de falhar sem estrutura nenhuma.</div>
-      </div>
-      <div class="faq-item">
-        <span class="faq-n">04</span>
-        <div class="faq-q">Quanto tempo por dia o protocolo exige? <span class="faq-toggle">+</span></div>
-        <div class="faq-a">O protocolo opera dentro da sua rotina existente. A intervenção não exige tempo extra — exige redirecionamento do tempo que você já perde em loops improdutivos. Se você tem 20 minutos por dia, tem o suficiente.</div>
-      </div>
-      <div class="faq-item">
-        <span class="faq-n">05</span>
-        <div class="faq-q">Por que 21 dias e não 30 ou 7? <span class="faq-toggle">+</span></div>
-        <div class="faq-a">21 dias é o ponto de intervenção — não de consolidação. É o período mínimo documentado para que o sistema nervoso registre o novo padrão como alternativa viável. A consolidação vem depois. O protocolo trabalha a fase crítica, não promete milagre instantâneo nem te mantém dependente por 90 dias.</div>
-      </div>
-    </div>
-
-    <div style="margin-top:40px">
-      <div class="cta-block" style="padding-top:0">
-        <div class="cta-pre">// decisão final</div>
-        <a href="https://pay.cakto.com.br/7u4fyv6_851435" class="cta-btn">
-          <span class="cta-sweep"></span>
-          Encerrar objeções — iniciar protocolo
-        </a>
-        <div class="cta-sub">O padrão continua até ser interrompido. Não por vontade — por estrutura.</div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ═══ 11 — DOSSIÊ / AUTOR ═══ -->
-  <section class="doc-section" data-section="11">
-    <span class="margin-num" style="top:44px">013</span>
-    <div class="page-header">
-      <span>PAA-001</span>
-      <span>página 013 / 013</span>
-    </div>
-    <div class="section-label"><span class="section-num">11</span>Sobre o dossiê</div>
-
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:start" class="autor-grid">
-      <div>
-        <div style="font-size:10px;letter-spacing:3px;color:var(--ink-l);text-transform:uppercase;margin-bottom:16px">// origem</div>
-        <div class="laudo-body" style="font-size:clamp(14px,1.7vw,16px)">
-          <p>Não veio de teoria acadêmica. Veio de observação sistemática de padrão — anos mapeando por que pessoas inteligentes executam abaixo do que sabem.</p>
-          <p>Mais de <strong>800 ciclos automáticos mapeados</strong>. O padrão é consistente: consciência não produz mudança. Estrutura sim.</p>
-        </div>
-      </div>
-      <div>
-        <div style="font-size:10px;letter-spacing:3px;color:var(--ink-l);text-transform:uppercase;margin-bottom:16px">// posição</div>
-        <div class="laudo-body" style="font-size:clamp(14px,1.7vw,16px)">
-          <p>O Dossiê não vende motivação. Não vende comunidade. Não vende esperança. Vende <strong>intervenção cirúrgica no mecanismo</strong>.</p>
-          <p>Este protocolo é o <strong>primeiro produto público</strong> de uma arquitetura maior — construída para quem já sabe o problema e quer o mecanismo de saída.</p>
-        </div>
-      </div>
-    </div>
-
-    <div style="margin-top:32px;padding-top:24px;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px">
-      <span class="date-stamp" id="doc-date-footer"></span>
-      <span style="font-family:'IM Fell English',serif;font-style:italic;font-size:15px;color:var(--ink-l)">— O Dossiê | Arquitetura de Comportamento</span>
-    </div>
-  </section>
-
-  <!-- ═══ RODAPÉ ═══ -->
   <footer class="doc-footer">
-    <div class="footer-meta">
-      <div class="footer-line"><span>Edição:</span> Distribuição restrita <span>/</span> PAA-001 <span>/</span> Protocolo Anti-Automático™</div>
-      <div class="footer-line"><span>Classificação:</span> Confidencial <span>/</span> <span>Distribuição:</span> Restrita</div>
-      <div class="footer-line" style="margin-top:6px;opacity:.7">Compilado por: agente 03 <span>/</span> matrícula 0471 <span>/</span> Setor S/AC</div>
-      <div class="footer-line" style="margin-top:2px;opacity:.5">© O Dossiê — Todos os direitos reservados</div>
-    </div>
     <div>
-      <div class="footer-sig">O Dossiê</div>
-      <div class="footer-sig-line">Arquitetura de Comportamento</div>
+      <div class="footer-line"><span>Documento:</span> PAA-001 <span>/</span> Protocolo Anti-Automático™</div>
+      <div class="footer-line" style="margin-top:4px"><span>Classificação:</span> Confidencial <span>/</span> Distribuição restrita</div>
+      <div class="footer-line" style="margin-top:6px; opacity:.6">© O Dossiê — Todos os direitos reservados</div>
     </div>
-    <div class="dog-ear"></div>
-    <div class="stamp-small olive" style="top:-12px;left:50%;transform:translateX(-50%) rotate(-2deg);background:var(--paper)">Fim do documento</div>
+    <div class="footer-sig">O Dossiê<br><span style="font-size:10px; letter-spacing:2px; text-transform:uppercase">Arquitetura de Comportamento</span></div>
   </footer>
 
 </main>
 
 <script>
-/* ═══════════════════════════════════════
-   DATA DINÂMICA
-═══════════════════════════════════════ */
+/* data dinâmica */
 (function(){
-  const now = new Date();
-  const y = now.getFullYear();
-  const m = String(now.getMonth()+1).padStart(2,'0');
-  const d = String(now.getDate()).padStart(2,'0');
-  const str = `${y}.${m}.${d}`;
-  const el = document.getElementById('header-date');
-  const el2 = document.getElementById('doc-date-footer');
-  if(el) el.textContent = str;
-  if(el2) el2.textContent = `Liberado em: ${str}`;
+  const n=new Date();
+  const s=`${n.getFullYear()}.${String(n.getMonth()+1).padStart(2,'0')}.${String(n.getDate()).padStart(2,'0')}`;
+  const el=document.getElementById('doc-date');
+  if(el) el.textContent=s;
 })();
 
-/* ═══════════════════════════════════════
-   TIMER DE OFERTA — 24h persistente
-═══════════════════════════════════════ */
+/* timer 24h persistente */
 (function(){
-  const KEY = 'paa_offer_deadline_v2';
-  const DURATION = 24 * 60 * 60 * 1000;
-  let deadline;
-  try {
-    deadline = parseInt(localStorage.getItem(KEY) || '0');
-    if(!deadline || deadline < Date.now()){
-      deadline = Date.now() + DURATION;
-      localStorage.setItem(KEY, deadline);
-    }
-  } catch(e) {
-    deadline = Date.now() + DURATION;
-  }
-
-  const els = [
-    document.getElementById('header-timer'),
-    document.getElementById('sticky-timer')
-  ];
-
-  function pad(n){ return String(n).padStart(2,'0') }
-  function tick(){
-    const diff = Math.max(0, deadline - Date.now());
-    const h = Math.floor(diff / 3600000);
-    const m = Math.floor((diff % 3600000) / 60000);
-    const s = Math.floor((diff % 60000) / 1000);
-    const str = pad(h) + ':' + pad(m) + ':' + pad(s);
-    const strHTML = pad(h) + '<span class="timer-sep">:</span>' + pad(m) + '<span class="timer-sep">:</span>' + pad(s);
-    els.forEach(el => {
-      if(!el) return;
-      if(el.id === 'header-timer') el.innerHTML = strHTML;
-      else el.textContent = str;
-    });
-    if(diff > 0) setTimeout(tick, 1000);
-    else els.forEach(el => { if(el) el.textContent = 'EXPIRADO' });
-  }
-  tick();
+  const KEY='paa_deadline_lean', DUR=24*60*60*1000;
+  let dl;
+  try{
+    dl=parseInt(localStorage.getItem(KEY)||'0');
+    if(!dl||dl<Date.now()){ dl=Date.now()+DUR; localStorage.setItem(KEY,dl); }
+  }catch(e){ dl=Date.now()+DUR; }
+  const el=document.getElementById('timer');
+  const pad=n=>String(n).padStart(2,'0');
+  (function tick(){
+    const d=Math.max(0,dl-Date.now());
+    const h=Math.floor(d/3600000), m=Math.floor((d%3600000)/60000), s=Math.floor((d%60000)/1000);
+    if(el) el.innerHTML = d>0 ? pad(h)+'<span class="sep">:</span>'+pad(m)+'<span class="sep">:</span>'+pad(s) : 'EXPIRADO';
+    if(d>0) setTimeout(tick,1000);
+  })();
 })();
 
-/* ═══════════════════════════════════════
-   STICKY BAR
-═══════════════════════════════════════ */
+/* reveal on scroll */
 (function(){
-  const bar = document.getElementById('sticky');
-  if(!bar) return;
-  const hero = document.querySelector('.doc-header');
-  const final = document.querySelector('[data-section="10"]');
-  window.addEventListener('scroll', () => {
-    const heroBottom = hero ? hero.getBoundingClientRect().bottom : 400;
-    const atFinal = final ? final.getBoundingClientRect().top < window.innerHeight * 0.5 : false;
-    if(heroBottom < 0 && !atFinal) bar.classList.add('visible');
-    else bar.classList.remove('visible');
-  }, { passive: true });
-})();
-
-/* ═══════════════════════════════════════
-   REVEAL ON SCROLL
-═══════════════════════════════════════ */
-(function(){
-  const sections = document.querySelectorAll('.doc-section');
-  const obs = new IntersectionObserver(entries => {
-    entries.forEach(e => {
-      if(e.isIntersecting) {
-        e.target.classList.add('visible');
-        obs.unobserve(e.target);
-      }
-    });
-  }, { threshold: 0.06 });
-  sections.forEach(s => obs.observe(s));
-})();
-
-/* ═══════════════════════════════════════
-   EXECUTION LOG — animação de digitação
-═══════════════════════════════════════ */
-(function(){
-  const items = document.querySelectorAll('.el-item');
-  const obs = new IntersectionObserver(entries => {
-    entries.forEach(e => {
-      if(!e.isIntersecting) return;
-      const all = Array.from(items);
-      all.forEach((item, i) => {
-        setTimeout(() => item.classList.add('typed'), i * 300 + 200);
-      });
-      obs.disconnect();
-    });
-  }, { threshold: 0.2 });
-  const logEl = document.querySelector('.execution-log');
-  if(logEl) obs.observe(logEl);
-})();
-
-/* ═══════════════════════════════════════
-   FAQ ACCORDION
-═══════════════════════════════════════ */
-document.querySelectorAll('.faq-q').forEach(q => {
-  q.addEventListener('click', () => {
-    const item = q.closest('.faq-item');
-    const isOpen = item.classList.contains('open');
-    document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
-    if(!isOpen) item.classList.add('open');
-  });
-});
-
-/* ═══════════════════════════════════════
-   DECISÃO BINÁRIA — interação
-═══════════════════════════════════════ */
-(function(){
-  const decNo = document.getElementById('dec-no');
-  const checkNo = document.getElementById('check-no');
-  if(!decNo) return;
-  decNo.addEventListener('mouseenter', () => {
-    checkNo.style.color = 'rgba(181,36,28,0.6)';
-    checkNo.style.borderColor = 'rgba(181,36,28,0.5)';
-  });
-  decNo.addEventListener('mouseleave', () => {
-    checkNo.style.color = 'transparent';
-    checkNo.style.borderColor = '';
-  });
-})();
-
-/* ═══════════════════════════════════════
-   PROTOCOLO INDEX — reveal conteúdo restrito
-═══════════════════════════════════════ */
-(function(){
-  document.querySelectorAll('.pi-item').forEach(item => {
-    const statusEl = item.querySelector('.pi-status.restricted');
-    if(!statusEl) return;
-    const titleEl = item.querySelector('.pi-title');
-    const originalTitle = titleEl.textContent;
-    const revealed = statusEl.getAttribute('title') || '';
-
-    item.addEventListener('mouseenter', () => {
-      if(revealed) titleEl.textContent = revealed;
-    });
-    item.addEventListener('mouseleave', () => {
-      titleEl.textContent = originalTitle;
-    });
-  });
-})();
-
-/* ═══════════════════════════════════════
-   ÁUDIO AMBIENTE — MÁQUINA DE ESCREVER
-   sintetizado via Web Audio API
-═══════════════════════════════════════ */
-(function(){
-  const toggle = document.getElementById('audio-toggle');
-  if(!toggle) return;
-
-  let ctx = null;
-  let masterGain = null;
-  let scheduler = null;
-  let isOn = false;
-
-  // gera uma batida de tecla — burst de ruído filtrado + click metálico
-  function playKey(when, intensity){
-    if(!ctx) return;
-    const dur = 0.08 + Math.random() * 0.04;
-    intensity = intensity || (0.5 + Math.random() * 0.5);
-
-    // 1) burst de ruído (corpo da batida)
-    const bufferSize = ctx.sampleRate * dur;
-    const buffer = ctx.createBuffer(1, bufferSize, ctx.sampleRate);
-    const data = buffer.getChannelData(0);
-    for(let i = 0; i < bufferSize; i++){
-      // envelope com ataque rápido e decay exponencial
-      const env = Math.exp(-i / (ctx.sampleRate * 0.025));
-      data[i] = (Math.random() * 2 - 1) * env;
-    }
-    const noise = ctx.createBufferSource();
-    noise.buffer = buffer;
-
-    // filtro passa-banda — pega frequências médias-altas (impacto metálico)
-    const bp = ctx.createBiquadFilter();
-    bp.type = 'bandpass';
-    bp.frequency.value = 1800 + Math.random() * 1400;
-    bp.Q.value = 1.2;
-
-    // segundo filtro para tirar agudo cortante
-    const hp = ctx.createBiquadFilter();
-    hp.type = 'highpass';
-    hp.frequency.value = 300;
-
-    const gain = ctx.createGain();
-    gain.gain.setValueAtTime(0, when);
-    gain.gain.linearRampToValueAtTime(intensity * 0.35, when + 0.003);
-    gain.gain.exponentialRampToValueAtTime(0.001, when + dur);
-
-    noise.connect(bp).connect(hp).connect(gain).connect(masterGain);
-    noise.start(when);
-    noise.stop(when + dur);
-
-    // 2) click metálico curto — oscilador agudo com decay instantâneo
-    const osc = ctx.createOscillator();
-    osc.type = 'square';
-    osc.frequency.value = 3800 + Math.random() * 800;
-    const oscGain = ctx.createGain();
-    oscGain.gain.setValueAtTime(0, when);
-    oscGain.gain.linearRampToValueAtTime(intensity * 0.08, when + 0.001);
-    oscGain.gain.exponentialRampToValueAtTime(0.001, when + 0.015);
-    osc.connect(oscGain).connect(masterGain);
-    osc.start(when);
-    osc.stop(when + 0.02);
-  }
-
-  // batida de espaço — som mais grave, menos agudo
-  function playSpace(when){
-    if(!ctx) return;
-    const dur = 0.06;
-    const bufferSize = ctx.sampleRate * dur;
-    const buffer = ctx.createBuffer(1, bufferSize, ctx.sampleRate);
-    const data = buffer.getChannelData(0);
-    for(let i = 0; i < bufferSize; i++){
-      const env = Math.exp(-i / (ctx.sampleRate * 0.018));
-      data[i] = (Math.random() * 2 - 1) * env;
-    }
-    const noise = ctx.createBufferSource();
-    noise.buffer = buffer;
-    const lp = ctx.createBiquadFilter();
-    lp.type = 'lowpass';
-    lp.frequency.value = 1500;
-    const gain = ctx.createGain();
-    gain.gain.setValueAtTime(0, when);
-    gain.gain.linearRampToValueAtTime(0.18, when + 0.002);
-    gain.gain.exponentialRampToValueAtTime(0.001, when + dur);
-    noise.connect(lp).connect(gain).connect(masterGain);
-    noise.start(when);
-    noise.stop(when + dur);
-  }
-
-  // retorno do carro — som distintivo: ding curto + raspagem
-  function playReturn(when){
-    if(!ctx) return;
-    // ding
-    const osc = ctx.createOscillator();
-    osc.type = 'triangle';
-    osc.frequency.value = 1240;
-    const oscGain = ctx.createGain();
-    oscGain.gain.setValueAtTime(0, when);
-    oscGain.gain.linearRampToValueAtTime(0.12, when + 0.005);
-    oscGain.gain.exponentialRampToValueAtTime(0.001, when + 0.35);
-    osc.connect(oscGain).connect(masterGain);
-    osc.start(when);
-    osc.stop(when + 0.4);
-
-    // raspagem (ruído filtrado longo)
-    const bufferSize = ctx.sampleRate * 0.18;
-    const buffer = ctx.createBuffer(1, bufferSize, ctx.sampleRate);
-    const data = buffer.getChannelData(0);
-    for(let i = 0; i < bufferSize; i++){
-      const env = i < bufferSize * 0.5
-        ? i / (bufferSize * 0.5)
-        : 1 - ((i - bufferSize * 0.5) / (bufferSize * 0.5));
-      data[i] = (Math.random() * 2 - 1) * env * 0.5;
-    }
-    const noise = ctx.createBufferSource();
-    noise.buffer = buffer;
-    const bp = ctx.createBiquadFilter();
-    bp.type = 'bandpass';
-    bp.frequency.value = 800;
-    bp.Q.value = 0.8;
-    const gain = ctx.createGain();
-    gain.gain.value = 0.1;
-    noise.connect(bp).connect(gain).connect(masterGain);
-    noise.start(when + 0.05);
-    noise.stop(when + 0.05 + 0.18);
-  }
-
-  // agendador — toca em padrão de digitação realista
-  function schedule(){
-    if(!isOn || !ctx) return;
-    const now = ctx.currentTime;
-    let t = now;
-
-    // gera uma "frase digitada" de 5-14 teclas
-    const wordLen = 5 + Math.floor(Math.random() * 10);
-    for(let i = 0; i < wordLen; i++){
-      // intervalo entre teclas: 80–180ms (digitação humana irregular)
-      t += 0.08 + Math.random() * 0.10;
-      if(Math.random() < 0.08){
-        // ocasionalmente um espaço
-        playSpace(t);
-      } else {
-        // batida de tecla com intensidade variável
-        playKey(t, 0.5 + Math.random() * 0.5);
-      }
-    }
-
-    // ao fim da frase: retorno do carro (40% das vezes) ou pausa longa
-    if(Math.random() < 0.4){
-      t += 0.3 + Math.random() * 0.4;
-      playReturn(t);
-      t += 0.6;
-    }
-
-    // pausa entre frases: 0.8s a 3.5s (datilógrafo pensando)
-    const nextDelay = (t - now) * 1000 + 800 + Math.random() * 2700;
-    scheduler = setTimeout(schedule, nextDelay);
-  }
-
-  function start(){
-    if(!ctx){
-      try {
-        ctx = new (window.AudioContext || window.webkitAudioContext)();
-        masterGain = ctx.createGain();
-        masterGain.gain.value = 0.55;
-        masterGain.connect(ctx.destination);
-      } catch(e){
-        console.warn('Web Audio API não disponível');
-        return false;
-      }
-    }
-    if(ctx.state === 'suspended') ctx.resume();
-    isOn = true;
-    toggle.classList.add('audio-on');
-    schedule();
-    return true;
-  }
-
-  function stop(){
-    isOn = false;
-    toggle.classList.remove('audio-on');
-    if(scheduler){ clearTimeout(scheduler); scheduler = null; }
-    if(masterGain){
-      // fade out suave
-      const now = ctx.currentTime;
-      masterGain.gain.cancelScheduledValues(now);
-      masterGain.gain.setValueAtTime(masterGain.gain.value, now);
-      masterGain.gain.exponentialRampToValueAtTime(0.001, now + 0.5);
-      setTimeout(() => {
-        if(masterGain) masterGain.gain.value = 0.55;
-      }, 600);
-    }
-  }
-
-  toggle.addEventListener('click', () => {
-    if(isOn) stop();
-    else start();
-  });
-
-  // pausa o áudio quando a aba perde foco — evita som de fundo indesejado
-  document.addEventListener('visibilitychange', () => {
-    if(document.hidden && isOn){
-      if(scheduler){ clearTimeout(scheduler); scheduler = null; }
-    } else if(!document.hidden && isOn && ctx){
-      schedule();
-    }
-  });
+  const obs=new IntersectionObserver(es=>{
+    es.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('visible'); obs.unobserve(e.target); } });
+  },{threshold:.06});
+  document.querySelectorAll('.doc-section').forEach(s=>obs.observe(s));
 })();
 </script>
 </body>
