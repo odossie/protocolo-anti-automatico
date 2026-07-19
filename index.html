@@ -49,10 +49,6 @@
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
 body{
-  <noscript>
-<img height="1" width="1" style="display:none"
-src="https://www.facebook.com/tr?id=2323840925109224&ev=PageView&noscript=1"/>
-</noscript>
   background:#2a2520; color:var(--ink);
   font-family:'Courier Prime',monospace; font-size:15px; line-height:1.7;
   overflow-x:hidden;
@@ -190,6 +186,25 @@ body::before{
 .cases-note::before{content:"ADENDO DO SUPERVISOR"; position:absolute; top:-1px; left:16px; background:#e8dfc4; padding:0 8px; font-family:'Courier Prime',monospace; font-size:9px; letter-spacing:3px; color:var(--ink-l); text-transform:uppercase; font-weight:700}
 .cases-note strong{font-weight:700}
 
+/* ── casos: carrossel navegável ── */
+.cases-carousel{position:relative}
+.cases-track{
+  display:flex; transition:transform .55s cubic-bezier(.16,1,.3,1);
+  border:1px solid var(--border-h);
+}
+.cases-track .case-card{flex:0 0 100%; width:100%}
+.cases-nav{display:flex; align-items:center; justify-content:center; gap:18px; margin-top:18px}
+.cases-arrow{
+  width:34px; height:34px; border:1px solid var(--border-h); background:transparent;
+  color:var(--ink-l); font-family:'Courier Prime',monospace; font-size:13px; cursor:pointer;
+  display:flex; align-items:center; justify-content:center; transition:background .15s,color .15s,border-color .15s;
+}
+.cases-arrow:hover{background:var(--ink); color:var(--paper); border-color:var(--ink)}
+.cases-arrow:focus-visible{outline:2px solid var(--red); outline-offset:2px}
+.cases-dots{display:flex; align-items:center; gap:8px}
+.cases-dot{width:6px; height:6px; border-radius:50%; background:var(--border-h); cursor:pointer; border:none; padding:0; transition:background .2s,transform .2s}
+.cases-dot.active{background:var(--red); transform:scale(1.3)}
+
 /* ═══ 6 — OFERTA ═══ */
 .access-window{display:inline-flex; align-items:center; gap:10px; margin-bottom:26px; padding:8px 16px; border:1px solid rgba(181,36,28,.3); background:rgba(181,36,28,.04)}
 .aw-label{font-size:10px; letter-spacing:3px; color:var(--red); text-transform:uppercase}
@@ -263,8 +278,8 @@ body::before{
   .ev-text{padding:12px 14px; font-size:12px}
   .laudo-body{font-size:15px}
   .dropcap{font-size:40px}
-  .cases-grid{grid-template-columns:1fr; gap:12px; background:transparent; border:none}
-  .case-card{border:1px solid var(--border)}
+  .cases-track{border:1px solid var(--border)}
+  .cases-nav{gap:14px}
   .dm-item{grid-template-columns:28px 1fr 64px; gap:8px; font-size:11px}
   .dm-desc{font-size:11px}
   .po-row{grid-template-columns:110px 1fr}
@@ -281,12 +296,224 @@ body::before{
   .diag-key,.po-key{border-right:none; border-bottom:1px solid var(--border)}
   .case-field{grid-template-columns:54px 1fr}
 }
+/* ── atalho: ir direto ao preço (cabeçalho) ── */
+.hl-shortcut{margin-top:24px; display:flex; align-items:center; gap:14px; flex-wrap:wrap}
+.hl-shortcut-text{font-family:'IM Fell English',serif; font-style:italic; font-size:12px; color:var(--ink-ll)}
+.hl-shortcut-btn{
+  font-family:'Courier Prime',monospace; font-size:10px; letter-spacing:2px; text-transform:uppercase;
+  background:transparent; color:var(--ink-l); border:1px solid var(--border-h); padding:8px 16px; cursor:pointer;
+  transition:border-color .15s ease, color .15s ease, background .15s ease;
+}
+.hl-shortcut-btn:hover{border-color:var(--ink); color:var(--ink); background:rgba(0,0,0,.02)}
+.hl-shortcut-btn:focus-visible{outline:2px solid var(--red); outline-offset:2px}
+
+/* ── barra de progresso: altura fixa para empilhar sem sobrepor a quickbar ── */
+#read-progress{height:26px; box-sizing:border-box}
+
+/* ── barra de acesso rápido — desktop (topo) ── */
+.quickbar-top{
+  position:fixed; top:26px; left:0; right:0; z-index:6500; height:44px;
+  display:flex; align-items:center; justify-content:space-between; gap:16px;
+  background:var(--paper-d); border-bottom:1px solid var(--border-h);
+  padding:0 22px; font-family:'Courier Prime',monospace;
+  transform:translateY(-12px); opacity:0; pointer-events:none;
+  transition:transform .4s ease, opacity .4s ease;
+}
+.quickbar-top.qb-visible{transform:translateY(0); opacity:1; pointer-events:auto}
+.qb-left{font-size:10px; letter-spacing:2px; color:var(--ink-l); text-transform:uppercase; white-space:nowrap}
+.qb-center{
+  font-size:10px; letter-spacing:2.5px; color:var(--ink); text-transform:uppercase;
+  display:flex; align-items:center; gap:8px; white-space:nowrap;
+}
+.qb-center::before{content:""; width:5px; height:5px; border-radius:50%; background:var(--red); flex-shrink:0; animation:pulse 1.6s infinite}
+.qb-btn{
+  font-family:'Courier Prime',monospace; font-size:10px; letter-spacing:2px; text-transform:uppercase;
+  background:var(--ink); color:var(--paper); border:1px solid var(--ink); padding:9px 18px; cursor:pointer;
+  white-space:nowrap; transition:background .15s ease, color .15s ease;
+}
+.qb-btn:hover{background:var(--ink-f)}
+.qb-btn:focus-visible{outline:2px solid var(--red); outline-offset:2px}
+
+/* ── barra de acesso rápido — mobile/tablet (rodapé) ── */
+.quickbar-bottom{
+  position:fixed; bottom:0; left:0; right:0; z-index:6500;
+  display:none; align-items:center; justify-content:space-between; gap:14px;
+  background:var(--paper-d); border-top:1px solid var(--border-h);
+  padding:10px 18px; font-family:'Courier Prime',monospace;
+  transform:translateY(14px); opacity:0; pointer-events:none;
+  transition:transform .4s ease, opacity .4s ease;
+}
+.quickbar-bottom.qb-visible{transform:translateY(0); opacity:1; pointer-events:auto}
+.qb-mobile-left{display:flex; flex-direction:column; line-height:1.35}
+.qb-mobile-id{font-size:9px; letter-spacing:2px; color:var(--ink-l); text-transform:uppercase}
+.qb-mobile-price{font-size:14px; font-weight:700; color:var(--ink); font-family:'Special Elite',cursive; letter-spacing:1px}
+.qb-btn-mobile{padding:11px 18px; font-size:10px}
+
+@media (max-width:900px){
+  .quickbar-top{display:none}
+  .quickbar-bottom{display:flex}
+}
+@media (min-width:901px){
+  .quickbar-bottom{display:none}
+}
+@media (max-width:768px){
+  .hl-shortcut{margin-top:18px; gap:10px}
+}
+
 @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{animation-duration:.001ms !important; transition-duration:.001ms !important}
+}
+
+/* ═══════════════════════════════════════
+   CAMADA DE INTERAÇÃO — ABERTURA, PROGRESSO, REVELAÇÃO
+   ═══════════════════════════════════════ */
+
+/* ── intro de autenticação ── */
+#intro-gate{
+  position:fixed; inset:0; z-index:9999; background:#171310;
+  display:flex; align-items:center; justify-content:center;
+  transition:opacity .5s ease, visibility .5s ease;
+}
+#intro-gate.gate-hidden{opacity:0; visibility:hidden; pointer-events:none}
+.gate-inner{
+  font-family:'Courier Prime',monospace; color:#c9bfa0; font-size:14px; letter-spacing:2px;
+  width:min(88vw,420px); line-height:2;
+}
+.gate-line{opacity:0; transform:translateY(6px); transition:opacity .35s ease, transform .35s ease}
+.gate-line.show{opacity:1; transform:none}
+.gate-line .gate-ok{color:#7c9c6a}
+.gate-bar-track{height:3px; background:rgba(201,191,160,.15); margin:6px 0 10px; overflow:hidden}
+.gate-bar-fill{height:100%; width:0%; background:#c9bfa0; transition:width 1.1s linear}
+.gate-cursor{display:inline-block; width:7px; height:13px; background:#c9bfa0; margin-left:2px; vertical-align:-2px; animation:gate-blink 1s step-end infinite}
+@keyframes gate-blink{0%,49%{opacity:1}50%,100%{opacity:0}}
+
+/* ── linha de escaneamento (uma vez, pós-abertura) ── */
+#scan-line{
+  position:fixed; left:0; right:0; top:0; height:2px; z-index:9000;
+  background:linear-gradient(90deg,transparent,rgba(181,36,28,.65),transparent);
+  box-shadow:0 0 12px rgba(181,36,28,.4);
+  opacity:0; pointer-events:none;
+}
+#scan-line.scan-run{animation:scan-sweep 1.4s cubic-bezier(.65,0,.35,1) forwards}
+@keyframes scan-sweep{
+  0%{top:0; opacity:1}
+  92%{opacity:1}
+  100%{top:100%; opacity:0}
+}
+
+/* ── barra de progresso de leitura ── */
+#read-progress{
+  position:fixed; top:0; left:0; right:0; z-index:8000;
+  display:flex; align-items:center; gap:10px;
+  padding:7px 16px; background:rgba(23,19,16,.92); backdrop-filter:blur(2px);
+  font-family:'Courier Prime',monospace; font-size:9px; letter-spacing:3px; color:#a89a7a;
+  text-transform:uppercase; transform:translateY(-100%); transition:transform .35s ease;
+}
+#read-progress.rp-visible{transform:translateY(0)}
+.rp-track{flex:1; height:3px; background:rgba(168,154,122,.2); max-width:260px; overflow:hidden}
+.rp-fill{height:100%; width:0%; background:var(--red); transition:width .1s linear}
+.rp-pct{min-width:32px; text-align:right; color:#c9bfa0}
+
+/* ── indicador de etapa fixo ── */
+#step-indicator{
+  position:fixed; right:22px; top:50%; transform:translateY(-50%); z-index:7000;
+  display:flex; flex-direction:column; gap:14px;
+  font-family:'Courier Prime',monospace; font-size:9px; letter-spacing:2px; color:rgba(240,234,216,.35);
+}
+.step-item{display:flex; align-items:center; gap:8px; cursor:pointer; justify-content:flex-end; opacity:.55; transition:opacity .25s ease}
+.step-item .step-num{width:16px; height:16px; border:1px solid rgba(240,234,216,.3); display:flex; align-items:center; justify-content:center; font-size:8px; flex-shrink:0; transition:border-color .25s ease,background .25s ease,color .25s ease}
+.step-item .step-label{max-width:0; overflow:hidden; white-space:nowrap; opacity:0; transition:max-width .3s ease,opacity .25s ease}
+.step-item.active{opacity:1}
+.step-item.active .step-num{border-color:var(--red); background:var(--red); color:var(--paper)}
+.step-item.active .step-label{max-width:140px; opacity:1; margin-right:2px; color:#f0ead8}
+@media (max-width:900px){ #step-indicator{display:none} }
+
+/* ── selo carimbado (uma vez) ── */
+.stamp-confidential{opacity:0; transform:translateY(-50%) rotate(-12deg) scale(2.4)}
+.stamp-confidential.stamp-in{
+  animation:stamp-hit .45s cubic-bezier(.2,1.4,.4,1) forwards;
+}
+@keyframes stamp-hit{
+  0%{opacity:0; transform:translateY(-50%) rotate(-12deg) scale(2.4)}
+  55%{opacity:1; transform:translateY(-50%) rotate(-12deg) scale(.92)}
+  75%{transform:translateY(-50%) rotate(-12deg) scale(1.06)}
+  100%{opacity:1; transform:translateY(-50%) rotate(-12deg) scale(1)}
+}
+
+/* ── diagnóstico: campos progressivos ── */
+.diag-field{opacity:0; transform:translateX(-8px); transition:opacity .5s ease, transform .5s ease}
+.diag-field.df-in{opacity:1; transform:none}
+
+/* ── evidências: entrada individual ── */
+.evidence-item{opacity:0; transform:translateY(10px); transition:opacity .5s ease, transform .5s ease}
+.evidence-item.ev-in{opacity:1; transform:none}
+
+/* ── mecanismo: parágrafos progressivos ── */
+.laudo-body p{opacity:0; transform:translateY(8px); transition:opacity .6s ease, transform .6s ease}
+.laudo-body p.lb-in{opacity:1; transform:none}
+.realtime-card{opacity:0; transform:translateY(8px); transition:opacity .6s ease, transform .6s ease}
+.realtime-card.lb-in{opacity:1; transform:none}
+.laudo-conclusion{opacity:0; transform:translateY(8px); transition:opacity .6s ease, transform .6s ease}
+.laudo-conclusion.lb-in{opacity:1; transform:none}
+
+/* ── linha do tempo do protocolo ── */
+.dm-item{opacity:0; transform:translateX(-10px); transition:opacity .45s ease, transform .45s ease, background .3s ease}
+.dm-item.dm-in{opacity:1; transform:none}
+.dm-item.dm-active{background:rgba(181,36,28,.06)}
+.dm-item.dm-active .dm-status{color:var(--red-d)}
+.dm-item.dm-active .dm-num{color:var(--red)}
+
+/* ── ordem de acesso: revelação sequencial ── */
+.po-row{opacity:0; transform:translateY(8px); transition:opacity .5s ease, transform .5s ease}
+.po-row.po-in{opacity:1; transform:none}
+
+/* respeitar movimento reduzido: página essencialmente estática */
+@media (prefers-reduced-motion:reduce){
+  #intro-gate{display:none !important}
+  #scan-line{display:none !important}
+  .stamp-confidential{opacity:1 !important; transform:translateY(-50%) rotate(-12deg) scale(1) !important; animation:none !important}
+  .diag-field,.evidence-item,.laudo-body p,.realtime-card,.laudo-conclusion,.dm-item,.po-row{
+    opacity:1 !important; transform:none !important;
+  }
+  .cases-track{transition:none !important}
 }
 </style>
 </head>
 <body>
+
+<div id="intro-gate" aria-hidden="true">
+  <div class="gate-inner">
+    <div class="gate-line" data-line="1">ARQUIVO LOCALIZADO</div>
+    <div class="gate-line" data-line="2">Autenticando<span class="gate-cursor"></span></div>
+    <div class="gate-bar-track"><div class="gate-bar-fill" id="gate-bar"></div></div>
+    <div class="gate-line" data-line="3"><span class="gate-ok">✓</span> Identidade confirmada.</div>
+    <div class="gate-line" data-line="4">Abrindo Dossiê — PROTOCOLO PAA-001</div>
+  </div>
+</div>
+
+<div id="scan-line" aria-hidden="true"></div>
+
+<div id="read-progress" aria-hidden="true">
+  <span>Dossiê analisado</span>
+  <div class="rp-track"><div class="rp-fill" id="rp-fill"></div></div>
+  <span class="rp-pct" id="rp-pct">0%</span>
+</div>
+
+<nav id="step-indicator" aria-label="Progresso da leitura"></nav>
+
+<div id="quickbar-top" class="quickbar-top" aria-hidden="true">
+  <div class="qb-left">PAA-001 • CONFIDENCIAL</div>
+  <div class="qb-center" id="qb-status">PROTOCOLO DISPONÍVEL</div>
+  <button type="button" class="qb-btn" id="qb-btn-top">LIBERAR DOSSIÊ</button>
+</div>
+
+<div id="quickbar-bottom" class="quickbar-bottom" aria-hidden="true">
+  <div class="qb-mobile-left">
+    <span class="qb-mobile-id">PAA-001</span>
+    <span class="qb-mobile-price">R$27</span>
+  </div>
+  <button type="button" class="qb-btn qb-btn-mobile" id="qb-btn-bottom">LIBERAR DOSSIÊ</button>
+</div>
 
 <svg style="position:absolute;width:0;height:0" xmlns="http://www.w3.org/2000/svg">
   <defs>
@@ -317,11 +544,16 @@ body::before{
       opera <span class="hand-underline">e onde ele pode ser quebrado</span>.
     </p>
 
+    <div class="hl-shortcut">
+      <span class="hl-shortcut-text">Prefere ir direto ao acesso?</span>
+      <button type="button" class="hl-shortcut-btn" id="jump-to-price">↓ IR PARA O PREÇO</button>
+    </div>
+
     <div class="stamp-confidential">Confidencial</div>
   </header>
 
   <!-- ═══ 2 — DIAGNÓSTICO ═══ -->
-  <section class="doc-section" data-section="01">
+  <section class="doc-section" data-section="01" id="sec-diagnostico">
     <div class="section-label"><span class="section-num">01</span>Diagnóstico do problema</div>
 
     <div class="diagnosis-fields">
@@ -364,7 +596,7 @@ body::before{
   </section>
 
   <!-- ═══ 3 — MECANISMO ═══ -->
-  <section class="doc-section" data-section="02">
+  <section class="doc-section" data-section="02" id="sec-mecanismo">
     <div class="section-label"><span class="section-num">02</span>Como o mecanismo funciona</div>
 
     <div class="laudo-body">
@@ -397,7 +629,7 @@ body::before{
   </section>
 
   <!-- ═══ 4 — O QUE VOCÊ RECEBE ═══ -->
-  <section class="doc-section" data-section="03">
+  <section class="doc-section" data-section="03" id="sec-entrega">
     <div class="section-label"><span class="section-num">03</span>O que você recebe</div>
 
     <div class="delivery-manifest">
@@ -437,33 +669,40 @@ body::before{
   </section>
 
   <!-- ═══ 5 — CASOS / PROVAS ═══ -->
-  <section class="doc-section" data-section="04">
+  <section class="doc-section" data-section="04" id="sec-casos">
     <div class="section-label"><span class="section-num">04</span>Casos documentados</div>
     <p style="font-family:'IM Fell English',serif; font-style:italic; color:var(--ink-l); margin-bottom:24px; font-size:14px">
       Extrato de três fichas. Perfis genéricos preservados por privacidade. Reconheça o padrão.
     </p>
 
-    <div class="cases-grid">
-      <div class="case-card">
-        <div class="case-header"><span class="case-id">Sujeito 047</span><span class="case-status">Crítico</span></div>
-        <div class="case-field"><span class="case-key">Função</span><span class="case-val">Analista financeiro</span></div>
-        <div class="case-field"><span class="case-key">Padrão</span><span class="case-val"><strong>Procrastinação noturna</strong> — adia para "começar amanhã"</span></div>
-        <div class="case-field"><span class="case-key">Duração</span><span class="case-val">~6 anos em ciclo ativo</span></div>
-        <div class="case-conclusion">Explica o ciclo melhor que qualquer especialista. E segue preso nele há 6 anos. Entender nunca foi o problema.</div>
+    <div class="cases-carousel" id="cases-carousel">
+      <div class="cases-track" id="cases-track">
+        <div class="case-card">
+          <div class="case-header"><span class="case-id">Sujeito 047</span><span class="case-status">Crítico</span></div>
+          <div class="case-field"><span class="case-key">Função</span><span class="case-val">Analista financeiro</span></div>
+          <div class="case-field"><span class="case-key">Padrão</span><span class="case-val"><strong>Procrastinação noturna</strong> — adia para "começar amanhã"</span></div>
+          <div class="case-field"><span class="case-key">Duração</span><span class="case-val">~6 anos em ciclo ativo</span></div>
+          <div class="case-conclusion">Explica o ciclo melhor que qualquer especialista. E segue preso nele há 6 anos. Entender nunca foi o problema.</div>
+        </div>
+        <div class="case-card">
+          <div class="case-header"><span class="case-id">Sujeito 112</span><span class="case-status">Crítico</span></div>
+          <div class="case-field"><span class="case-key">Função</span><span class="case-val">Empreendedor solo</span></div>
+          <div class="case-field"><span class="case-key">Padrão</span><span class="case-val"><strong>Consumo de conteúdo</strong> como substituto da execução</span></div>
+          <div class="case-field"><span class="case-key">Duração</span><span class="case-val">~4 anos em ciclo ativo</span></div>
+          <div class="case-conclusion">+200 horas estudando disciplina. Zero implementado. O estudo virou a desculpa perfeita pra nunca começar.</div>
+        </div>
+        <div class="case-card">
+          <div class="case-header"><span class="case-id">Sujeito 198</span><span class="case-status">Crítico</span></div>
+          <div class="case-field"><span class="case-key">Função</span><span class="case-val">Estudante — duplo turno</span></div>
+          <div class="case-field"><span class="case-key">Padrão</span><span class="case-val"><strong>Motivação-colapso</strong> — começa intenso, abandona em 4 dias</span></div>
+          <div class="case-field"><span class="case-key">Duração</span><span class="case-val">Repete a cada 3–4 semanas</span></div>
+          <div class="case-conclusion">Toda vez começa "pra valer". Toda vez quebra no mesmo ponto. Só muda a data do recomeço.</div>
+        </div>
       </div>
-      <div class="case-card">
-        <div class="case-header"><span class="case-id">Sujeito 112</span><span class="case-status">Crítico</span></div>
-        <div class="case-field"><span class="case-key">Função</span><span class="case-val">Empreendedor solo</span></div>
-        <div class="case-field"><span class="case-key">Padrão</span><span class="case-val"><strong>Consumo de conteúdo</strong> como substituto da execução</span></div>
-        <div class="case-field"><span class="case-key">Duração</span><span class="case-val">~4 anos em ciclo ativo</span></div>
-        <div class="case-conclusion">+200 horas estudando disciplina. Zero implementado. O estudo virou a desculpa perfeita pra nunca começar.</div>
-      </div>
-      <div class="case-card">
-        <div class="case-header"><span class="case-id">Sujeito 198</span><span class="case-status">Crítico</span></div>
-        <div class="case-field"><span class="case-key">Função</span><span class="case-val">Estudante — duplo turno</span></div>
-        <div class="case-field"><span class="case-key">Padrão</span><span class="case-val"><strong>Motivação-colapso</strong> — começa intenso, abandona em 4 dias</span></div>
-        <div class="case-field"><span class="case-key">Duração</span><span class="case-val">Repete a cada 3–4 semanas</span></div>
-        <div class="case-conclusion">Toda vez começa "pra valer". Toda vez quebra no mesmo ponto. Só muda a data do recomeço.</div>
+      <div class="cases-nav">
+        <button type="button" class="cases-arrow cases-prev" aria-label="Caso anterior">◀</button>
+        <div class="cases-dots" id="cases-dots"></div>
+        <button type="button" class="cases-arrow cases-next" aria-label="Próximo caso">▶</button>
       </div>
     </div>
 
@@ -473,7 +712,7 @@ body::before{
   </section>
 
   <!-- ═══ 6 — OFERTA ═══ -->
-  <section class="doc-section" data-section="05">
+  <section class="doc-section" data-section="05" id="sec-oferta">
     <div class="section-label"><span class="section-num">05</span>Ordem de acesso</div>
 
     <div class="access-window">
@@ -503,7 +742,7 @@ body::before{
   </section>
 
   <!-- ═══ 7 — GARANTIA ═══ -->
-  <section class="doc-section" data-section="06">
+  <section class="doc-section" data-section="06" id="sec-garantia">
     <div class="section-label"><span class="section-num">06</span>Garantia</div>
 
     <div class="guarantee-block">
@@ -518,12 +757,12 @@ body::before{
   </section>
 
   <!-- ═══ 8 — CTA ═══ -->
-  <section class="doc-section" data-section="07">
+  <section class="doc-section" data-section="07" id="sec-cta">
     <div class="cta-block">
       <div class="cta-pre">// a única decisão que importa nesta página</div>
-      <a href="https://pay.cakto.com.br/7u4fyv6_851435" class="cta-btn">
+      <a href="https://pay.cakto.com.br/7u4fyv6_851435" class="cta-btn" id="main-cta">
         <span class="cta-sweep"></span>
-        Quebrar o padrão agora — R$27
+        <span class="cta-label">Quebrar o padrão agora — R$27</span>
       </a>
       <div class="cta-sub">Acesso na hora. 7 dias de garantia. A outra opção é fechar esta aba e deixar o padrão ganhar de novo — como ganhou todas as outras vezes.</div>
     </div>
@@ -567,12 +806,290 @@ body::before{
   })();
 })();
 
-/* reveal on scroll */
+/* reveal on scroll (seções) */
 (function(){
   const obs=new IntersectionObserver(es=>{
     es.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('visible'); obs.unobserve(e.target); } });
   },{threshold:.06});
   document.querySelectorAll('.doc-section').forEach(s=>obs.observe(s));
+})();
+
+/* ═══════════════════════════════════════
+   CAMADA DE INTERAÇÃO
+   ═══════════════════════════════════════ */
+(function(){
+  const reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* ---------- 0. barras de acesso rápido — sempre ativas, mesmo com reduced motion ---------- */
+  (function setupQuickAccess(){
+    const qbTop=document.getElementById('quickbar-top');
+    const qbBottom=document.getElementById('quickbar-bottom');
+    const qbStatus=document.getElementById('qb-status');
+    const jumpBtn=document.getElementById('jump-to-price');
+    const qbBtnTop=document.getElementById('qb-btn-top');
+    const qbBtnBottom=document.getElementById('qb-btn-bottom');
+    const target=document.getElementById('sec-oferta');
+
+    function goToOferta(){
+      if(!target) return;
+      target.scrollIntoView({behavior: reduced ? 'auto' : 'smooth', block:'start'});
+    }
+    [jumpBtn, qbBtnTop, qbBtnBottom].forEach(btn=>{ if(btn) btn.addEventListener('click', goToOferta); });
+
+    const STATUS_MAP={
+      'sec-diagnostico':'PROTOCOLO LOCALIZADO',
+      'sec-mecanismo':'DIAGNÓSTICO CONCLUÍDO',
+      'sec-entrega':'DIAGNÓSTICO CONCLUÍDO',
+      'sec-casos':'PROTOCOLO VALIDADO',
+      'sec-oferta':'ACESSO DISPONÍVEL',
+      'sec-garantia':'AUTORIZAÇÃO LIBERADA',
+      'sec-cta':'AUTORIZAÇÃO LIBERADA'
+    };
+    const statusEls=Object.keys(STATUS_MAP).map(id=>document.getElementById(id)).filter(Boolean);
+    if(statusEls.length && qbStatus && 'IntersectionObserver' in window){
+      const statusObs=new IntersectionObserver(entries=>{
+        entries.forEach(entry=>{
+          if(entry.isIntersecting && STATUS_MAP[entry.target.id]){
+            qbStatus.textContent=STATUS_MAP[entry.target.id];
+          }
+        });
+      },{threshold:0, rootMargin:'-45% 0px -45% 0px'});
+      statusEls.forEach(el=>statusObs.observe(el));
+    }
+
+    let qTicking=false;
+    function updateQuickbar(){
+      const doc=document.documentElement;
+      const scrollTop=window.scrollY||doc.scrollTop;
+      const height=(doc.scrollHeight-doc.clientHeight)||1;
+      const pct=(scrollTop/height)*100;
+      const show=pct>=15;
+      if(qbTop) qbTop.classList.toggle('qb-visible', show);
+      if(qbBottom) qbBottom.classList.toggle('qb-visible', show);
+      qTicking=false;
+    }
+    window.addEventListener('scroll',()=>{ if(!qTicking){ requestAnimationFrame(updateQuickbar); qTicking=true; } },{passive:true});
+    updateQuickbar();
+  })();
+
+  /* ---------- estado estático imediato (reduced motion) ---------- */
+  function revealEverythingStatic(){
+    document.querySelectorAll('.diag-field,.evidence-item,.laudo-body p,.realtime-card,.laudo-conclusion,.dm-item,.po-row')
+      .forEach(el=>el.classList.add('df-in','ev-in','lb-in','dm-in','po-in'));
+    const stamp=document.querySelector('.stamp-confidential');
+    if(stamp) stamp.classList.add('stamp-in');
+  }
+
+  /* ---------- 1. portal de autenticação ---------- */
+  const gate=document.getElementById('intro-gate');
+  const GATE_KEY='paa_intro_seen';
+  function closeGate(skipAnim){
+    if(!gate) return;
+    gate.classList.add('gate-hidden');
+    try{ localStorage.setItem(GATE_KEY,'1'); }catch(e){}
+    if(!skipAnim) runScanLine();
+    setTimeout(()=>{ const stamp=document.querySelector('.stamp-confidential'); if(stamp) stamp.classList.add('stamp-in'); }, skipAnim?0:250);
+  }
+  function runScanLine(){
+    const sl=document.getElementById('scan-line');
+    if(!sl) return;
+    sl.classList.add('scan-run');
+    setTimeout(()=>sl.remove(),1600);
+  }
+
+  if(reduced){
+    if(gate) gate.remove();
+    revealEverythingStatic();
+  } else {
+    let seen=false;
+    try{ seen = localStorage.getItem(GATE_KEY)==='1'; }catch(e){}
+    if(seen){
+      if(gate) gate.remove();
+      const stamp=document.querySelector('.stamp-confidential'); if(stamp) stamp.classList.add('stamp-in');
+    } else if(gate) {
+      const lines=gate.querySelectorAll('.gate-line');
+      const bar=document.getElementById('gate-bar');
+      const timings=[150,550,1750,2150];
+      lines.forEach((l,i)=>setTimeout(()=>l.classList.add('show'),timings[i]||i*400));
+      if(bar) setTimeout(()=>{ bar.style.width='100%'; },550);
+      setTimeout(()=>closeGate(false), 2600);
+    }
+  }
+
+  if(reduced) return; /* nada de motion adicional além do já revelado */
+
+  /* ---------- 2. barra de progresso de leitura ---------- */
+  const rpBar=document.getElementById('read-progress');
+  const rpFill=document.getElementById('rp-fill');
+  const rpPct=document.getElementById('rp-pct');
+  let ticking=false;
+  function updateProgress(){
+    const doc=document.documentElement;
+    const scrollTop=window.scrollY||doc.scrollTop;
+    const height=(doc.scrollHeight-doc.clientHeight)||1;
+    const pct=Math.min(100,Math.max(0,Math.round((scrollTop/height)*100)));
+    if(rpFill) rpFill.style.width=pct+'%';
+    if(rpPct) rpPct.textContent=pct+'%';
+    if(rpBar) rpBar.classList.toggle('rp-visible', scrollTop>140);
+    ticking=false;
+  }
+  window.addEventListener('scroll',()=>{ if(!ticking){ requestAnimationFrame(updateProgress); ticking=true; } },{passive:true});
+  updateProgress();
+
+  /* ---------- 3. indicador de etapa fixo ---------- */
+  const STEPS=[
+    {id:'sec-diagnostico', label:'Diagnóstico'},
+    {id:'sec-mecanismo',   label:'Mecanismo'},
+    {id:'sec-entrega',     label:'Entrega'},
+    {id:'sec-casos',       label:'Casos'},
+    {id:'sec-oferta',      label:'Oferta'},
+    {id:'sec-garantia',    label:'Garantia'}
+  ];
+  const navEl=document.getElementById('step-indicator');
+  if(navEl){
+    STEPS.forEach((s,i)=>{
+      const btn=document.createElement('div');
+      btn.className='step-item';
+      btn.dataset.target=s.id;
+      btn.innerHTML='<span class="step-label">'+s.label+'</span><span class="step-num">'+String(i+1).padStart(2,'0')+'</span>';
+      btn.addEventListener('click',()=>{
+        const t=document.getElementById(s.id);
+        if(t) t.scrollIntoView({behavior:'smooth',block:'start'});
+      });
+      navEl.appendChild(btn);
+    });
+  }
+
+  /* ---------- 4. rótulo dinâmico do CTA ---------- */
+  const ctaLabelEl=document.querySelector('#main-cta .cta-label');
+  const ORIGINAL_CTA='Quebrar o padrão agora — R$27';
+  const CTA_MAP={
+    'sec-diagnostico':'Abrir Investigação',
+    'sec-mecanismo':'Continuar Leitura',
+    'sec-entrega':'Continuar Leitura',
+    'sec-casos':'Autorizar Acesso',
+    'sec-oferta':'Liberar Protocolo',
+    'sec-garantia':'Liberar Protocolo',
+    'sec-cta':ORIGINAL_CTA
+  };
+
+  /* ---------- observer central: indicador + CTA ---------- */
+  const trackIds=['sec-diagnostico','sec-mecanismo','sec-entrega','sec-casos','sec-oferta','sec-garantia','sec-cta'];
+  const trackEls=trackIds.map(id=>document.getElementById(id)).filter(Boolean);
+  const centerObs=new IntersectionObserver(entries=>{
+    entries.forEach(entry=>{
+      if(!entry.isIntersecting) return;
+      const id=entry.target.id;
+      if(navEl){
+        navEl.querySelectorAll('.step-item').forEach(it=>it.classList.toggle('active', it.dataset.target===id));
+      }
+      if(ctaLabelEl && CTA_MAP[id]) ctaLabelEl.textContent=CTA_MAP[id];
+    });
+  },{threshold:0, rootMargin:'-45% 0px -45% 0px'});
+  trackEls.forEach(el=>centerObs.observe(el));
+
+  /* ---------- 5. utilitário de revelação escalonada ---------- */
+  function staggerReveal(container, selector, activeClass, step){
+    if(!container) return;
+    const items=Array.from(container.querySelectorAll(selector));
+    if(!items.length) return;
+    const obs=new IntersectionObserver(es=>{
+      es.forEach(e=>{
+        if(e.isIntersecting){
+          items.forEach((it,i)=>{ if(it===e.target){ setTimeout(()=>it.classList.add(activeClass), i*(step||110)); } });
+          obs.unobserve(e.target);
+        }
+      });
+    },{threshold:.15});
+    items.forEach(it=>obs.observe(it));
+  }
+
+  /* diagnóstico: campos + evidências */
+  staggerReveal(document.querySelector('.diagnosis-fields'), '.diag-field', 'df-in', 140);
+  staggerReveal(document.querySelector('.evidence-list'), '.evidence-item', 'ev-in', 160);
+
+  /* mecanismo: parágrafos e blocos, em ordem de leitura */
+  (function(){
+    const sec=document.getElementById('sec-mecanismo');
+    if(!sec) return;
+    const items=Array.from(sec.querySelectorAll('.laudo-body p, .realtime-card, .laudo-conclusion'));
+    const obs=new IntersectionObserver(es=>{
+      es.forEach(e=>{
+        if(e.isIntersecting){
+          const idx=items.indexOf(e.target);
+          setTimeout(()=>e.target.classList.add('lb-in'), Math.max(0,idx)*130);
+          obs.unobserve(e.target);
+        }
+      });
+    },{threshold:.2});
+    items.forEach(it=>obs.observe(it));
+  })();
+
+  /* entrega: linha do tempo — entrada + destaque da etapa atual */
+  (function(){
+    const list=document.querySelector('.dm-list');
+    if(!list) return;
+    const items=Array.from(list.querySelectorAll('.dm-item'));
+    const inObs=new IntersectionObserver(es=>{
+      es.forEach(e=>{
+        if(e.isIntersecting){
+          const i=items.indexOf(e.target);
+          setTimeout(()=>e.target.classList.add('dm-in'), i*110);
+          inObs.unobserve(e.target);
+        }
+      });
+    },{threshold:.15});
+    items.forEach(it=>inObs.observe(it));
+
+    const activeObs=new IntersectionObserver(es=>{
+      es.forEach(e=>{ e.target.classList.toggle('dm-active', e.isIntersecting); });
+    },{threshold:0, rootMargin:'-40% 0px -40% 0px'});
+    items.forEach(it=>activeObs.observe(it));
+  })();
+
+  /* oferta: revelação sequencial das linhas */
+  staggerReveal(document.querySelector('.payment-order'), '.po-row', 'po-in', 180);
+
+  /* ---------- 6. carrossel de casos ---------- */
+  (function(){
+    const track=document.getElementById('cases-track');
+    const dotsWrap=document.getElementById('cases-dots');
+    const carousel=document.getElementById('cases-carousel');
+    if(!track || !carousel) return;
+    const cards=Array.from(track.children);
+    let idx=0;
+
+    cards.forEach((_,i)=>{
+      const d=document.createElement('button');
+      d.type='button';
+      d.className='cases-dot'+(i===0?' active':'');
+      d.setAttribute('aria-label','Ir para caso '+(i+1));
+      d.addEventListener('click',()=>goTo(i));
+      dotsWrap.appendChild(d);
+    });
+    const dots=Array.from(dotsWrap.children);
+
+    function goTo(i){
+      idx=Math.max(0,Math.min(cards.length-1,i));
+      track.style.transform='translateX(-'+(idx*100)+'%)';
+      dots.forEach((d,j)=>d.classList.toggle('active', j===idx));
+    }
+
+    carousel.querySelector('.cases-prev').addEventListener('click',()=>goTo(idx-1));
+    carousel.querySelector('.cases-next').addEventListener('click',()=>goTo(idx+1));
+
+    /* swipe mobile */
+    let touchX=null;
+    track.addEventListener('touchstart',e=>{ touchX=e.touches[0].clientX; },{passive:true});
+    track.addEventListener('touchend',e=>{
+      if(touchX===null) return;
+      const dx=e.changedTouches[0].clientX-touchX;
+      if(Math.abs(dx)>40){ dx<0 ? goTo(idx+1) : goTo(idx-1); }
+      touchX=null;
+    },{passive:true});
+
+    goTo(0);
+  })();
 })();
 </script>
 </body>
