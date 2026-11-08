@@ -1,0 +1,67 @@
+:root {
+  /* superfícies */
+  --bg: #07070a;
+  --bg-2: #0b0b0f;
+  --card: #101015;
+  /* texto */
+  --ivory: #f3efe7;
+  --body: #aca99f;
+  --dim: #6f6d68;
+  --ghost: #2c2b31;
+  /* linhas */
+  --line: rgba(255, 255, 255, 0.08);
+  --line-h: rgba(255, 255, 255, 0.18);
+  /* acento único: turquesa glacial */
+  --accent: #2ee8c8;
+  --accent-d: #1fc9ab;
+  --accent-deep: #0a5a50;
+  --accent-soft: rgba(46, 232, 200, 0.14);
+  --frost: #e8fff8; /* brilho branco-esverdeado */
+  --on-accent: #03231f; /* texto sobre o turquesa: branco não tem contraste */
+
+  --font-display: 'Anton', 'Impact', 'Arial Narrow', sans-serif;
+  --font-mono: 'IBM Plex Mono', ui-monospace, monospace;
+  --font-ui: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+
+  font-family: var(--font-ui);
+  color: var(--ivory);
+  color-scheme: dark;
+  -webkit-font-smoothing: antialiased;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  min-height: 100%;
+  background: var(--bg);
+}
+
+body {
+  overflow-x: hidden;
+}
+
+::selection {
+  background: var(--accent);
+  color: var(--on-accent);
+}
+
+button {
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+.page {
+  min-height: 100svh;
+}
